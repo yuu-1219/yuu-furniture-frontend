@@ -1,7 +1,7 @@
-# モダンECサイト（フルスクラッチ開発）
+# 家具メーカECサイト（フルスクラッチ開発）
 
 ## 概要（Overview）
-このWEBサイトは、Node.js と JavaScript を用いて開発されたフルスクラッチのECサイトです。
+このWEBサイトは、ReactとNode.jsを用いて開発されたフルスクラッチのECサイトです。
 商品一覧・詳細表示からカート操作、購入完了までの一連の流れを実装しました。
 
 
@@ -14,8 +14,7 @@
   
 
 ## 想定ユーザー（Target User）
-- 一般ユーザー：雑貨等を購入するエンドユーザー
-- 管理者ユーザー：商品を登録・管理する店舗管理者
+- 一般ユーザー：家具等を購入するエンドユーザー
   
 
 ## ページ構成（Page Structure）
@@ -53,12 +52,11 @@
 | POST | /api/products | 商品新規登録（管理者用）|
 
 
-## 画面遷移図（Page Flow）
+## ワイヤーフレーム （Wire Frame）
 
-> ※以下にdraw.ioなどで作成した画像を貼る  
-`docs/page-flow.png` を使用する例：
+[ワイヤーフレーム] (https://www.figma.com/design/30LztBXcfurCCVYbY2Gd4N/EC%E3%82%B5%E3%82%A4%E3%83%88?node-id=0-1&p=f&t=CpqCrY3IRumavmW0-0)
 
-![画面遷移図](./docs/page-flow.png)
+Figmaで作成したECサイトのワイヤーフレームにリンクしております。
 
 
 ## データ構造（Data Model）
