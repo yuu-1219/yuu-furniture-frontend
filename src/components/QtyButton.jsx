@@ -6,29 +6,29 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function QtyButton() {
-    const [count, setCount] = useState(0);
+export default function QtyButton({qty=1, width=120, onIncrement, onDecrement}) {
 
-    const increment = () => setCount((prev) => prev + 1);
-    const decrement = () => setCount((prev) => Math.max(0, prev - 1)); // 0未満にしない
+    // const increment = () => setQty((prev) => prev + 1);
+    // const decrement = () => setQty((prev) => Math.max(1, prev - 1)); // 0未満にしない
 
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 border: "0.5px solid #cecece",
                 borderRadius: "25px",
-                width: "120px",
+                width: `${width}px`,
                 height : "45px",
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: "center",
-                gap: 8
+                justifyContent: "space-around",
+                backgroundColor: "#fffdf7",
+                // gap: 1
             }}
         >
             <IconButton
                 // variant="text"
                 // size="small"
-                onClick={decrement}
+                onClick={onDecrement}
 
             >
                 <RemoveIcon fontSize="small"/>
@@ -40,16 +40,16 @@ export default function QtyButton() {
                     fontSize: "24px"
                 }}
             >
-                {count}
+                {qty}
             </Typography>
 
             <IconButton
                 // variant="text"
                 // size="small"
-                onClick={increment}
+                onClick={onIncrement}
             >
                 <AddIcon fontSize="small"/>
             </IconButton>
-        </div>
+        </Box>
     );
 }

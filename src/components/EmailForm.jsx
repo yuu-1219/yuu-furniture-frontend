@@ -1,8 +1,8 @@
 import TextField from "@mui/material/TextField"
 import { useState } from "react";
 
-export default function EmailForm() {
-    const [email, setEmail] = useState("");
+export default function EmailForm({ email, setEmail }) {
+    // const [email, setEmail] = useState("");
     const UpdateEmail = (e) => {
         setEmail(e.target.value);
     }
@@ -15,7 +15,7 @@ export default function EmailForm() {
                  // flexWrap: "wrap",  
                 // gap: "30px",
                 margin: "10px",
-                maxWidth: "600px",     
+                // maxWidth: "600px",     
                 width: "100%"
             }}
         >
@@ -23,7 +23,7 @@ export default function EmailForm() {
                 for="email"
                 style={{
                     fontWeight: "600",
-                    width: "150px",
+                    width: "20%",
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
@@ -33,13 +33,13 @@ export default function EmailForm() {
                 type="email"
                 id="email"
                 name="email" 
-                placeholder="yuu@gmail.com"
+                placeholder="yamada1234@gmail.com"
                 value={email}
                 onChange={UpdateEmail}
                 style={{
-                    height: "30px",
+                    height: "35px",
                     // width : "450px",
-                    width: "100%",
+                    width: "80%",
                     fontSize: "15px",
                     flexGrow: 1,
                     flexBasis: 0,   

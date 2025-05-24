@@ -1,4 +1,5 @@
 import './styles/App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
@@ -14,12 +15,13 @@ import OrderHistory from "./pages/OrderHistory";
 import UserInfo from "./pages/UserInfo";
 import Favorite from "./pages/Favorite";
 
+import Header from "./components/Header";
+import Footer from "./components/Footer"; 
+
 import Review from "./components/Review";
 import NameForm from "./components/NameForm";
 import EmailForm from "./components/EmailForm";
 import PasswordForm from './components/PasswordForm';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import PaginationRounded from "./components/PagingButton";
 import BackButton from "./components/BackButton";
 import FavoriteButton from './components/FavoriteButton';
@@ -28,6 +30,7 @@ import ProductName from './components/ProductName';
 import QtyButton from './components/QtyButton';
 import TrashButton from './components/TrashButton';
 import RunButton from './components/RunButton';
+
 
 function App() {
   const user = {
@@ -54,11 +57,11 @@ function App() {
   return (
     <BrowserRouter>
 
-      <Header />
+      {/* <Header /> */}
 
-      <nav>
+      {/* <nav>
         <Link to="/">ホーム</Link> | <Link to="/products">プロダクト</Link>
-      </nav>
+      </nav> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -74,7 +77,7 @@ function App() {
         <Route path="/user/:id/favorite" element={<Favorite />} />
       </Routes>
 
-      <Review value={3} />
+      {/* <Review value={3} />
       <NameForm />
       <EmailForm />
       <PasswordForm />
@@ -87,12 +90,12 @@ function App() {
 
       <PaginationRounded pages={pages}/>
 
-      <BackButton text={text} link={link} />
+      <BackButton text={text} link={link} /> */}
       {/* <BackButton /> */}
 
       
 
-      <Footer />
+      {/* <Footer /> */}
   
     </BrowserRouter>
   );

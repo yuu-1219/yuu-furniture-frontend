@@ -1,5 +1,361 @@
-import { Link } from "react-router-dom";
+import '../styles/ProductDetail.css'
+
+import { useState } from "react";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+import PaginationButton from "../components/PagingButton";
+import BackButton from "../components/BackButton";
+import Price from '../components/Price';
+import Review from '../components/Review';
+import RunButton from '../components/RunButton';
+import QtyButton from '../components/QtyButton';
+import FavoriteButton from '../components/FavoriteButton';
+
+import Products from './Products';
+
+import { products } from "../constants/products";
+
+import { useCart } from '../contexts/CartContext';
+// import { useAuth } from '../contexts/AuthContext';
+import { useUser } from '../contexts/UserContext';
+
 
 export default function ProductDetail() {
-    return <h2>商品詳細ページ</h2>;
-  }
+  const { id } = useParams();
+
+  // const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useUser();
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
+  const [qty, setQty] = useState(1);
+
+  const onIncrement = () => setQty((prev) => prev + 1);
+  const onDecrement = () => setQty((prev) => Math.max(1, prev - 1)); // 
+
+  const location = useLocation();
+  const product = location.state?.product;
+  // const products = location.state?.products;
+
+  const { productId, name, price, img, description, color, rating } = product;
+
+  const handleAddToCart = () => {
+    // if (!isAuthenticated) {
+    //   navigate("/login");
+    //   return;
+    // }
+
+    addToCart(productId, color, qty);
+    alert("カートに追加されました");
+  };
+
+  return (
+    <>
+      <Header />
+      <div class="background-overlay">
+        <div class="container-fluid contents">
+
+          <Box
+            // className="row justify-content-center"
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              padding: "40px 0px 0px 0px",
+              margin: "0px 0px 0px 0px",
+            }}
+          >
+
+            {/* (start)左パーツ */}
+            {/* <nav class="nav-ver side-ver col-12 col-md-8 px-2 py-3 my-4"> */}
+            <Box
+              sx={{
+                margin: "0px 0px",
+                width: { xs: "100%", md: "35%" },
+                padding: "30px 30px",
+                maxWidth: "650px",
+                backgroundColor: "rgba(251, 245, 230, 0.8)",
+                borderRadius: "10px",
+                border: "0.2px solid #eee9d3",
+              }}
+            >
+              <img
+                src={img}
+                alt={name}
+                style={{
+                  width: "100%",
+                  // maxWidth: "550px",
+                  height: "auto",
+                  objectFit: "cover",
+                  aspectRatio: "4 / 3"
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  padding: "30px 0px",
+                  margin: "0px 0px",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "flex-start",
+                  textAlign: "left"
+
+                }}
+              >
+                {description}
+              </Typography>
+
+            </Box>
+
+            {/* </nav> */}
+            {/* (end)左パーツ */}
+
+
+
+            {/* (start)右パーツ */}
+            {/* <div class="title-card col-12 col-md-9 py-3 my-4"> */}
+            <Box
+              sx={{
+                margin: "0px 30px",
+                width: { xs: "100%", md: "50%" },
+                padding: "30px 60px",
+                backgroundColor: "rgba(251, 245, 230, 0.8)",
+                borderRadius: "10px",
+                border: "0.2px solid #eee9d3",
+
+              }}
+            >
+
+              <Box
+                sx={{
+                }}
+              >
+
+
+                {/* (start)商品名、価格、評価 */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start"
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "flex-start"
+                    }}
+                  >
+                    <h1 class="title">
+                      {name}
+                    </h1>
+
+                    <Box
+                      sx={{
+                        padding: "0px 0px 0px 0px"
+                      }}
+                    >
+                      <Price price={price} priceSize={26} unitSize={16} priceWidth={72} />
+                    </Box>
+
+                    <Box
+                      sx={{
+                        padding: "0px 0px 0px 5px"
+                      }}
+                    >
+                      <Review value={rating} />
+                    </Box>
+
+                  </Box>
+
+                  <Box
+                    sx={{
+                      padding: "20px 0px 0px 0px"
+                    }}
+                  >
+                    <FavoriteButton productId={productId} color={color}/>
+                  </Box>
+
+
+                  {/* (end)商品名、価格、評価 */}
+
+
+
+                </Box>
+
+
+
+
+
+                {/* (start)商品説明*/}
+                <Box
+                  sx={{
+                    margin: "40px 0px 0px 16px",
+                  }}
+                >
+
+                  {/* (start)商品コード*/}
+                  <Box
+                    sx={{
+                    }}
+                    className="row"
+                  >
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "#f0e8cd",
+                        borderRadius: "2px",
+                        border: "0.2px solid #cecece",
+                        padding: "5px"
+
+                      }}
+                      className="col-4"
+                    >
+                      商品コード
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "#fffdf7",
+                        borderRadius: "2px",
+                        border: "0.2px solid #cecece",
+                        padding: "5px"
+                      }}
+                      className="col-8"
+                    >
+                      {productId}
+                    </Typography>
+                  </Box>
+                  {/* (end)商品コード*/}
+
+
+                  {/* (start)カラー*/}
+                  <Box
+                    sx={{
+                    }}
+                    className="row"
+                  >
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "#f0e8cd",
+                        borderRadius: "2px",
+                        border: "0.2px solid #cecece",
+                        padding: "5px"
+
+                      }}
+                      className="col-4"
+                    >
+                      カラー
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        backgroundColor: "#fffdf7",
+                        borderRadius: "2px",
+                        border: "0.2px solid #cecece",
+                        padding: "5px"
+                      }}
+                      className="col-8"
+                    >
+                      {color}
+                    </Typography>
+                  </Box>
+                  {/* (end)カラー*/}
+
+                </Box>
+                {/* (end)商品説明*/}
+
+
+
+                {/* (start)カート追加*/}
+                <Box
+                  sx={{
+                    margin: "40px 0px 0px 16px",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      padding: "5px",
+                      width: "30%"
+
+                    }}
+                  >
+                    <QtyButton qty={qty} width={150} onIncrement={onIncrement} onDecrement={onDecrement} />
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      padding: "5px",
+                      width: "70%"
+                    }}
+                  >
+                    <RunButton text={"カートに入れる"} width={450} height={45} handleClick={handleAddToCart} />
+                  </Box>
+
+
+                </Box>
+                {/* (end)カート追加*/}
+
+              </Box>
+
+
+            </Box>
+            {/* (start)右パーツ */}
+
+          </Box>
+        </div>
+
+
+        <Box
+          sx={{
+            margin: "0px 0px 150px 0px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            // height: "100vh"   
+          }}
+        >
+
+
+          <Box
+            sx={{
+              margin: "30px 0px 0px 0px",
+            }}
+          >
+            <BackButton text="一覧に戻る" link="/products" />
+          </Box>
+
+
+        </Box>
+
+      </div >
+
+      <Footer />
+    </>
+  )
+}

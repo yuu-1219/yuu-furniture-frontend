@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
 
-import {Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-export default function RunButton({text, hundleClick}) {
+export default function RunButton({text, width=300, height=35, handleClick}) {
 
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 border: "0.5px solid #cecece",
                 borderRadius: "25px",
                 backgroundColor: "#fdc757",
-                width: "300px",
-                height: "45px",
+                width: `${width}px`,
+                // padding: "20px 60px",
+                height: `${height}px`,
                 cursor: "pointer",
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: "center"
             }}
-            onclick={hundleClick}
+            onClick={handleClick}
         >
             <Typography
                 sx={{
                     fontWeight: '600',
                     fontSize: "18px",
-                    color: "#535353"
+                    color: "#535353",
+                    // width: `${width}px`,
                 }}
             >
                 {text}
             </Typography>
-        </div>
+        </Box>
     );
 }

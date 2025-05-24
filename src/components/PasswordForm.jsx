@@ -1,8 +1,8 @@
 import TextField from "@mui/material/TextField"
 import { useState } from "react";
 
-export default function PasswordForm() {
-    const [password, setPassword] = useState("");
+export default function PasswordForm({ password, setPassword }) {
+    // const [password, setPassword] = useState("");
     const UpdatePassword = (e) => {
         setPassword(e.target.value);
     }
@@ -14,7 +14,7 @@ export default function PasswordForm() {
                 alignItems: "center",
                 // gap: "30px",
                 margin: "10px",
-                maxWidth: "600px",     
+                // maxWidth: "600px",     
                 width: "100%"
             }}
         >
@@ -22,7 +22,7 @@ export default function PasswordForm() {
                 for="email"
                 style={{
                     fontWeight: "600",
-                    width: "150px",
+                    width: "20%",
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
@@ -36,9 +36,9 @@ export default function PasswordForm() {
                 value={password}
                 onChange={UpdatePassword}
                 style={{
-                    height: "30px",
+                    height: "35px",
                     // width : "450px",
-                    width: "100%",
+                    width: "80%",
                     fontSize: "18px",
                     flexGrow: 1,
                     flexBasis: 0,   

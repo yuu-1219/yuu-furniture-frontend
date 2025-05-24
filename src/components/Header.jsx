@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
-//import { AppBar, Box, Toolbar, IconButton, Typography, InputBase, Badge, MenuItem, Menu } from '@mui/material/';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,10 +18,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import LoginIcon from '@mui/icons-material/Login';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
-import { useUser } from "../contexts/UserContext";
 import { useCart } from "../contexts/CartContext";
+// import { useAuth } from '../contexts/AuthContext';
+import { useUser } from '../contexts/UserContext';
 
 // import Home from "../pages/Home";
 // import Cart from "../pages/Cart";
@@ -70,6 +71,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -93,13 +95,15 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  // const { user, login } = useUser();
-  // const { cartItems } = useCart();
+
+  const { cart } = useCart();
+  // const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useUser();
+
+  const totalQty = cart.totalQty ? cart.totalQty : 0;
+  // const totalQty = 0;
 
   const menuId = 'primary-search-account-menu';
-  // const totalQty = cartItems.totalQty ? cartItems.totalQty : 0;
-  const totalQty = 0;
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -117,23 +121,72 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
+      {user ? (
+        <MenuItem
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            cursor: 'default',
+            '&:hover': {
+              backgroundColor: 'transparent' // ホバー時の背景色を無効化
+            },
+            display: "flex",
+            justifyContent: "center"
+
+          }}
+        >
+
+          <Typography
+            sx={{
+              fontWeight: "700"
+            }}
+          >
+            {`${user.name} さん`}
+          </Typography>
+        </MenuItem>
+      ) : (
+        <MenuItem
+          component={Link}
+          to="/login"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          <IconButton
+            size="large"
+            color="inherit"
+          >
+            <Badge color="error">
+              <LoginIcon />
+            </Badge>
+          </IconButton>
+          <Typography>
+            ログイン
+          </Typography>
+        </MenuItem>
+
+      )}
+
+
+
       <MenuItem
         component={Link}
         to="/user/:id/favorite"
         style={{ color: 'inherit', textDecoration: 'none' }}
       >
-        <IconButton 
+        <IconButton
           size="large"
           color="inherit"
         >
           <Badge color="error">
-              <FavoriteBorderIcon />
+            <FavoriteBorderIcon />
           </Badge>
         </IconButton>
-        <p>お気に入り</p>
+        <Typography>
+          お気に入り
+        </Typography>
       </MenuItem>
 
-      <MenuItem 
+      <MenuItem
         component={Link}
         to="/cart"
         style={{ color: 'inherit', textDecoration: 'none' }}
@@ -144,16 +197,22 @@ export default function Header() {
         >
           <Badge badgeContent={totalQty} color="error">
             {/* <ShoppingCartCheckoutIcon /> */}
-            <ShoppingCartIcon/>
+            <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <p>カート</p>
+        <Typography>
+          カート
+        </Typography>
       </MenuItem>
-      
+
       <MenuItem
         component={Link}
         to="/User/:id"
-        style={{ color: 'inherit', textDecoration: 'none' }}
+        style={{
+          color: 'inherit',
+          textDecoration: 'none',
+          display: "flex",
+        }}
       >
         <IconButton
           size="large"
@@ -162,33 +221,35 @@ export default function Header() {
           aria-haspopup="true"
           color="inherit"
         >
-            <AccountCircle />
-            {/* <PersonOutlineIcon/> */}
+          <AccountCircle />
+          {/* <PersonOutlineIcon/> */}
         </IconButton>
-        <p>マイページ</p>
+        <Typography>
+          マイページ
+        </Typography>
       </MenuItem>
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow : 1}}>
-      <AppBar 
-        sx={{backgroundColor: "#d1c789", color: "#5b5b5b" }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        sx={{ backgroundColor: "#d1c789", color: "#5b5b5b" }}
       >
         <Toolbar>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block'} }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            <Link to="/" style={{ color: 'inherit', textDecoration: 'none', fontWeight: "700"  }}>
+            <Link to="/" style={{ color: 'inherit', textDecoration: 'none', fontWeight: "700" }}>
               Yuu furniture
             </Link>
           </Typography>
 
           <Search
-            sx={{ backgroundColor: "#e3e3e3" }}
+            sx={{ backgroundColor: "#eae9e7" }}
           >
             <SearchIconWrapper>
               <SearchIcon />
@@ -196,24 +257,62 @@ export default function Header() {
             <StyledInputBase
               placeholder="商品を検索"
               inputProps={{ 'aria-label': 'search' }}
-              sx={{ fontWeight: "600"}}
+              sx={{ fontWeight: "600" }}
             />
           </Search>
 
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, alignItems: 'center' }}>
+          <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, alignItems: 'baseline' }}>
 
-            <Typography
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, textAlign: 'right', fontWeight: "700", fontSize: "14px"  }}
+            {/* <Typography
+              noWrap
+              component={Link}
+              to={"/login"}
+              sx={{
+                flexGrow: 1,
+                textAlign: 'right',
+                fontWeight: "700",
+                fontSize: "14px",
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
             >
-                {/* {user.name ? `${user.name} さん` : "ゲスト さん"} */}
-                {"ゲスト さん"}
+              {user ? `${user.name} さん` : "ログイン"}
 
-            </Typography>
-          
+            </Typography> */}
+
+            {user ? (
+              <Typography
+                noWrap
+                sx={{
+                  flexGrow: 1,
+                  textAlign: 'right',
+                  fontWeight: "700",
+                  fontSize: "14px",
+                  color: 'inherit',
+                }}
+              >
+                {`${user.name} さん`}
+              </Typography>
+            ) : (
+              <Typography
+                noWrap
+                component={Link}
+                to={"/login"}
+                sx={{
+                  flexGrow: 1,
+                  textAlign: 'right',
+                  fontWeight: "700",
+                  fontSize: "14px",
+                  color: 'inherit',
+                  textDecoration: 'none'
+                }}
+              >
+                ログイン
+              </Typography>
+            )}
+
             <IconButton size="large" color="inherit">
               <Badge color="error">
                 <Link to="/user/:id/favorite" style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -229,7 +328,7 @@ export default function Header() {
               <Badge badgeContent={totalQty} color="error">
                 <Link to="/cart" style={{ color: 'inherit', textDecoration: 'none' }}>
                   {/* <ShoppingCartCheckoutIcon /> */}
-                  <ShoppingCartIcon/>
+                  <ShoppingCartIcon />
                 </Link>
               </Badge>
             </IconButton>

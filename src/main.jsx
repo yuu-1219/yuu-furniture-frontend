@@ -3,8 +3,18 @@ import { createRoot } from 'react-dom/client'
 import './styles/index.css'
 import App from './App.jsx'
 
+import { CartProvider } from './contexts/CartContext'
+// import { AuthProvider } from './contexts/AuthContext.jsx'
+// import { FavoriteProvider } from './contexts/FavoriteContext.jsx'
+// import { OrdersProvider } from './contexts/OrdersContext.jsx'
+import { UserProvider } from './contexts/UserContext.jsx'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <UserProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </UserProvider>
   </StrictMode>,
 )

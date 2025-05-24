@@ -1,8 +1,8 @@
 import TextField from "@mui/material/TextField"
 import { useState } from "react";
 
-export default function NameForm() {
-    const [name, setName] = useState("");
+export default function NameForm({ name, setName }) {
+    // const [name, setName] = useState("");
     const UpdateName = (e) => {
         setName(e.target.value);
     }
@@ -16,7 +16,7 @@ export default function NameForm() {
                 // flexWrap: "wrap",  
                 // gap: "30px",
                 margin: "10px",
-                maxWidth: "600px",     
+                // maxWidth: "600px",     
                 width: "100%"
             }}
         >
@@ -24,7 +24,7 @@ export default function NameForm() {
                 for="name"
                 style={{
                     fontWeight: "600",
-                    width: "150px",
+                    width: "20%",
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
@@ -39,9 +39,9 @@ export default function NameForm() {
                 value={name}
                 onChange={UpdateName}
                 style={{
-                    height: "30px",
+                    height: "35px",
                     // width : "450px",
-                    width: "100%",
+                    width: "80%",
                     fontSize: "15px",
                     flexGrow: 1,
                     flexBasis: 0,   

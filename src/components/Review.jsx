@@ -10,9 +10,9 @@ export default function Review( {value} ) {
                 name="simple-controlled"
                 precision={0.5}
                 value={score}
-                onChange={(event, newValue) => {
-                    setScore(newValue);
-                }}
+                // onChange={(event, newValue) => {
+                //     setScore(newValue);
+                // }}
             />
         </>
 

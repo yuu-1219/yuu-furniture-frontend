@@ -18,19 +18,19 @@
   
 
 ## ページ構成（Page Structure）
-| URL | ページ名 | 機能概要 |
-|-----|----------|-----------|
-| `/` | トップページ | カテゴリ検索機能・全体への導線表示 |
-| `/products` | 商品一覧ページ | 並べ替え・絞り込み機能あり |
-| `/products/:id` | 商品詳細ページ | 商品情報・カート追加機能 |
-| `/cart` | カートページ | 商品削除/追加・合計金額表示・購入機能 |
-| `/complete` | 購入完了ページ | サンクスメッセージ・注文情報表示 |
-| `/login` | ログインページ | モック認証対応 |
-| `/register` | 会員登録ページ | 入力フォームのみ |
-| `/user/:id` | 会員ページ | 注文履歴・会員情報変更・お気に入り一覧 |
-| `/user/:id/order-history` | 購入履歴ページ | 購入履歴（モック） |
-| `/user/:id/info` | 会員情報変更ページ | 会員情報の確認・変更 |
-| `/user/:id/favorite` | お気に入り一覧ページ | お気に入り商品の一覧 |
+| URL                       | ページ名             | 機能概要                               |
+| ------------------------- | -------------------- | -------------------------------------- |
+| `/`                       | トップページ         | カテゴリ検索機能・全体への導線表示     |
+| `/products`               | 商品一覧ページ       | 並べ替え・絞り込み機能あり             |
+| `/products/:id`           | 商品詳細ページ       | 商品情報・カート追加機能               |
+| `/cart`                   | カートページ         | 商品削除/追加・合計金額表示・購入機能  |
+| `/complete`               | 購入完了ページ       | サンクスメッセージ・注文情報表示       |
+| `/login`                  | ログインページ       | モック認証対応                         |
+| `/register`               | 会員登録ページ       | 入力フォームのみ                       |
+| `/user/:id`               | 会員ページ           | 注文履歴・会員情報変更・お気に入り一覧 |
+| `/user/:id/order-history` | 購入履歴ページ       | 購入履歴（モック）                     |
+| `/user/:id/info`          | 会員情報変更ページ   | 会員情報の確認・変更                   |
+| `/user/:id/favorite`      | お気に入り一覧ページ | お気に入り商品の一覧                   |
 
 
 ## 機能一覧（Feature List）
@@ -43,13 +43,13 @@
 
 
 ## API設計（API Design）
-| メソッド | エンドポイント | 機能 |
-|---------|--------------|--------------------------|
-| GET |	/api/products |	商品一覧取得（検索・並べ替え・絞り込み対応）|
-| GET | /api/products/:id | 商品詳細取得 |
-| POST | /api/cart | カートに商品追加 |
-| DELETE | /api/cart/:id | 商品削除 |
-| POST | /api/products | 商品新規登録（管理者用）|
+| メソッド | エンドポイント    | 機能                                         |
+| -------- | ----------------- | -------------------------------------------- |
+| GET      | /api/products     | 商品一覧取得（検索・並べ替え・絞り込み対応） |
+| GET      | /api/products/:id | 商品詳細取得                                 |
+| POST     | /api/cart         | カートに商品追加                             |
+| DELETE   | /api/cart/:id     | 商品削除                                     |
+| POST     | /api/products     | 商品新規登録（管理者用）                     |
 
 
 ## ワイヤーフレーム （Wire Frame）
@@ -70,7 +70,9 @@ Figmaで作成したECサイトのワイヤーフレームにリンクしてお�
   "image": "/img/cup.png",
   "description": "Handmade cup",
   "color": "white",
-  "stock": 20
+  "stock": 20,
+  "category": "strage_furniture",
+  "rating": 4.5
 }
 
 // Cart
@@ -80,13 +82,11 @@ Figmaで作成したECサイトのワイヤーフレームにリンクしてお�
   "items": [
     {
       "productId": "e17f1c72-45be-4bbf-a978-25bd51c0a1b5",
-      "price": 9800,
       "quantity": 2,
       "color": "white"
     },
     {
       "productId": "7d0296b1-5e4d-47e1-8413-1027b5e7d8f9",
-      "price": 15800,
       "quantity": 1,
       "color": "black"
     }
@@ -102,29 +102,61 @@ Figmaで作成したECサイトのワイヤーフレームにリンクしてお�
   "name": "Taro",
   "email": "taro@example.com",
   "password": "taro8",
-  "favorites": [{ "productId": "p001", "productId": "p005", }],
-  "orders": [{ "orderId": "20250508-0234", "orderId": "20250510-1234" }]
-}
-
-//OOrderHistory
-{
-  "orderId": "20250508-0234",
-  "userId": "u001",
-  "items": [
+  "orders": [
     {
+      "orderId": "20250508-0234",
+      "items": [
+        {
+          "productId": "p001",
+          "quantity": 2,
+          "color": "black"
+        },
+        {
+          "productId": "p005",
+          "quantity": 1,
+          "color": "white"
+        }
+      ],
+      "totalQty": 3,
+      "totalPrice": 8800,
+      "purchasedAt": "2024-05-08T15:23:00Z"
+    },
+  ],
+  "favorites": [
+    { 
       "productId": "p001",
-      "price": 2500,
-      "quantity": 2,
-      "color": "black"
+    　"color": "black"
     },
     {
-      "productId": "p005",
-      "price": 3800,
-      "quantity": 1,
+      "productId": "p005", 
       "color": "white"
-    }
-  ],
-  "totalQty": 3,
-  "totalPrice": 8800,
-  "purchasedAt": "2024-05-08T15:23:00Z"
+     },
+  ]
+//   "orderHistory": [{ "orderId": "20250508-0234", "orderId": "20250510-1234" }]
 }
+
+//OrderHistory
+// {
+//   "userId": "u001",
+//   "orders": [
+//     {
+//       "orderId": "20250508-0234",
+//       "items": [
+//         {
+//           "productId": "p001",
+//           "quantity": 2,
+//           "color": "black"
+//         },
+//         {
+//           "productId": "p005",
+//           "quantity": 1,
+//           "color": "white"
+//         }
+//       ],
+//       "totalQty": 3,
+//       "totalPrice": 8800,
+//       "purchasedAt": "2024-05-08T15:23:00Z"
+//     },
+//   ]
+// }
+

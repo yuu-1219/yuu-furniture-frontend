@@ -1,5 +1,204 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+import BackButton from "../components/BackButton";
+import RunButton from '../components/RunButton';
+import EmailForm from "../components/EmailForm";
+import PasswordForm from "../components/PasswordForm";
+
+// import { useAuth } from '../contexts/AuthContext';
+import { useUser } from "../contexts/UserContext";
+
 
 export default function Login() {
-    return <h2>ログインページ</h2>;
-  }
+  const { id } = useParams();
+
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
+
+
+  const location = useLocation();
+
+
+  return (
+    <>
+      <Header />
+      <Box className="background-overlay">
+
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            padding: "60px 0px 0px 0px",
+            margin: "0px 0px 0px 0px",
+          }}
+        >
+
+
+          <Box
+            sx={{
+              margin: "40px 0px 0px 0px",
+              width: { xs: "100%", md: "70%" },
+              padding: "30px 30px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start"
+
+            }}
+          >
+
+            <h1 class="title">
+              ログイン
+            </h1>
+
+            {/* (start)フォーム */}
+            <Box
+              sx={{
+                margin: "0px 0px",
+                width: { xs: "100%", md: "100%" },
+                padding: "10px 20px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+
+              }}
+            >
+
+
+              {/* (start)ログインBox */}
+              <Box
+                sx={{
+                  width: "100%",
+                  padding: "20px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgba(251, 245, 230, 0.8)",
+                  borderRadius: "10px",
+                  border: "0.2px solid #eee9d3",
+
+                }}
+              >
+
+                <Box
+                  sx={{
+                    margin: "0px 0px 10px 0px",
+                  }}
+                >
+                  <h3>登録済みのお客様</h3>
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "80%",
+                    padding: "10px 0px 0px 0px"
+                  }}
+                >
+                  <EmailForm />
+                </Box>
+
+                <Box
+                  sx={{
+                    width: "80%",
+                    padding: "10px 0px 0px 0px"
+                  }}
+                >
+                  <PasswordForm />
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "30px 0px",
+                    width: "35%"
+                  }}
+                >
+                  <RunButton text={"ログインする"} width={450} handleClick />
+                </Box>
+              </Box>
+              {/* (end)ログインBox */}
+
+
+              {/* (start)会員登録Box */}
+              <Box
+                sx={{
+                  margin: "30px 0px 0px 0px",
+                  padding: "20px 20px",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgba(251, 245, 230, 0.8)",
+                  borderRadius: "10px",
+                  border: "0.2px solid #eee9d3",
+                }}
+              >
+                <h3>未登録のお客様</h3>
+
+                <Box
+                  component={Link}
+                  to="/register"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "30px 0px",
+                    width: "35%",
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                >
+                  <RunButton text={"会員登録する"} width={450} handleClick />
+                </Box>
+              </Box>
+              {/* (end)会員登録Box */}
+
+            </Box>
+            {/* (end)フォーム */}
+
+
+          </Box>
+
+
+        </Box>
+
+
+        <Box
+          sx={{
+            margin: "0px 0px 60px 0px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+
+
+          <Box
+            sx={{
+              margin: "0px 0px 60px 0px",
+            }}
+          >
+            <BackButton text="ホームに戻る" link="/" />
+          </Box>
+
+
+        </Box>
+
+      </Box >
+
+      <Footer />
+    </>
+  )
+}

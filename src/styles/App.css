@@ -3,6 +3,14 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* height: auto; */
+
+  background-image: url('../assets/imgs/furniture1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding : 0;
 }
 
 .logo {
