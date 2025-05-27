@@ -1,29 +1,79 @@
+import axios from "axios";
+
 import { createContext, useState, useContext } from "react";
 
+const UserUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
+
+// import { useCart } from '../contexts/CartContext';
+
 const UserContext = createContext();
+
+// const { cart } = useCart();
 
 export function UserProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData);
+  const register = async (userData) => {
+    const res = await axios.post(UserUrl, userData);
+    const { email, password } = res.data;
+    login(email, password);
+    return res.data;
+  };
+
+  const login = async (email, password) => {
+    const res = await axios.post(`${UserUrl}/login`, { email, password });
+    setUser(res.data);
     setIsAuthenticated(true);
+    return res.data
   };
 
   const logout = () => {
-    setUser(null);
+    setUser({
+      name: null,
+      email: null,
+      password: null,
+      orders: [],
+      favorites: []
+    });
     setIsAuthenticated(false);
   };
 
-//   const addOrder = (newOrder) => {
-//     setUser((prevUser) => ({
-//       ...prevUser,
-//       orders: [...(prevUser.orders || []), newOrder],
-//     }));
-//   };
+  const changeUserInfo = async (userId, name, email, password) => {
+    const updatedUser = {
+      ...user,
+      name: name,
+      email: email,
+      password: password
+    };
 
-  const handlePurchase = (cart) => {
+    setUser(updatedUser);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+    setUser(res.data);
+    return res.data;
+  };
+
+
+  const deleteUserInfo = async () => {
+    setUser({
+      // _id: null,
+      name: null,
+      email: null,
+      password: null,
+      orders: [],
+      favorites: []
+    });
+    setIsAuthenticated(false);
+    const res = await axios.delete(`${UserUrl}/${user._id}`);
+    return res.data;
+  }
+
+
+  const handlePurchase = async (cart) => {
     if (!user) return null;
 
     const newOrder = {
@@ -38,12 +88,21 @@ export function UserProvider({ children }) {
       purchasedAt: new Date().toISOString(),
     };
 
-    setUser(prevUser => ({
-      ...prevUser,
-      orders: [...(prevUser.orders || []), newOrder],
-    }));
+    // setUser(prevUser => ({
+    //   ...prevUser,
+    //   orders: [...(prevUser.orders || []), newOrder],
+    // }));
 
-    return newOrder;
+    const updatedUser = {
+      ...user,
+      orders: [...(user.orders || []), newOrder],
+    };
+
+    setUser(updatedUser);
+
+    const res = await axios.put(`${UserUrl}/${user._id}`, updatedUser)
+    setUser(res.data);
+    return { orderId: newOrder.orderId, purchasedAt: newOrder.purchasedAt };
   };
 
   const generateOrderId = () => {
@@ -53,33 +112,74 @@ export function UserProvider({ children }) {
     return `${yyyymmdd}-${hhmm}`;
   };
 
-  const addFavorite = (productId, color) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      favorites: [...(prevUser.favorites || []), { productId, color }],
-    }));
-  };
-  
-  const removeFavorite = (productId, color) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      favorites: prevUser.favorites.filter(c => !(c.productId === productId && c.color === color))
-    }));
+
+
+  const addFavorite = async (userId, productId, color) => {
+    const updatedUser = {
+      ...user,
+      favorites: [...(user.favorites || []), { productId, color }],
+    };
+
+    setUser(updatedUser);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+    setUser(res.data);
+    return res.data;
   };
 
-  const toggleFavorite = (productId, color) => {
-    setUser((prevUser) => {
-      const favorites = prevUser.favorites || [];
-      const isAlready = favorites.some(c => c.productId === productId && c.color === color);
-      return {
-        ...prevUser,
+
+  const removeFavorite = async (userId, productId, color) => {
+    const updatedUser = {
+      ...user,
+      favorites: user.favorites.filter(c => !(c.productId === productId && c.color === color))
+    };
+
+    setUser(updatedUser);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+    setUser(res.data);
+    return res.data;
+  };
+
+
+  const toggleFavorite = async (userId, productId, color) => {
+    // setUser((prevUser) => {
+    //   const favorites = prevUser.favorites || [];
+    //   const isAlready = favorites.some(c => c.productId === productId && c.color === color);
+    //   return {
+    //     ...prevUser,
+    //     favorites: isAlready
+    //       ? favorites.filter(c => !(c.productId === productId && c.color === color))
+    //       : [...(favorites || []), { productId, color }]
+    //   };
+    // });
+
+    const favorites = user.favorites || [];
+    const isAlready = favorites.some(c => c.productId === productId && c.color === color);
+    const updatedUser = {
+        ...user,
         favorites: isAlready
           ? favorites.filter(c => !(c.productId === productId && c.color === color))
-          : [...(favorites || []), { productId , color}]
-      };
-    });
+          : [...(favorites || []), { productId, color }]
+    };
+
+    setUser(updatedUser);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+    setUser(res.data);
+    return res.data;
+
   };
- 
+
 
   return (
     <UserContext.Provider
@@ -87,8 +187,11 @@ export function UserProvider({ children }) {
         isAuthenticated,
         user,
         setUser,
+        register,
         login,
         logout,
+        changeUserInfo,
+        deleteUserInfo,
         handlePurchase,
         addFavorite,
         removeFavorite,
@@ -99,11 +202,11 @@ export function UserProvider({ children }) {
     </UserContext.Provider>
   );
 
-//   return (
-//     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
+  //   return (
+  //     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+  //       {children}
+  //     </AuthContext.Provider>
+  //   );
 
 }
 

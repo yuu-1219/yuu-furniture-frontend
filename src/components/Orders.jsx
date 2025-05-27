@@ -12,7 +12,7 @@ import { products } from "../constants/products";
 import { useUser } from '../contexts/UserContext';
 
 
-export default function Orders({ orderId }) {
+export default function Orders({ orderId, products }) {
     const { user } = useUser();
     const order = user.orders.find(c => c.orderId === orderId);
     const { items, totalPrice, purchasedAt } = order;
@@ -23,6 +23,7 @@ export default function Orders({ orderId }) {
         hour: "2-digit",
         minute: "2-digit"
     })
+
 
 
     return (
@@ -114,8 +115,10 @@ export default function Orders({ orderId }) {
                     </Typography>
 
                     {items.map((item) => {
-                        const product = products.find(c => c.productId === item.productId);
-                        const { productId, name, price, img } = product;
+                        const product = products[item.productId];
+                        if (!product) return null;
+                        // const product = products.find(c => c._id === item.productId);
+                        const { _id, name, price, img } = product;
 
                         return (
                             <>
@@ -199,7 +202,7 @@ export default function Orders({ orderId }) {
 
                                                     }}
                                                 >
-                                                    {`商品コード : ${productId}`}
+                                                    {`商品コード : ${_id}`}
                                                 </Typography>
 
                                                 <Typography

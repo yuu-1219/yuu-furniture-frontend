@@ -30,7 +30,7 @@ export default function ProductDetail() {
   const { id } = useParams();
 
   // const { isAuthenticated } = useAuth();
-  const { isAuthenticated } = useUser();
+  const { user, isAuthenticated } = useUser();
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
@@ -43,15 +43,15 @@ export default function ProductDetail() {
   const product = location.state?.product;
   // const products = location.state?.products;
 
-  const { productId, name, price, img, description, color, rating } = product;
+  const { _id, name, price, img, description, color, rating } = product;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     // if (!isAuthenticated) {
     //   navigate("/login");
     //   return;
     // }
 
-    addToCart(productId, color, qty);
+    await addToCart(user._id, _id, color, qty, price);
     alert("カートに追加されました");
   };
 
@@ -183,7 +183,7 @@ export default function ProductDetail() {
                       padding: "20px 0px 0px 0px"
                     }}
                   >
-                    <FavoriteButton productId={productId} color={color}/>
+                    <FavoriteButton userId={user._id} productId={_id} color={color}/>
                   </Box>
 
 
@@ -236,7 +236,7 @@ export default function ProductDetail() {
                       }}
                       className="col-8"
                     >
-                      {productId}
+                      {_id}
                     </Typography>
                   </Box>
                   {/* (end)商品コード*/}

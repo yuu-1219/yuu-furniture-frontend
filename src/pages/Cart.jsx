@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+
+import { useState, useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 
@@ -21,31 +23,64 @@ import Products from './Products';
 import { products } from "../constants/products";
 
 import { useCart } from '../contexts/CartContext';
-// import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
-// import { useOrders } from "../contexts/OrdersContext";
+
+const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
+
+// const fetchProductsUrl = "http://localhost:3000/products";
 
 
 export default function Cart() {
+  // const fetchProductsUrl = "http://localhost:3000/products";
+
   // const { user, isAuthenticated } = useAuth();
+  const [cartProducts, setCartProducts] = useState([]);
+
   const { user, isAuthenticated, handlePurchase } = useUser();
-  const { cart, removeFromCart, incrementItem, declementItem, clearCart } = useCart();
+  const { cart, getCart, removeFromCart, incrementItem, declementItem, clearCart } = useCart();
   const { items, totalQty, totalPrice } = cart;
   // const { orders, handlePurchase } = useOrders();
 
   const navigate = useNavigate();
 
 
+  useEffect(() => {
+    fetchCartProducts();
+  }, [items, user]);
 
-  const onClickPurchase = () => {   
-    const newOrders = handlePurchase(cart);
+  async function fetchCartProducts() {
+    // const userCart = await getCart(user._id);
+    const productIds = [...new Set(cart.items.map(item => item.productId))];
 
-    clearCart();
+    const results = await Promise.all(
+      productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+    );
+
+    const resultProducts = {};
+    results.forEach(res => {
+      resultProducts[res.data._id] = res.data;
+    });
+
+    setCartProducts(resultProducts);
+  }
+
+
+
+  const onClickPurchase = async (userId) => {
+    if (!user || !isAuthenticated) {
+      alert("購入にはログインが必要です");
+      navigate("/login");
+      return;
+    }
+
+    const { orderId, purchasedAt } = await handlePurchase(cart);
+
+    await clearCart(userId);
 
     navigate("/complete", {
       state: {
-        orderId: newOrders.orderId,
-        purchasedAt: newOrders.purchasedAt, 
+        orderId: orderId,
+        purchasedAt: purchasedAt,
       }
     });
 
@@ -109,24 +144,29 @@ export default function Cart() {
                 }}
               >
 
-                {items.map((item) => (
+                {items.map((item) => {
+                  const product = cartProducts[item.productId];
+                  if (!product) return null;
+                  // console.log(cartProducts[item.productId]);
+                  return (
+                    <>
 
-                  <>
+                      <Box
+                        key={`${item.productId}-${item.color}`}
+                        sx={{
+                          backgroundColor: "rgba(251, 245, 230, 0.8)",
+                          borderRadius: "6px",
+                          border: "0.2px solid #eee9d3",
+                          margin: "0px 0px 20px 0px",
+                        }}
+                      >
 
-                    <Box
-                      sx={{
-                        backgroundColor: "rgba(251, 245, 230, 0.8)",
-                        borderRadius: "6px",
-                        border: "0.2px solid #eee9d3",
-                        margin: "0px 0px 20px 0px",
-                      }}
-                    >
+                        <CartItem product={product} productId={item.productId} color={item.color} qty={item.quantity} />
+                      </Box>
 
-                      <CartItem productId={item.productId} color={item.color}/>
-                    </Box>
-
-                  </>
-                ))}
+                    </>
+                  )
+                })}
 
               </Box>
               {/* (end)左パーツ */}
@@ -275,7 +315,7 @@ export default function Cart() {
                     width: "60%"
                   }}
                 >
-                  <RunButton text={"購入する"} width={650} handleClick={onClickPurchase} />
+                  <RunButton text={"購入する"} width={650} handleClick={() => onClickPurchase(user._id)} />
                 </Box>
               </Box>
 

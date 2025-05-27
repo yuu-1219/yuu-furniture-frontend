@@ -8,31 +8,48 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Price from "./Price";
 import QtyButton from './QtyButton';
 
-import { products } from "../constants/products";
+// import { products } from "../constants/products";
 
 import { useCart } from "../contexts/CartContext";
+import { useUser } from "../contexts/UserContext";
 
 
-export default function CartItem({ productId, color }) {
+export default function CartItem({ product, productId, color, qty }) {
+    // const fetchProductsUrl = "http://localhost:3000/products";
+
+    // const [product, setProduct] = useState([]);
+
+    const { user } = useUser();
     const { cart, removeFromCart, incrementItem, decrementItem, clearCart } = useCart();
 
-    const product = products.find(c => c.productId === productId);
+    // const product = products.find(c => c._id === productId);
     const { name, price, img } = product;
 
-    const cartItem = cart.items.find(c => c.productId === productId && c.color === color);
-    const qty = cartItem.quantity;
+    // const cartItem = cart.items.find(c => c.productId === productId && c.color === color);
+    // const qty = cartItem.quantity;
+
+
+    // useEffect(() => {
+    //     fetchProduct();
+    // }, [productId]);
+
+    // async function fetchProduct() {
+    //     const productResult = await axios.get(`${fetchProductsUrl}/${productId}`);
+    //     console.log(productResult);
+    //     setProduct(productResult.data);
+    // }
 
 
     const onIncrement = () => {
-        incrementItem(productId, color);
+        incrementItem(user._id, productId, color, price);
     }
     const onDecrement = () => {
-        decrementItem(productId, color);
+        decrementItem(user._id, productId, color, price);
     }
 
     const onDelete = () => {
         alert("商品を削除しました");
-        removeFromCart(productId, color);
+        removeFromCart(user._id, productId, color, price);
     }
 
 
@@ -201,7 +218,7 @@ export default function CartItem({ productId, color }) {
                             }}
                         >
 
-                        <Price price={price * qty} priceWidth={60} priceSize={24} unitSize={16} />
+                            <Price price={price * qty} priceWidth={60} priceSize={24} unitSize={16} />
                         </Box>
                     </Box>
 
@@ -220,7 +237,7 @@ export default function CartItem({ productId, color }) {
                         }}
                         onClick={onDelete}
                     >
-                    <DeleteForeverIcon/>
+                        <DeleteForeverIcon />
                     </Box>
 
 

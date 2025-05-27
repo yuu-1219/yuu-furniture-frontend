@@ -1,6 +1,12 @@
+import axios from "axios";
+
 import { createContext, useState, useContext } from "react";
 
-import { products } from "../constants/products";
+// import { products } from "../constants/products";
+
+import { useUser } from "./UserContext";
+
+const CartUrl = `${import.meta.env.VITE_API_BASE_URL}/cart`;
 
 // Context を作成
 const CartContext = createContext();
@@ -8,7 +14,7 @@ const CartContext = createContext();
 // Provider を定義
 export function CartProvider({ children }) {
   const [cart, setCart] = useState({
-    cartId: null,
+    // cartId: null,
     userId: null,
     items: [],
     totalQty: 0,
@@ -16,8 +22,31 @@ export function CartProvider({ children }) {
     updatedAt: null
   });
 
-  const addToCart = (productId, color, qty) => {
-    const product = products.find(c => c.productId === productId);
+  const registerCart = async (cartData) => {
+    const res = await axios.post(CartUrl, cartData);
+    return res.data;
+  };
+
+  const resetCart = () => {
+    setCart({
+      userId: null,
+      items: [],
+      totalQty: 0,
+      totalPrice: 0,
+      updatedAt: null,
+    });
+  };
+
+  const getCart = async (userId) => {
+    const res = await axios.get(`${CartUrl}/${userId}`);
+    setCart(res.data);
+    return res.data;
+  };
+
+
+  const addToCart = async (userId, productId, color, qty, price) => {
+    // const { user } = useUser();
+    // const product = products.find(c => c._id === productId);
 
     const existingItemIndex = cart.items.findIndex(
       c => c.productId === productId && c.color === color
@@ -32,18 +61,29 @@ export function CartProvider({ children }) {
       updatedItems = [...cart.items, { productId: productId, color: color, quantity: qty }];
     }
 
-    setCart({
+    const updatedCart = {
       ...cart,
+      userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + qty,
-      totalPrice: cart.totalPrice + qty * product.price,
+      totalPrice: cart.totalPrice + qty * price,
       updatedAt: new Date().toISOString()
-    });
+    };
+
+    setCart(updatedCart);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    setCart(res.data);
+    return res.data;
   };
 
 
-  const removeFromCart = (productId, color) => {
-    const targetProduct = products.find(c => c.productId === productId);
+  const removeFromCart = async (userId, productId, color, price) => {
+    // const { user } = useUser();
+    // const targetProduct = products.find(c => c.productId === productId);
 
     const targetItem = cart.items.find(
       c => c.productId === productId && c.color === color
@@ -54,17 +94,28 @@ export function CartProvider({ children }) {
       c => !(c.productId === productId && c.color === color)
     );
 
-    setCart({
+    const updatedCart = {
       ...cart,
+      userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - targetItem.quantity,
-      totalPrice: cart.totalPrice - targetProduct.price * targetItem.quantity,
+      totalPrice: cart.totalPrice - price * targetItem.quantity,
       updatedAt: new Date().toISOString()
-    });
+    };
+
+    setCart(updatedCart);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    setCart(res.data);
+    return res.data;
   };
 
-  const incrementItem = (productId, color) => {
-    const targetProduct = products.find(c => c.productId === productId);
+  const incrementItem = async (userId, productId, color, price) => {
+    // const { user } = useUser();
+    // const targetProduct = products.find(c => c.productId === productId);
 
     const updatedItems = cart.items.map(c => {
       if (c.productId === productId && c.color === color) {
@@ -76,17 +127,28 @@ export function CartProvider({ children }) {
     const targetItem = cart.items.find(c => c.productId === productId && c.color === color);
     // if (!item) return;
 
-    setCart({
+    const updatedCart = {
       ...cart,
+      userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + 1,
-      totalPrice: cart.totalPrice + targetProduct.price,
+      totalPrice: cart.totalPrice + price,
       updatedAt: new Date().toISOString()
-    });
+    };
+
+    setCart(updatedCart);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    setCart(res.data);
+    return res.data;
   };
 
-  const decrementItem = (productId, color) => {
-    const targetProduct = products.find(c => c.productId === productId);
+  const decrementItem = async (userId, productId, color, price) => {
+    // const { user } = useUser();
+    // const targetProduct = products.find(c => c.productId === productId);
 
     const targetItem = cart.items.find(
       c => c.productId === productId && c.color === color
@@ -108,36 +170,70 @@ export function CartProvider({ children }) {
       });
     }
 
-    setCart({
+    const updatedCart = {
       ...cart,
+      userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - 1,
-      totalPrice: cart.totalPrice - targetProduct.price,
+      totalPrice: cart.totalPrice - price,
       updatedAt: new Date().toISOString()
-    });
+    };
+
+    setCart(updatedCart);
+
+    // if (!user) return null;
+    if (!userId) return null;
+
+
+    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    setCart(res.data);
+    return res.data;
   };
 
 
-  const clearCart = () => {
+  const clearCart = async (userId) => {
+    const clearedCart = {
+      // cartId: cart.cartId,
+      userId: userId,
+      items: [],
+      totalQty: 0,
+      totalPrice: 0,
+      updatedAt: new Date().toISOString()
+    };
+
+    setCart(clearedCart);
+
+    const res = await axios.put(`${CartUrl}/${userId}`,  clearedCart );
+    setCart(res.data);
+    return res.data;
+
+  };
+
+  const deleteCart = async (userId) => {
     setCart({
-      cartId: cart.cartId,
-      userId: cart.userId,
+      userId: null,
       items: [],
       totalQty: 0,
       totalPrice: 0,
       updatedAt: new Date().toISOString()
     });
-  };
+    const res = await axios.delete(`${CartUrl}/${userId}`);
+    return res.data;
+  }
 
   return (
     <CartContext.Provider value={{
       cart,
       setCart,
+      registerCart,
+      resetCart,
+      getCart,
       addToCart,
       removeFromCart,
       incrementItem,
       decrementItem,
-      clearCart
+      clearCart,
+      deleteCart
     }}>
       {children}
     </CartContext.Provider>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -13,10 +13,21 @@ import Footer from "../components/Footer";
 import BackButton from "../components/BackButton";
 
 import { useUser } from "../contexts/UserContext";
+import { useCart } from "../contexts/CartContext";
 
 
 export default function UserPage() {
-  const { user, isAuthenticated } = useUser();
+  const { user, logout, isAuthenticated } = useUser();
+  const { resetCart } = useCart();
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    logout();
+    resetCart();
+    navigate("/"); 
+    alert("ログアウトしました"); 
+  };
 
   return (
     <>
@@ -43,7 +54,7 @@ export default function UserPage() {
               // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "flex-start",
+              justifyContent: "center",
               alignItems: "flex-start",
             }}
           >
@@ -54,7 +65,7 @@ export default function UserPage() {
 
             <Box
               sx={{
-                width:"100%",
+                width: "100%",
                 display: "flex",
                 justifyContent: "space-around",
               }}
@@ -100,7 +111,7 @@ export default function UserPage() {
                       alignItems: "center",
                       justifyContent: "center",
                       height: "100%",
-                      
+
                     }}
                   >
                     <HistoryIcon fontSize="large" />
@@ -110,7 +121,7 @@ export default function UserPage() {
                         padding: "50px 0px 0px 0px",
                         fontSize: "18px",
                         fontWeight: "500",
-                        
+
 
                       }}
                     >
@@ -202,6 +213,8 @@ export default function UserPage() {
                       お気に入り商品
                     </Typography>
 
+
+
                   </Box>
                 </Box>
                 {/* (end)お気に入り商品 */}
@@ -212,9 +225,45 @@ export default function UserPage() {
               {/* (end)ボタン一覧 */}
 
 
+
+            </Box>
+
+
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+              }}
+            >
+
+
+              <Typography
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "5px 0px 5px 0px",
+                  margin: "60px 0px 20px 0px",
+                  width: "16%",
+                  color: "#f36136",
+                  fontSize: "18px",
+                  fontWeight: "500",
+                  backgroundColor: "rgba(251, 245, 230, 0.8)",
+                  borderRadius: "10px",
+                  border: "0.2px solid #eee9d3",
+                  cursor: "pointer"
+                }}
+                onClick={handleLogout}
+              >
+                ログアウトする
+              </Typography>
             </Box>
 
           </Box>
+
+
 
 
 

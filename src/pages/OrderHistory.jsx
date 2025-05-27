@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+
+import { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
@@ -16,9 +18,54 @@ import { products } from "../constants/products";
 
 import { useUser } from "../contexts/UserContext";
 
+const UserUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
+const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
+
+
 
 export default function OrderHistory() {
+  const [orders, setOrders] = useState([]);
+  const [orderProducts, setOrderProducts] = useState({});
   const { user, isAuthenticated } = useUser();
+
+  useEffect(() => {
+    fetchOrders();
+    fetchProducts();
+  }, [user]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [orders]);
+
+  async function fetchProducts() {
+    const allProducts = {};
+
+    for (const order of orders) {
+      const productIds = [...new Set(order.items.map(item => item.productId))];
+      const results = await Promise.all(
+        productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+      );
+
+      const productsPerOrder = {};
+      results.forEach(res => {
+        productsPerOrder[res.data._id] = res.data;
+      });
+
+      allProducts[order.orderId] = productsPerOrder;
+    }
+
+    setOrderProducts(allProducts);
+  }
+
+
+  async function fetchOrders() {
+    // const currentUser = axios.get(`${UserUrl}/${id}`);
+    // setOrders(currentUser.orders);
+
+    if (user && user.orders) {
+      setOrders(user.orders);
+    }
+  }
 
   return (
     <>
@@ -78,24 +125,41 @@ export default function OrderHistory() {
                 }}
               >
 
-                {user.orders.map((item) => (
+                {orders.map((item) => {
+                  // async function fetchCartProducts() {
+                  //   // const userCart = await getCart(user._id);
+                  //   const productIds = [...new Set(item.items.map(item => item.productId))];
 
-                  <>
+                  //   const results = await Promise.all(
+                  //     productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+                  //   );
 
-                    <Box
-                      sx={{
-                        backgroundColor: "rgba(251, 245, 230, 0.8)",
-                        borderRadius: "6px",
-                        border: "0.2px solid #eee9d3",
-                        margin: "0px 0px 30px 0px",
-                      }}
-                    >
+                  //   const resultProducts = {};
+                  //   results.forEach(res => {
+                  //     resultProducts[res.data._id] = res.data;
+                  //   });
+                  // }
 
-                      <Orders orderId={item.orderId}/>
-                    </Box>
 
-                  </>
-                ))}
+
+                  return (
+                    <>
+
+                      <Box
+                        sx={{
+                          backgroundColor: "rgba(251, 245, 230, 0.8)",
+                          borderRadius: "6px",
+                          border: "0.2px solid #eee9d3",
+                          margin: "0px 0px 30px 0px",
+                        }}
+                      >
+
+                        <Orders orderId={item.orderId} products={orderProducts[item.orderId] || {}} />
+                      </Box>
+
+                    </>
+                  )
+                })}
 
               </Box>
               {/* (end)注文履歴一覧 */}
@@ -129,7 +193,7 @@ export default function OrderHistory() {
               margin: "0px 0px 60px 0px",
             }}
           >
-            <BackButton text="マイページに戻る" link={`/user/${user.userId}`} />
+            <BackButton text="マイページに戻る" link={`/user/${user._id}`} />
           </Box>
         </Box>
 

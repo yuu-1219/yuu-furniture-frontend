@@ -11,20 +11,20 @@ import Price from "./Price";
 import RunButton from './RunButton';
 import QtyButton from './QtyButton';
 
-import { products } from "../constants/products";
+// import { products } from "../constants/products";
 
 import { useUser } from '../contexts/UserContext';
 import { useCart } from '../contexts/CartContext';
 
 
-export default function FavoriteItem({ productId, color }) {
+export default function FavoriteItem({ product, productId, color }) {
     const { user, removeFavorite } = useUser();
     // const { favorites } = user;
 
     const { addToCart } = useCart();
 
-    const product = products.find(c => c.productId === productId);
-    if (!product) return null;
+    // const product = products.find(c => c.productId === productId);
+    // if (!product) return null;
     const { name, price, img } = product;
 
     const [qty, setQty] = useState(1);
@@ -37,14 +37,14 @@ export default function FavoriteItem({ productId, color }) {
         //   return;
         // }
 
-        addToCart(productId, color, qty);
+        addToCart(user._id, productId, color, qty, price);
         setQty(1);
         alert("カートに追加されました");
     };
 
     const onDelete = () => {
         alert("商品を削除しました");
-        removeFavorite(productId, color);
+        removeFavorite(user._id, productId, color);
     };
 
 

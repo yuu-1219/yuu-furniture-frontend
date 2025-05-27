@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
@@ -14,16 +14,32 @@ import PasswordForm from "../components/PasswordForm";
 
 // import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
+import { useCart } from '../contexts/CartContext';
+
 
 
 export default function Login() {
   const { id } = useParams();
 
-  const { isAuthenticated } = useUser();
+  const { user, login, isAuthenticated  } = useUser();
+  const { cart, getCart } = useCart();
+
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const location = useLocation();
+
+  const onClickRegister = () => {
+    navigate("/register");  
+  };
+
+  const onClickLogin = async () => {
+    const loginUser = await login(email,password);
+    await getCart(loginUser._id);
+    navigate("/");  
+  };
+
 
 
   return (
@@ -104,7 +120,7 @@ export default function Login() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <EmailForm />
+                  <EmailForm email={email} setEmail={setEmail} />
                 </Box>
 
                 <Box
@@ -113,7 +129,7 @@ export default function Login() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <PasswordForm />
+                  <PasswordForm password={password} setPassword={setPassword} />
                 </Box>
 
                 <Box
@@ -124,7 +140,7 @@ export default function Login() {
                     width: "35%"
                   }}
                 >
-                  <RunButton text={"ログインする"} width={450} handleClick />
+                  <RunButton text={"ログインする"} width={450} handleClick={onClickLogin} />
                 </Box>
               </Box>
               {/* (end)ログインBox */}
@@ -148,8 +164,8 @@ export default function Login() {
                 <h3>未登録のお客様</h3>
 
                 <Box
-                  component={Link}
-                  to="/register"
+                  // component={Link}
+                  // to="/register"
                   sx={{
                     display: "flex",
                     justifyContent: "center",
@@ -159,7 +175,7 @@ export default function Login() {
                     color: "inherit",
                   }}
                 >
-                  <RunButton text={"会員登録する"} width={450} handleClick />
+                  <RunButton text={"会員登録する"} width={450} handleClick={onClickRegister} />
                 </Box>
               </Box>
               {/* (end)会員登録Box */}

@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 export const products = [];
 
 const baseProduct = {
-  productId: "550e8400-e29b-41d4-a716-446655440001",
+  _id: "550e8400-e29b-41d4-a716-446655440001",
   name: "オフィスチェア",
   price: 1000,
   img: chair1,
@@ -19,7 +19,7 @@ const baseProduct = {
 for (let i = 0; i < 20; i++) {
   const newProduct = {
     ...baseProduct,
-    productId: uuid(),
+    _id: uuid(),
     price: 500 + i * 1000
   }
   products.push(newProduct);

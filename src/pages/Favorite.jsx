@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+
+import { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
@@ -12,14 +14,42 @@ import BackButton from "../components/BackButton";
 import Price from '../components/Price';
 import FavoriteItem from "../components/FavoriteItem";
 
-import { products } from "../constants/products";
+// import { products } from "../constants/products";
 
 import { useUser } from "../contexts/UserContext";
 
+const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
+
 
 export default function Favorite() {
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
   const { user, isAuthenticated } = useUser();
-  const { favorites } = user;
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    setFavorites(user.favorites);
+  }, [user]);
+
+  useEffect(() => {
+    fetchFavoriteProducts();
+  }, [favorites, user]);
+
+  async function fetchFavoriteProducts() {
+    // const userCart = await getCart(user._id);
+    const productIds = [...new Set(favorites.map(item => item.productId))];
+
+    const results = await Promise.all(
+      productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+    );
+
+    const resultProducts = {};
+    results.forEach(res => {
+      resultProducts[res.data._id] = res.data;
+    });
+
+    setFavoriteProducts(resultProducts);
+  }
+
 
   return (
     <>
@@ -83,26 +113,30 @@ export default function Favorite() {
                   <Typography>お気に入り商品はありません</Typography>
                 ) : (
                    */}
-                    {favorites.map((item) => (
+                {favorites.map((item) => {
+                  const product = favoriteProducts[item.productId];
+                  if (!product) return null;
+                  return (
 
-                      <>
+                    <>
 
-                        <Box
-                          sx={{
-                            backgroundColor: "rgba(251, 245, 230, 0.8)",
-                            borderRadius: "6px",
-                            border: "0.2px solid #eee9d3",
-                            margin: "0px 0px 30px 0px",
-                          }}
-                        >
+                      <Box
+                        sx={{
+                          backgroundColor: "rgba(251, 245, 230, 0.8)",
+                          borderRadius: "6px",
+                          border: "0.2px solid #eee9d3",
+                          margin: "0px 0px 30px 0px",
+                        }}
+                      >
 
-                          <FavoriteItem productId={item.productId} color={item.color} />
+                        <FavoriteItem product={product} productId={item.productId} color={item.color} />
 
-                        </Box>
+                      </Box>
 
-                      </>
-                    ))}
-                  
+                    </>
+                  )
+                })}
+
 
                 {/* )
              } */}
@@ -139,7 +173,7 @@ export default function Favorite() {
               margin: "0px 0px 60px 0px",
             }}
           >
-            <BackButton text="マイページに戻る" link={`/user/${user.userId}`} />
+            <BackButton text="マイページに戻る" link={`/user/${user._id}`} />
           </Box>
         </Box>
 

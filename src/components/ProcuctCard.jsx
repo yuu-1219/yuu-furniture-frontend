@@ -7,12 +7,12 @@ import Price from "./Price";
 import Review from "./Review";
 
 export default function ProductCard({ product }) {
-    const { productId, name, price, img, rating } = product;
+    const { _id, name, price, img, rating } = product;
     return (
         // <Link to={`/products/${productId}`}>
         <Box
             component={Link}
-            to={`/products/${productId}`}
+            to={`/products/${_id}`}
             state={{ product }}
             sx={{
 

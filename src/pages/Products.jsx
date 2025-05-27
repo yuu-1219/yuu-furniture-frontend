@@ -1,7 +1,9 @@
 import '../styles/Products.css'
 
+import axios from "axios";
+
 import * as React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
@@ -14,7 +16,7 @@ import { colors } from '../constants/colors';
 import { priceRanges } from "../constants/priceRanges";
 import { categories } from "../constants/categories";
 import { onFilters } from "../constants/onFilters";
-import { products } from "../constants/products";
+// import { products } from "../constants/products";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -26,35 +28,32 @@ import SearchResultBar from "../components/SearchResultBar";
 import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
 
-// const products = [];
-
-// const baseProduct = {
-//   productId: "550e8400-e29b-41d4-a716-446655440001",
-//   name: "Wooden Cup",
-//   price: 1000,
-//   img: chair1,
-//   description: "メッシュ素材でムレにくく、長時間座っても快適。多彩な機能で自分好みのチェアにできる。",
-//   color: "white",
-//   stock: 20,
-//   category: "strage_furniture",
-//   rating: 3.5
-// }
-
-// for (let i = 0; i < 20; i++) {
-//   const newProduct = {
-//     ...baseProduct,
-//     productId: uuid(),
-//     price: 500 + i * 1000
-//   }
-//   products.push(newProduct);
-// };
+const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
 
 export default function Products() {
+  // const fetchProductsUrl = "http://localhost:3000/products";
+
+  const [products, setProducts] = useState([]);
   const [onColors, setOnColors] = useState(colors);
   const [onPriceRanges, setOnPriceRanges] = useState(priceRanges);
   const [onFilter, setOnFilter] = useState(onFilters[0]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [searchParams] = useSearchParams();
+  const onCategoryId = searchParams.get("category");
+  const onCategory = categories.find(c => c.categoryId === onCategoryId);
+  const queryString = onCategory ? `?category=${onCategoryId}` : "";
+
+  useEffect(() => {
+    fetchProducts();
+  }, [onCategoryId]);
+
+  async function fetchProducts() {
+    const productsResult = await axios.get(`${ProductsUrl}${queryString}`);
+    // console.log(productsResult);
+    setProducts(productsResult.data);
+  }
 
   const perPage = 8;
   const totalPages = Math.ceil(products.length / perPage);
@@ -70,10 +69,6 @@ export default function Products() {
   // const handleChange = (event) => {
   //   setAge(event.target.value);
   // };
-
-  const [searchParams] = useSearchParams();
-  const onCategoryId = searchParams.get("category");
-  const onCategory = categories.find(c => c.categoryId === onCategoryId);
 
 
   return (

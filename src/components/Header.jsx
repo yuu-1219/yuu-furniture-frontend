@@ -100,7 +100,8 @@ export default function Header() {
   // const { user, isAuthenticated } = useAuth();
   const { user, isAuthenticated } = useUser();
 
-  const totalQty = cart.totalQty ? cart.totalQty : 0;
+  const totalQty = cart && cart.totalQty ? cart.totalQty : 0;
+  const userName = user && user.name ? user.name : "ゲスト";
   // const totalQty = 0;
 
   const menuId = 'primary-search-account-menu';
@@ -122,7 +123,7 @@ export default function Header() {
       onClose={handleMobileMenuClose}
     >
 
-      {user ? (
+      {user && isAuthenticated ? (
         <MenuItem
           sx={{
             color: 'inherit',
@@ -168,23 +169,26 @@ export default function Header() {
 
 
 
-      <MenuItem
-        component={Link}
-        to="/user/:id/favorite"
-        style={{ color: 'inherit', textDecoration: 'none' }}
-      >
-        <IconButton
-          size="large"
-          color="inherit"
+      {user && isAuthenticated && (
+        <MenuItem
+          component={Link}
+          to={`/user/${user._id}/favorite`}
+          style={{ color: 'inherit', textDecoration: 'none' }}
         >
-          <Badge color="error">
-            <FavoriteBorderIcon />
-          </Badge>
-        </IconButton>
-        <Typography>
-          お気に入り
-        </Typography>
-      </MenuItem>
+          <IconButton
+            size="large"
+            color="inherit"
+          >
+            <Badge color="error">
+              <FavoriteBorderIcon />
+            </Badge>
+          </IconButton>
+          <Typography>
+            お気に入り
+          </Typography>
+        </MenuItem>
+
+      )}
 
       <MenuItem
         component={Link}
@@ -205,30 +209,35 @@ export default function Header() {
         </Typography>
       </MenuItem>
 
-      <MenuItem
-        component={Link}
-        to="/User/:id"
-        style={{
-          color: 'inherit',
-          textDecoration: 'none',
-          display: "flex",
-        }}
-      >
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+
+      {user && isAuthenticated && (
+        <MenuItem
+          component={Link}
+          to={`/user/${user._id}`}
+          style={{
+            color: 'inherit',
+            textDecoration: 'none',
+            display: "flex",
+          }}
         >
-          <AccountCircle />
-          {/* <PersonOutlineIcon/> */}
-        </IconButton>
-        <Typography>
-          マイページ
-        </Typography>
-      </MenuItem>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+            {/* <PersonOutlineIcon/> */}
+          </IconButton>
+          <Typography>
+            マイページ
+          </Typography>
+        </MenuItem>
+      )}
+
     </Menu>
+
   );
 
   return (
@@ -282,7 +291,7 @@ export default function Header() {
 
             </Typography> */}
 
-            {user ? (
+            {user && isAuthenticated ? (
               <Typography
                 noWrap
                 sx={{
@@ -313,13 +322,15 @@ export default function Header() {
               </Typography>
             )}
 
-            <IconButton size="large" color="inherit">
-              <Badge color="error">
-                <Link to="/user/:id/favorite" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  <FavoriteBorderIcon />
-                </Link>
-              </Badge>
-            </IconButton>
+            {user && isAuthenticated && (
+              <IconButton size="large" color="inherit">
+                <Badge color="error">
+                  <Link to={`/user/${user._id}/favorite`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    <FavoriteBorderIcon />
+                  </Link>
+                </Badge>
+              </IconButton>
+            )}
 
             <IconButton
               size="large"
@@ -333,20 +344,23 @@ export default function Header() {
               </Badge>
             </IconButton>
 
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <Link to="/User/:id" style={{ color: 'inherit', textDecoration: 'none' }}>
-                <AccountCircle />
-                {/* <PersonOutlineIcon/> */}
-              </Link>
-            </IconButton>
+            {user && isAuthenticated && (
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <Link to={`/user/${user._id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <AccountCircle />
+                  {/* <PersonOutlineIcon/> */}
+                </Link>
+              </IconButton>
+            )}
+
           </Box>
 
           <Box sx={{ display: { sm: 'flex', md: 'none' } }}>

@@ -16,20 +16,38 @@ import NameForm from "../components/NameForm";
 
 // import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
+import { useCart } from '../contexts/CartContext';
 
 
 export default function Register() {
-  const { login } = useUser();
+  const { register } = useUser();
+  const { cart, registerCart } = useCart();
+
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = () => {
-    const newUser = { id: uuid(), name, email };
-    login(newUser); 
-    navigate("/");  // ホームに遷移
+  const handleRegister = async () => {
+    const newUser = {
+      // id: uuid(), 
+      name,
+      email,
+      password,
+      orders: [],
+      favorites: []
+    };
+    const registeredUser = await register(newUser);
+
+    // カート情報を作成
+    const newCart = {
+      ...cart,
+      userId: registeredUser._id,
+      updatedAt: new Date().toISOString()
+    };
+    await registerCart(newCart);
+    navigate("/");  
   };
 
 
@@ -105,7 +123,7 @@ export default function Register() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <NameForm name={name} setName={setName}/>
+                  <NameForm name={name} setName={setName} />
                 </Box>
 
                 <Box
@@ -114,7 +132,7 @@ export default function Register() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <EmailForm email={email} setEmail={setEmail}/>
+                  <EmailForm email={email} setEmail={setEmail} />
                 </Box>
 
                 <Box
@@ -123,7 +141,7 @@ export default function Register() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <PasswordForm password={password} setPassword={setPassword}/>
+                  <PasswordForm password={password} setPassword={setPassword} />
                 </Box>
 
                 <Box

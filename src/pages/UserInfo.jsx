@@ -15,23 +15,34 @@ import PasswordForm from "../components/PasswordForm";
 import NameForm from "../components/NameForm";
 
 import { useUser } from "../contexts/UserContext";
+import { useCart } from "../contexts/CartContext";
 
 
 export default function UserInfo() {
-  const { user, login, setUser } = useUser();
+  const { user, login, setUser, changeUserInfo, deleteUserInfo } = useUser();
+  const { cart, deleteCart } = useCart();
   const navigate = useNavigate();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(user.password);
 
-  const handleOnChange = () => {
-    const newUser = { ...user, name, email };
-    setUser(newUser);
-    login(newUser); 
-    navigate(`/user/${user.userId}`); 
+  const handleOnChange = async () => {
+    // const newUser = { ...user, name, email };
+    // setUser(newUser);
+    // login(newUser); 
+
+    changeUserInfo(user._id, name, email, password);
+    navigate(`/user/${user._id}`); 
     alert("会員情報を変更しました"); 
   };
+
+  const handleDelete = async () => {
+    deleteCart(user._id);
+    deleteUserInfo();
+    navigate("/");
+    alert("アカウントを削除しました"); 
+  }
 
 
   return (
@@ -137,6 +148,23 @@ export default function UserInfo() {
                 >
                   <RunButton text={"変更する"} width={450} handleClick={handleOnChange} />
                 </Box>
+
+                <Typography
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "30px 0px",
+                    width: "35%",
+                    color: "#f36136",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    cursor: "pointer"
+                  }}
+                  onClick={handleDelete}
+                >
+                  アカウントを削除する
+                </Typography>
+
               </Box>
               {/* (end)入力フォーム*/}
 
@@ -168,7 +196,7 @@ export default function UserInfo() {
               margin: "0px 0px 60px 0px",
             }}
           >
-            <BackButton text="マイページに戻る" link={`/user/${user.userId}`} />
+            <BackButton text="マイページに戻る" link={`/user/${user._id}`} />
           </Box>
 
 
