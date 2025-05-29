@@ -66,7 +66,7 @@ export default function Cart() {
 
 
 
-  const onClickPurchase = async (userId) => {
+  const onClickPurchase = async () => {
     if (!user || !isAuthenticated) {
       alert("購入にはログインが必要です");
       navigate("/login");
@@ -75,7 +75,7 @@ export default function Cart() {
 
     const { orderId, purchasedAt } = await handlePurchase(cart);
 
-    await clearCart(userId);
+    await clearCart(user._id);
 
     navigate("/complete", {
       state: {
@@ -387,7 +387,7 @@ export default function Cart() {
                     width: "70%"
                   }}
                 >
-                  <RunButton text={"購入する"} width={650} handleClick={() => onClickPurchase(user._id)} />
+                  <RunButton text={"購入する"} width={650} handleClick={onClickPurchase} />
                 </Box>
               </Box>
 
