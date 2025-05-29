@@ -7,7 +7,7 @@ export default function Price({ price, priceSize = 20, unitSize = 12, height = 0
                 width: "100%",
                 // maxWidth: "100px",
                 display: 'flex',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 alignItems: 'baseline',
                 gap: 0.5,
             }}

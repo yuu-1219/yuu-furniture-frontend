@@ -32,6 +32,10 @@ export default function ProductCard({ product }) {
                 border: "0.2px solid #eee9d3",
                 textDecoration: "none",
                 color: "inherit",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
 
             }}>
             <img
@@ -65,14 +69,23 @@ export default function ProductCard({ product }) {
                             sm: "14px",
                             md: "16px",
                             lg: "16px",
-                          },
+                        },
                         fontWeight: "600",
                     }}
                 >
                     {name}
                 </Typography>
 
-                <Price price={price} priceWidth={43} priceSize={16}/>
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        justifyContent: "flex-start",
+                        textAlign: "left"
+                    }}>
+                    <Price price={price} priceWidth={43} priceSize={16} />
+                </Box>
 
                 <Review value={rating} />
 

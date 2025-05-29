@@ -7,6 +7,7 @@ export default function Review( {value} ) {
     return (
         <>
             <Rating
+                size="small"
                 name="simple-controlled"
                 precision={0.5}
                 value={score}
