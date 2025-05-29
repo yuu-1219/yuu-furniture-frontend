@@ -54,8 +54,10 @@ export default function Register() {
   return (
     <>
       <Header />
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
+        {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
             display: "flex",
@@ -66,7 +68,7 @@ export default function Register() {
           }}
         >
 
-
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
               margin: "40px 0px 0px 0px",
@@ -81,9 +83,29 @@ export default function Register() {
           >
 
 
-            <h1 class="title">
+            {/* <h1 class="title">
               会員登録
-            </h1>
+            </h1> */}
+
+            <Typography
+              sx={{
+                // fontSize: "50px",
+                fontSize: {
+                  xs: "28px",  
+                  sm: "36px",  
+                  md: "40px",  
+                  lg: "50px",  
+                },
+                fontWeight: "600",
+                // padding: "0px 50px",
+                padding: {
+                  xs: "0px 30px",
+                  sm: "0px 40px",
+                  md: "0px 50px",
+                },
+              }}>
+              会員登録
+            </Typography>
 
 
             {/* (start)フォーム */}
@@ -164,9 +186,11 @@ export default function Register() {
 
 
           </Box>
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
 
 
         </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
         <Box
@@ -192,6 +216,7 @@ export default function Register() {
         </Box>
 
       </Box >
+      {/* (end)背景画像表示領域 */}
 
       <Footer />
     </>

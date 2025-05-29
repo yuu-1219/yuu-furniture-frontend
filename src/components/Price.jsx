@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 
-export default function Price({ price, priceSize=20, unitSize=12, height=0.8, priceWidth=50 }) {
+export default function Price({ price, priceSize = 20, unitSize = 12, height = 0.8, priceWidth = 50 }) {
     return (
         <Box
             sx={{
@@ -9,23 +9,32 @@ export default function Price({ price, priceSize=20, unitSize=12, height=0.8, pr
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'baseline',
-                gap: 0.5
+                gap: 0.5,
             }}
         >
             <Typography
-                style={{
+                sx={{
                     fontWeight: "600",
-                    fontSize: `${priceSize}px`,
-                    width: `${priceWidth}px`
+                    // fontSize: `${priceSize}px`,
+                    fontSize: {
+                        xs: "16px",
+                        sm: "18px",
+                        md: "20px"
+                    },
+                    // width: `${priceWidth}px`
                 }}
             >
                 {price}
             </Typography>
 
             <Typography
-                style={{
+                sx={{
                     fontWeight: "200",
-                    fontSize: `${unitSize}px`,
+                    // fontSize: `${unitSize}px`,
+                    fontSize: {
+                        xs: "12px",
+                        sm: "14px"
+                    }
                 }}
             >
                 円(税込)

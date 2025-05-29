@@ -21,7 +21,7 @@ import { useCart } from '../contexts/CartContext';
 export default function Login() {
   const { id } = useParams();
 
-  const { user, login, isAuthenticated  } = useUser();
+  const { user, login, isAuthenticated } = useUser();
   const { cart, getCart } = useCart();
 
   const navigate = useNavigate();
@@ -31,13 +31,13 @@ export default function Login() {
 
 
   const onClickRegister = () => {
-    navigate("/register");  
+    navigate("/register");
   };
 
   const onClickLogin = async () => {
-    const loginUser = await login(email,password);
+    const loginUser = await login(email, password);
     await getCart(loginUser._id);
-    navigate("/");  
+    navigate("/");
   };
 
 
@@ -45,8 +45,10 @@ export default function Login() {
   return (
     <>
       <Header />
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
+        {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
             display: "flex",
@@ -57,7 +59,7 @@ export default function Login() {
           }}
         >
 
-
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
               margin: "40px 0px 0px 0px",
@@ -71,9 +73,29 @@ export default function Login() {
             }}
           >
 
-            <h1 class="title">
+            {/* <h1 class="title">
               ログイン
-            </h1>
+            </h1> */}
+
+            <Typography
+              sx={{
+                // fontSize: "50px",
+                fontSize: {
+                  xs: "28px",
+                  sm: "36px",
+                  md: "40px",
+                  lg: "50px",
+                },
+                fontWeight: "600",
+                // padding: "0px 50px",
+                padding: {
+                  xs: "0px 30px",
+                  sm: "0px 40px",
+                  md: "0px 50px",
+                },
+              }}>
+              ログイン
+            </Typography>
 
             {/* (start)フォーム */}
             <Box
@@ -94,7 +116,9 @@ export default function Login() {
               <Box
                 sx={{
                   width: "100%",
-                  padding: "20px 20px",
+                  maxWidth: "850px",
+                  // padding: "20px 20px",
+                  padding: "20px 20px 0px 20px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -106,13 +130,27 @@ export default function Login() {
                 }}
               >
 
-                <Box
+                {/* <Box
                   sx={{
                     margin: "0px 0px 10px 0px",
                   }}
                 >
                   <h3>登録済みのお客様</h3>
-                </Box>
+                </Box> */}
+
+                <Typography
+                  sx={{
+                    margin: "0px 0px 10px 0px",
+                    fontSize: {
+                      xs: "22px",
+                      sm: "26px",
+                      md: "28px",
+                      lg: "28px",
+                    },
+                    fontWeight: "500",
+                  }}>
+                  登録済みのお客様
+                </Typography>
 
                 <Box
                   sx={{
@@ -137,7 +175,7 @@ export default function Login() {
                     display: "flex",
                     justifyContent: "center",
                     padding: "30px 0px",
-                    width: "35%"
+                    width: "60%"
                   }}
                 >
                   <RunButton text={"ログインする"} width={450} handleClick={onClickLogin} />
@@ -150,8 +188,9 @@ export default function Login() {
               <Box
                 sx={{
                   margin: "30px 0px 0px 0px",
-                  padding: "20px 20px",
+                  padding: "20px 20px 0px 20px",
                   width: "100%",
+                  maxWidth: "850px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -161,7 +200,21 @@ export default function Login() {
                   border: "0.2px solid #eee9d3",
                 }}
               >
-                <h3>未登録のお客様</h3>
+                {/* <h3>未登録のお客様</h3> */}
+
+                <Typography
+                  sx={{
+                    margin: "0px 0px 10px 0px",
+                    fontSize: {
+                      xs: "22px",
+                      sm: "26px",
+                      md: "28px",
+                      lg: "28px",
+                    },
+                    fontWeight: "500",
+                  }}>
+                  未登録のお客様
+                </Typography>
 
                 <Box
                   // component={Link}
@@ -170,7 +223,7 @@ export default function Login() {
                     display: "flex",
                     justifyContent: "center",
                     padding: "30px 0px",
-                    width: "35%",
+                    width: "60%",
                     textDecoration: "none",
                     color: "inherit",
                   }}
@@ -185,9 +238,11 @@ export default function Login() {
 
 
           </Box>
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
 
 
         </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
         <Box
@@ -203,7 +258,7 @@ export default function Login() {
 
           <Box
             sx={{
-              margin: "0px 0px 60px 0px",
+              margin: "0px 0px 90px 0px",
             }}
           >
             <BackButton text="ホームに戻る" link="/" />
@@ -213,6 +268,7 @@ export default function Login() {
         </Box>
 
       </Box >
+      {/* (end)背景画像表示領域 */}
 
       <Footer />
     </>

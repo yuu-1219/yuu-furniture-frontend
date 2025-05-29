@@ -48,8 +48,10 @@ export default function UserInfo() {
   return (
     <>
       <Header />
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
+        {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
             display: "flex",
@@ -61,6 +63,7 @@ export default function UserInfo() {
         >
 
 
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
               margin: "40px 0px 0px 0px",
@@ -75,31 +78,37 @@ export default function UserInfo() {
           >
 
 
-            <h1 class="title">
+            {/* <h1 class="title">
               お客様情報の確認・変更
-            </h1>
+            </h1> */}
 
-
-            {/* (start)フォーム */}
-            <Box
+            <Typography
               sx={{
-                margin: "0px 0px",
-                width: { xs: "100%", md: "100%" },
-                padding: "10px 20px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center"
+                // fontSize: "50px",
+                fontSize: {
+                  xs: "28px",  
+                  sm: "36px",  
+                  md: "40px",  
+                  lg: "50px",  
+                },
+                fontWeight: "600",
+                // padding: "0px 50px",
+                padding: {
+                  xs: "0px 30px",
+                  sm: "0px 40px",
+                  md: "0px 50px",
+                },
+              }}>
+              お客様情報の確認・変更
+            </Typography>
 
-              }}
-            >
 
 
               {/* (start)入力フォーム */}
               <Box
                 sx={{
                   width: "100%",
-                  padding: "20px 20px",
+                  padding: "30px 20px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -111,6 +120,7 @@ export default function UserInfo() {
                 }}
               >
 
+                {/* 名前 */}
                 <Box
                   sx={{
                     width: "80%",
@@ -120,6 +130,7 @@ export default function UserInfo() {
                   <NameForm name={name} setName={setName}/>
                 </Box>
 
+                {/* メールアドレス */}
                 <Box
                   sx={{
                     width: "80%",
@@ -129,6 +140,7 @@ export default function UserInfo() {
                   <EmailForm email={email} setEmail={setEmail}/>
                 </Box>
 
+                {/* パスワード */}
                 <Box
                   sx={{
                     width: "80%",
@@ -138,6 +150,7 @@ export default function UserInfo() {
                   <PasswordForm password={password} setPassword={setPassword}/>
                 </Box>
 
+                {/* 実行ボタン */}
                 <Box
                   sx={{
                     display: "flex",
@@ -149,6 +162,7 @@ export default function UserInfo() {
                   <RunButton text={"変更する"} width={450} handleClick={handleOnChange} />
                 </Box>
 
+                {/* アカウント削除リンク */}
                 <Typography
                   sx={{
                     display: "flex",
@@ -157,6 +171,12 @@ export default function UserInfo() {
                     width: "35%",
                     color: "#f36136",
                     fontSize: "14px",
+                    fontSize: {
+                      xs: "12px",  // モバイル
+                      sm: "14px",  // タブレット
+                      md: "16px",  // 中画面
+                      lg: "18px",  // デスクトップ
+                    },
                     fontWeight: "500",
                     cursor: "pointer"
                   }}
@@ -169,17 +189,15 @@ export default function UserInfo() {
               {/* (end)入力フォーム*/}
 
 
-
-            </Box>
-            {/* (end)フォーム */}
-
-
           </Box>
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
 
 
         </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
+        {/* (start)戻るボタン */}
         <Box
           sx={{
             margin: "0px 0px 60px 0px",
@@ -199,10 +217,11 @@ export default function UserInfo() {
             <BackButton text="マイページに戻る" link={`/user/${user._id}`} />
           </Box>
 
-
         </Box>
+        {/* (end)戻るボタン */}
 
       </Box >
+      {/* (end)背景画像表示領域 */}
 
       <Footer />
     </>

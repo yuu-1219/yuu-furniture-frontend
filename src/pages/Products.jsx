@@ -27,6 +27,7 @@ import PriceCard from "../components/PriceCard";
 import SearchResultBar from "../components/SearchResultBar";
 import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
+import ConditionCard from '../components/ConditionCard';
 
 const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
@@ -51,7 +52,6 @@ export default function Products() {
 
   async function fetchProducts() {
     const productsResult = await axios.get(`${ProductsUrl}${queryString}`);
-    // console.log(productsResult);
     setProducts(productsResult.data);
   }
 
@@ -66,127 +66,196 @@ export default function Products() {
     setCurrentPage(value);
   };
 
-  // const handleChange = (event) => {
-  //   setAge(event.target.value);
-  // };
-
 
   return (
     <>
       <Header />
-      <div class="background-overlay">
-        <div class="container-fluid contents">
-          <div class="row justify-content-center">
-            <nav class="nav-ver side-ver col-3 px-2 py-3 my-4">
-              <ul class="nav side-ver-items">
-                <li class="nav-item condition-title">
-                  <p class="condition-title">条件で絞り込む</p>
-                </li>
-                <li class="nav-item condition">
-                  <Accordion
-                    defaultExpanded
-                    sx={{
-                      backgroundColor: "#fbf5e6",
-                      borderRadius: "6px",
-                      maxWidth: "240px"
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
-                    >
-                      <div class="condition-name">
-                        カラー
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Box className="condition-item">
-                        {
-                          colors.map((color) => (
-                            <ColorCard color={color} onColors={onColors} setOnColors={setOnColors} />
-                          ))
-                        }
-                      </Box>
-                    </AccordionDetails>
-                  </Accordion>
-                </li>
-                <li class="nav-item condition">
-                  <Accordion
-                    defaultExpanded
-                    sx={{
-                      backgroundColor: "#fbf5e6",
-                      borderRadius: "6px",
-                      maxWidth: "240px"
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
-                    >
-                      <div class="condition-name">
-                        価格
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails >
-                      <Box className="condition-item">
-                        {
-                          priceRanges.map((priceRange) => (
-                            <PriceCard priceRange={priceRange} onPriceRanges={onPriceRanges} setOnPriceRanges={setOnPriceRanges} />
-                          ))
-                        }
-                      </Box>
-                    </AccordionDetails>
-                  </Accordion>
-                </li>
+      {/* (start)背景画像表示領域 */}
+      <Box className="background-overlay">
 
-              </ul>
-            </nav>
+        {/* (start)タイトル~メインパーツ表示領域 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "60px 0px 0px 0px",
+            margin: "0px 0px 0px 0px",
+          }}
+        >
 
-            {/* <div class="col-1">
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
+          <Box
+            sx={{
+              width: "90%",
+              padding: "20px 0px",
+              margin: "20px 20px",
+              display: "flex",
+              flexDirection: {
+                xs: "column",
+                md: "column",
+              },
+              justifyContent: "center",
+              alignItems: {
+                xs: "center",
+                md: "flex-start",
+              }
+            }}
+          >
 
-          </div> */}
-
-            <div class="title-card col-9 py-3 my-4">
-              <div class="row justify-content-center">
-                <div class="col-11">
-                  <h1 class="title">
-                    {onCategory ? onCategory.categoryLabel : "すべての商品"}
-                  </h1>
-                  <p class="discription my-3">
-                    {onCategory ? onCategory.description : "すべての商品"}
-                  </p>
-                  <SearchResultBar products={products} currentPage={currentPage} perPage={perPage} onFilter={onFilter} setOnFilter={setOnFilter} />
-
-                  <Box
-                    sx={{
-                      margin: "30px 5px 0px 5px",
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 2,
-                      justifyContent: "flex-start",
-                      alignItems: "center"
-                    }}
-                  >
-                    {
-                      showProducts.map((product) => (
-                        <ProductCard
-                          product={product}
-                          // products={products}
-                        />
-                      ))
-                    }
-                  </Box>
+            {/* (start)タイトル文 */}
+            <Box
+              sx={{
+                width: {
+                  xs: "95%",
+                  md: "75%",
+                },
+                margin: {
+                  xs: "0px 0px 20px 0px",
+                  sm: "0px 0px 30px 0px",
+                  md: "5px 5px 5px 40px",
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "22px",
+                    sm: "26px",
+                    md: "30px",
+                    lg: "40px",
+                  },
+                  fontWeight: "600",
+                  // padding: {
+                  //   xs: "0px 10px",
+                  //   sm: "0px 15px",
+                  //   md: "0px 20px",
+                  // },
+                  textAlign: "left"
+                }}>
+                {onCategory ? onCategory.categoryLabel : "すべての商品"}
+              </Typography>
 
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "14px",
+                    sm: "15px",
+                    md: "17px",
+                    lg: "20px",
+                  },
+                  fontWeight: "500",
+                  padding: {
+                    xs: "10px 0px",
+                    sm: "10px 0px",
+                    md: "10px 5px",
+                  },
+                  textAlign: "left"
+                }}>
+                {onCategory ? onCategory.description : "すべての商品"}
+
+              </Typography>
+            </Box>
+            {/* (end)タイトル文 */}
 
 
+
+
+
+
+            {/* (start)条件カード、商品一覧 */}
+            <Box
+              sx={{
+                width: "100%",
+                padding: "20px 0px",
+                margin: "20px 20px",
+                // maxWidth: "800px",
+                display: "flex",
+                flexDirection: {
+                  xs: "column",
+                  md: "row",
+                },
+                justifyContent: "center",
+                alignItems: {
+                  xs: "center",
+                  md: "flex-start",
+                },
+              }}
+            >
+
+              {/* (start)条件カード */}
+              <Box
+                sx={{
+                  width: {
+                    xs: "95%",
+                    md: "24%",
+                  },
+
+                }}
+              >
+
+                <ConditionCard />
+              </Box>
+              {/* (end)条件カード */}
+
+
+              {/* (start)サーチバー、商品一覧 */}
+              <Box
+                sx={{
+                  width: {
+                    xs: "95%",
+                    md: "76%",
+                  },
+                  margin: {
+                    xs: "10px 5px",
+                    sm: "10px 5px",
+                    md: "0px 0px 0px 20px",
+                  },
+
+                }}
+              >
+                <SearchResultBar products={products} currentPage={currentPage} perPage={perPage} onFilter={onFilter} setOnFilter={setOnFilter} />
+
+                {/* (start)商品一覧 */}
+                <Box
+                  sx={{
+                    width: "100%",
+                    margin: "30px 5px 0px 5px",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 2,
+                    justifyContent: "flex-start",
+                    alignItems: "center"
+                  }}
+                >
+
+                  {/* <Box> */}
+
+                    {showProducts.map((product) => (
+                      <ProductCard
+                        product={product}
+                      // products={products}
+                      />
+                    ))}
+
+                  {/* </Box> */}
+                </Box>
+                {/* (end)商品一覧 */}
+
+              </Box> {/* (start)サーチバー、商品一覧 */}
+
+
+
+            </Box>
+            {/* (end)条件カード、商品一覧 */}
+
+          </Box>
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
+
+        </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
+
+        {/* (start)ページネーション */}
         <Box
           sx={{
             margin: "0px 0px 150px 0px",
@@ -212,12 +281,14 @@ export default function Products() {
               margin: "30px 0px 0px 0px",
             }}
           >
-            <BackButton text="ホームに戻る" link="/"/>
+            <BackButton text="ホームに戻る" link="/" />
           </Box>
 
 
         </Box>
-      </div >
+        {/* (end)ページネーション */}
+      </Box>
+      {/* (start)タイトル~メインパーツ表示領域 */}
 
 
       < Footer />
@@ -225,3 +296,4 @@ export default function Products() {
   );
 
 }
+

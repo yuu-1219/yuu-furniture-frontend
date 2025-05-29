@@ -90,8 +90,10 @@ export default function Cart() {
   return (
     <>
       <Header />
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
+        {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
             display: "flex",
@@ -101,9 +103,12 @@ export default function Cart() {
           }}
         >
 
+
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
-              padding: "30px 80px",
+              width: "100%",
+              padding: "30px 50px",
               margin: "30px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",
@@ -116,14 +121,48 @@ export default function Cart() {
             }}
           >
 
-            <h1 class="title">
+            {/* <h1 class="title">
               カート
-            </h1>
+            </h1> */}
 
+            <Typography
+              sx={{
+                // fontSize: "50px",
+                fontSize: {
+                  xs: "28px",
+                  sm: "36px",
+                  md: "48px",
+                  lg: "50px",
+                },
+                fontWeight: "600",
+                // padding: "0px 50px",
+                padding: {
+                  xs: "0px 10px",
+                  sm: "0px 15px",
+                  md: "0px 20px",
+                },
+              }}>
+              カート
+            </Typography>
+
+            {/* (start)カートアイテム、注文内容表示 */}
             <Box
               sx={{
+                width: "100%",
                 display: "flex",
-                justifyContent: "center",
+                flexDirection: {
+                  xs: "column",
+                  sm: "column",
+                  md: "row"
+                },
+                alignItems: {
+                  sm: "center",
+                  md: "flex-start",
+                },
+                justifyContent: {
+                  sm: "center",
+                  md: "center"
+                },
               }}
             >
 
@@ -131,8 +170,8 @@ export default function Cart() {
               {/* (start)左パーツ */}
               <Box
                 sx={{
-                  margin: "0px 0px",
-                  width: { xs: "100%", md: "70%" },
+                  margin: "0px 20px 0px 20px",
+                  width: { xs: "100%", sm: "100%", md: "70%" },
                   minWidth: "300px",
                   // backgroundColor: "rgba(251, 245, 230, 0.8)",
                   // borderRadius: "10px",
@@ -141,19 +180,20 @@ export default function Cart() {
                   flexWrap: "wrap",
                   flexDirection: "column",
                   alignItems: "flex-start",
+                  justifyContent: "center",
                 }}
               >
 
                 {items.map((item) => {
                   const product = cartProducts[item.productId];
                   if (!product) return null;
-                  // console.log(cartProducts[item.productId]);
                   return (
                     <>
 
                       <Box
                         key={`${item.productId}-${item.color}`}
                         sx={{
+                          width: "100%",
                           backgroundColor: "rgba(251, 245, 230, 0.8)",
                           borderRadius: "6px",
                           border: "0.2px solid #eee9d3",
@@ -176,10 +216,21 @@ export default function Cart() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "100%", md: "30%" },
-                  maxHeight: "420px",
+                  width: { xs: "100%", sm: "100%", md: "30%" },
+                  height: {
+                    xs: "auto",        
+                    sm: "auto",       
+                    md: "70%",        
+                  },
+                  // maxHeight: "420px",
+                  maxHeight: {
+                    xs: "none",
+                    sm: "none",
+                    md: "370px",      
+                  },           
+                  minHeight: "370px",   
                   padding: "30px 0px 30px 0px",
-                  margin: "0px 50px 0px 50px",
+                  margin: "0px 20px 0px 20px",
                   display: "flex",
                   flexWrap: "wrap",
                   flexDirection: "column",
@@ -197,6 +248,12 @@ export default function Cart() {
                 <Typography
                   sx={{
                     fontSize: "26px",
+                    fontSize: {
+                      xs: "18px",
+                      sm: "20px",
+                      md: "22px",
+                      lg: "26px"
+                    },
                     fontWeight: "600",
                     margin: "0px 0px 0px 0px",
                   }}
@@ -218,7 +275,12 @@ export default function Cart() {
                 >
                   <Typography
                     sx={{
-                      width: "40%"
+                      width: "40%",
+                      fontSize: {
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px"
+                    },
 
                     }}
                   >
@@ -253,7 +315,12 @@ export default function Cart() {
                   <Typography
                     sx={{
 
-                      width: "40%"
+                      width: "40%",
+                      fontSize: {
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px"
+                    },
 
                     }}
                   >
@@ -288,7 +355,12 @@ export default function Cart() {
                 >
                   <Typography
                     sx={{
-                      width: "40%"
+                      width: "40%",
+                      fontSize: {
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px"
+                    },
 
                     }}
                   >
@@ -312,7 +384,7 @@ export default function Cart() {
                     display: "flex",
                     justifyContent: "center",
                     padding: "40px 0px 0px 0px",
-                    width: "60%"
+                    width: "70%"
                   }}
                 >
                   <RunButton text={"購入する"} width={650} handleClick={() => onClickPurchase(user._id)} />
@@ -323,13 +395,16 @@ export default function Cart() {
 
 
             </Box>
+            {/* (start)カートアイテム、注文内容表示 */}
 
           </Box>
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
 
 
 
 
         </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
 
@@ -355,7 +430,9 @@ export default function Cart() {
         </Box>
 
 
+
       </Box>
+      {/* (end)背景画像表示領域 */}
 
 
       <Footer />

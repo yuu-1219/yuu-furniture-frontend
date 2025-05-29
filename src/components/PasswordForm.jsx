@@ -1,5 +1,8 @@
-import TextField from "@mui/material/TextField"
 import { useState } from "react";
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from "@mui/material/TextField"
 
 export default function PasswordForm({ password, setPassword }) {
     // const [password, setPassword] = useState("");
@@ -8,54 +11,74 @@ export default function PasswordForm({ password, setPassword }) {
     }
 
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 display: "flex",
+                flexDirection: {
+                    xs: "column",
+                    sm: "row"
+                },
                 alignItems: "center",
                 // gap: "30px",
-                margin: "10px",
+                margin: "0px",
                 // maxWidth: "600px",     
                 width: "100%"
             }}
         >
-            <label 
-                for="email"
-                style={{
+            <Typography
+                HTMLFor="password"
+                component="label"
+                sx={{
+                    fontSize: {
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px",
+                        lg: "18px"
+                    },
                     fontWeight: "600",
-                    width: "20%",
+                    // width: "20%",
+                    width: {
+                        xs: "100%",
+                        sm: "30%",
+                    },
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
                 パスワード
-            </label>
-            <input
+            </Typography>
+
+            <TextField
+                size="small"
                 type="password"
                 id="password"
-                name="password" 
+                name="password"
                 // placeholder=""
                 value={password}
                 onChange={UpdatePassword}
-                style={{
-                    height: "35px",
+                sx={{
+                    // height: "35px",
                     // width : "450px",
-                    width: "80%",
-                    fontSize: "18px",
+                    // width: "80%",
+                    width: {
+                        xs: "100%",
+                        sm: "70%",
+                    },
+                    fontSize: "15px",
                     flexGrow: 1,
-                    flexBasis: 0,   
+                    flexBasis: 0,
                     minWidth: "20px",
+                    input: {
+                        fontSize: {
+                            xs: "14px",
+                            sm: "16px",
+                            md: "18px"
+                        }
+                    }
                 }}
             />
 
-              {/* <TextField
-                id="outlined-basic"
-                label="メールアドレス"
-                placeholder="yuu@gmail.com"
-                variant="outlined"
-                value={email}
-                onChange={UpdateEmail}
-            /> */}
 
 
-        </div>
+        </Box>
     );
 }

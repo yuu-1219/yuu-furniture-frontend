@@ -17,10 +17,15 @@ export default function ProductCard({ product }) {
             sx={{
 
                 width: "100%",
-                flex: "1 1 180px",
+                width: {
+                    xs: "45%",
+                    sm: "31%",
+                    md: "30%",
+                    lg: "23%"
+                },
                 // maxWidth: "200px",
-                minWidth: "200px",
-                minHeight: "200px",
+                // minWidth: "200px",
+                // minHeight: "200px",
                 padding: "20px",
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "6px",
@@ -34,7 +39,7 @@ export default function ProductCard({ product }) {
                 alt={name}
                 style={{
                     width: "100%",
-                    maxWidth: "250px",
+                    // maxWidth: "250px",
                     height: "auto",
                     // maxHeight: "150px",
                     objectFit: "cover",
@@ -55,6 +60,12 @@ export default function ProductCard({ product }) {
                 <Typography
                     sx={{
                         fontSize: "16px",
+                        fontSize: {
+                            xs: "14px",
+                            sm: "14px",
+                            md: "16px",
+                            lg: "16px",
+                          },
                         fontWeight: "600",
                     }}
                 >

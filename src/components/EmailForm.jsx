@@ -1,5 +1,8 @@
-import TextField from "@mui/material/TextField"
 import { useState } from "react";
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from "@mui/material/TextField"
 
 export default function EmailForm({ email, setEmail }) {
     // const [email, setEmail] = useState("");
@@ -8,55 +11,74 @@ export default function EmailForm({ email, setEmail }) {
     }
 
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 display: "flex",
+                flexDirection: {
+                    xs: "column",
+                    sm: "row"
+                },
                 alignItems: "center",
-                 // flexWrap: "wrap",  
+                // flexWrap: "wrap",  
                 // gap: "30px",
-                margin: "10px",
+                margin: "0px",
                 // maxWidth: "600px",     
                 width: "100%"
             }}
         >
-            <label 
-                for="email"
-                style={{
+            <Typography
+                HTMLFor="email"
+                component="label"
+                sx={{
+                    fontSize: {
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px",
+                        lg: "18px"
+                    },
                     fontWeight: "600",
-                    width: "20%",
+                    // width: "30%",
+                    width: {
+                        xs: "100%",
+                        sm: "30%",
+                    },
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
                 メールアドレス
-            </label>
-            <input
+            </Typography>
+            
+            <TextField
+                size="small"
                 type="email"
                 id="email"
-                name="email" 
+                name="email"
                 placeholder="yamada1234@gmail.com"
                 value={email}
                 onChange={UpdateEmail}
-                style={{
-                    height: "35px",
+                sx={{
+                    // height: "35px",
                     // width : "450px",
-                    width: "80%",
+                    // width: "70%",
+                    width: {
+                        xs: "100%",
+                        sm: "70%",
+                    },
                     fontSize: "15px",
                     flexGrow: 1,
-                    flexBasis: 0,   
+                    flexBasis: 0,
                     minWidth: "20px",
+                    input: {
+                        fontSize: {
+                            xs: "14px",
+                            sm: "16px",
+                            md: "18px"
+                        }
+                    }
                 }}
             />
 
-              {/* <TextField
-                id="outlined-basic"
-                label="メールアドレス"
-                placeholder="yuu@gmail.com"
-                variant="outlined"
-                value={email}
-                onChange={UpdateEmail}
-            /> */}
 
-
-        </div>
+        </Box>
     );
 }

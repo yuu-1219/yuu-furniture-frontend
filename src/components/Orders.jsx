@@ -29,7 +29,6 @@ export default function Orders({ orderId, products }) {
     return (
         <Box
             sx={{
-
                 width: "100%",
                 minWidth: "300px",
                 // maxWidth: "800px",
@@ -49,6 +48,7 @@ export default function Orders({ orderId, products }) {
 
             <Box
                 sx={{
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
@@ -57,49 +57,97 @@ export default function Orders({ orderId, products }) {
             >
 
 
-                {/* (start)注文番号 */}
+                {/* (start)注文番号、注文日 */}
                 <Box
                     sx={{
                         width: "100%",
                         display: "flex",
+                        flexWrap: "wrap",
+                        flexDirection: {
+                            xs: "column",
+                            sm: "row"
+                        },
+                        justifyContent: {
+                            xs: "flex-start",
+                            sm: "flex-start"
+                        },
                         // alignItems: "flex-start",
                         // justifyContent: "space-between",
                     }}
                 >
+                    {/* 注文番号 */}
                     <Typography
                         sx={{
-                            width: "60%",
-                            fontSize: "18px",
+                            width: {
+                                xs: "100%",
+                                sm: "50%"
+                            },
+                            // fontSize: "18px",
+                            fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                                md: "16px",
+                                lg: "18px"
+                            },
                             fontWeight: "600",
-                            textAlign: "left"
+                            margin: "0px 0px 5px 0px",
+                            textAlign: {
+                                xs: "left",
+                                sm: "left"
+                            }
                         }}
                     >
                         {`注文番号 : ${orderId}`}
                     </Typography>
 
+                    {/* 注文日 */}
                     <Typography
                         sx={{
-                            width: "40%",
-                            fontSize: "16px",
+                            // width: "40%",
+                            width: {
+                                xs: "100%",
+                                sm: "50%"
+                            },
+                            // fontSize: "16px",
+                            fontSize: {
+                                xs: "12px",
+                                sm: "14px",
+                                md: "16px",
+                                lg: "18px"
+                            },
                             fontWeight: "500",
-                            textAlign: "right"
+                            margin: "0px 0px 5px 0px",
+                            // textAlign: "right",
+                            textAlign: {
+                                xs: "left",
+                                sm: "right"
+                            }
                         }}
                     >
                         {`注文日 : ${purchaseDate}`}
                     </Typography>
 
                 </Box>
-                {/* (end)注文番号 */}
+                {/* (end)注文番号、注文日 */}
 
 
 
                 {/* (start)購入商品 */}
                 <Box
                     sx={{
+                        width: "100%",
                         padding: "0px",
-                        margin: "20px 20px 20px 20px",
+                        margin: {
+                            xs: "5px 5px 5px 5px",
+                            sm: "10px 10px 10px 10px",
+                            md: "15px 15px 15px 15px",
+                        },
                         display: "flex",
                         flexDirection: "column",
+                        // flexDirection: {
+                        //     xs: "column",
+                        //     sm: "row"
+                        // },
                         alignItems: "flex-start",
                         justifyContent: "flex-start",
                     }}
@@ -108,333 +156,456 @@ export default function Orders({ orderId, products }) {
                     <Typography
                         sx={{
                             fontSize: "16px",
+                            fontSize: {
+                                xs: "14px",
+                                sm: "16px",
+                                md: "18px",
+                                lg: "20px"
+                            },
                             fontWeight: "600",
                         }}
                     >
                         購入商品
                     </Typography>
 
-                    {items.map((item) => {
-                        const product = products[item.productId];
-                        if (!product) return null;
-                        // const product = products.find(c => c._id === item.productId);
-                        const { _id, name, price, img } = product;
+                    {/* (start)購入商品一覧、金額表示 */}
+                    <Box sx={{
+                        width: "100%",
+                        display: "flex",
+                        //  flexWrap: "wrap",
+                        flexDirection: {
+                            xs: "column",
+                            sm: "column",
+                            md: "row"
+                        },
+                        alignItems: {
+                            sm: "flex-start",
+                            md: "space-between",
+                          },
+                        justifyContent: {
+                            sm: "flex-start",
+                            md: "space-between"
+                        },
+                    }}>
 
-                        return (
-                            <>
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        // alignItems: "flex-start",
-                                        alignItems: "flex-start",
-                                        justifyContent: "space-between",
-                                    }}
-                                >
+                        {/* (start)購入商品一覧 */}
+                        <Box sx={{
+                            width: {
+                                sm: "100%",
+                                md: "70%",
+                            },
+                        }}>
 
-                                    {/* (start)商品概要 */}
-                                    <Box
-                                        sx={{
-                                            padding: "0px",
-                                            margin: "20px 0px 20px 0px",
-                                            width: "70%",
-                                            display: "flex",
-                                            alignItems: "space-between",
-                                            justifyContent: "flex-start",
-                                        }}
-                                    >
+                            {items.map((item) => {
+                                const product = products[item.productId];
+                                if (!product) return null;
+                                // const product = products.find(c => c._id === item.productId);
+                                const { _id, name, price, img } = product;
 
-                                        {/* (start)商品画像 */}
+                                return (
+                                    <>
+                                        {/* (start)購入商品、小計 */}
                                         <Box
                                             sx={{
-                                                width: "30%",
-                                            }}
-                                        >
-                                            <img
-                                                src={img}
-                                                alt={name}
-                                                style={{
-                                                    width: "100%",
-                                                    // maxWidth: "250px",
-                                                    height: "auto",
-                                                    // maxHeight: "150px",
-                                                    objectFit: "cover",
-                                                    aspectRatio: "4 / 3"
-                                                }}
-                                            />
-                                        </Box>
-                                        {/* (end)商品画像 */}
 
-
-
-                                        {/* (start)商品説明 */}
-                                        <Box
-                                            sx={{
-                                                width: "70%",
+                                                display: "flex",
+                                                flexDirection: {
+                                                    xs: "column",
+                                                    sm: "column",
+                                                    md: "row"
+                                                },
+                                                // alignItems: "flex-start",
+                                                alignItems: "flex-start",
+                                                justifyContent: "space-between",
+                                                alignItems: {
+                                                    sm: "flex-start",
+                                                    md: "space-between",
+                                                  },
+                                                justifyContent: {
+                                                    sm: "flex-start",
+                                                    md: "space-between"
+                                                },
                                             }}
                                         >
 
+                                            {/* (start)商品概要 */}
                                             <Box
                                                 sx={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    padding: "2px 0px 0px 25px",
+                                                    padding: "0px",
+                                                    margin: "20px 0px 20px 0px",
+                                                    width: "70%",
                                                     display: "flex",
-                                                    flexDirection: "column",
-                                                    alignItems: "flex-start",
-                                                    justifyContent: "space-between",
+                                                    alignItems: "space-between",
+                                                    justifyContent: "flex-start",
                                                 }}
                                             >
 
-                                                <Typography
-                                                    sx={{
-                                                        fontSize: "18px",
-                                                        fontWeight: "600",
-                                                    }}
-                                                >
-                                                    {name}
-                                                </Typography>
-
-                                                <Typography
-                                                    sx={{
-                                                        padding: "15px 0px 0px 3px",
-                                                        fontSize: "14px",
-                                                        fontWeight: "500",
-
-                                                    }}
-                                                >
-                                                    {`商品コード : ${_id}`}
-                                                </Typography>
-
-                                                <Typography
-                                                    sx={{
-                                                        padding: "5px 0px 0px 3px",
-                                                        fontSize: "14px",
-                                                        fontWeight: "500",
-
-                                                    }}
-                                                >
-                                                    {`カラー : ${item.color}`}
-                                                </Typography>
-
+                                                {/* (start)商品画像 */}
                                                 <Box
                                                     sx={{
-                                                        padding: "5px 0px 0px 0px"
-
+                                                        width: "30%",
                                                     }}
                                                 >
-
-                                                    <Price price={price} priceWidth={43} priceSize={20} unitSize={14} />
-
+                                                    <img
+                                                        src={img}
+                                                        alt={name}
+                                                        style={{
+                                                            width: "100%",
+                                                            // maxWidth: "250px",
+                                                            height: "auto",
+                                                            // maxHeight: "150px",
+                                                            objectFit: "cover",
+                                                            aspectRatio: "4 / 3"
+                                                        }}
+                                                    />
                                                 </Box>
+                                                {/* (end)商品画像 */}
 
-                                                <Typography
+
+
+                                                {/* (start)商品説明 */}
+                                                <Box
                                                     sx={{
-                                                        padding: "5px 0px 0px 3px"
-
+                                                        width: "70%",
                                                     }}
                                                 >
-                                                    {`数量 : ${item.quantity}`}
-                                                </Typography>
+
+                                                    <Box
+                                                        sx={{
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            padding: "2px 0px 0px 25px",
+                                                            display: "flex",
+                                                            flexDirection: "column",
+                                                            alignItems: "flex-start",
+                                                            justifyContent: "space-between",
+                                                        }}
+                                                    >
+
+                                                        <Typography
+                                                            sx={{
+                                                                fontSize: "18px",
+                                                                fontSize: {
+                                                                    xs: "14px",
+                                                                    sm: "16px",
+                                                                    md: "18px",
+                                                                    lg: "20px"
+                                                                },
+                                                                fontWeight: "600",
+                                                            }}
+                                                        >
+                                                            {name}
+                                                        </Typography>
+
+                                                        <Typography
+                                                            sx={{
+                                                                padding: "15px 0px 0px 3px",
+                                                                // fontSize: "14px",
+                                                                fontSize: {
+                                                                    xs: "12px",
+                                                                    sm: "14px",
+                                                                    md: "16px"
+                                                                },
+                                                                fontWeight: "500",
+                                                                textAlign: "left"
+
+                                                            }}
+                                                        >
+                                                            {`商品コード : ${_id}`}
+                                                        </Typography>
+
+                                                        <Typography
+                                                            sx={{
+                                                                padding: "5px 0px 0px 3px",
+                                                                // fontSize: "14px",
+                                                                fontSize: {
+                                                                    xs: "12px",
+                                                                    sm: "14px",
+                                                                    md: "16px"
+                                                                },
+                                                                fontWeight: "500",
+
+                                                            }}
+                                                        >
+                                                            {`カラー : ${item.color}`}
+                                                        </Typography>
+
+                                                        <Box
+                                                            sx={{
+                                                                padding: "5px 0px 0px 0px"
+
+                                                            }}
+                                                        >
+
+                                                            <Price price={price} priceWidth={43} priceSize={20} unitSize={14} />
+
+                                                        </Box>
+
+                                                        <Typography
+                                                            sx={{
+                                                                padding: "5px 0px 0px 3px",
+                                                                fontSize: {
+                                                                    xs: "12px",
+                                                                    sm: "14px",
+                                                                    md: "16px"
+                                                                },
+
+                                                            }}
+                                                        >
+                                                            {`数量 : ${item.quantity}`}
+                                                        </Typography>
+
+                                                    </Box>
+                                                </Box>
+                                                {/* (end)商品説明 */}
 
                                             </Box>
-                                        </Box>
-                                        {/* (end)商品説明 */}
-
-                                    </Box>
-                                    {/* (end)商品概要 */}
+                                            {/* (end)商品概要 */}
 
 
-                                    {/* (start)小計 */}
-                                    <Box
-                                        sx={{
-                                            width: "30%",
-                                            // height: "auto",
-                                            display: "flex",
-                                            // flexDirection: "column",
-                                            alignItems: "flex-end",
-                                            // justifyContent: "flex-end",
-                                            marginTop: "auto",
-                                        }}
-                                    >
-                                        {/* <Box
-                                            sx={{
-                                                flexGlow: 1
-                                            }}
-                                        ></Box> */}
-                                        <Box
-                                            sx={{
-                                                width: "100%",
-                                                padding: "0px",
-                                                margin: "0px 0px 10px 0px",
-                                                display: "flex",
-                                                alignItems: "baseline",
-                                            }}
-                                        >
-                                            <Typography
-                                                sx={{
-                                                    width: "20%",
-                                                    fontWeight: "200",
-                                                    fontSize: "14px",
-                                                    textAlign: "right",
-                                                    padding: "0px",
-                                                    margin: "0px"
-                                                }}
-                                            >
-                                                小計
-                                            </Typography>
-
+                                            {/* (start)小計エリア */}
                                             <Box
                                                 sx={{
-                                                    width: "45%",
-                                                    padding: "0px",
-                                                    margin: "0px",
+                                                    // width: "30%",
+                                                    width: {
+                                                        sm: "100%",
+                                                        md: "30%",
+                                                    },
+                                                    display: "flex",
+                                                    alignItems: "baseline",
+                                                    justifyContent: "flex-end",
+                                                    marginTop: "auto",
+                                                    // textAlign: "left"
                                                 }}
                                             >
+                                           
+                                                    <Typography
+                                                        sx={{
+                                                            width: "20%",
+                                                            width: {
+                                                                xs: "20%",
+                                                                sm: "20%",
+                                                                md: "30%",
+                                                            },
+                                                            fontWeight: "200",
+                                                            // fontSize: "14px",
+                                                            fontSize: {
+                                                                xs: "12px",
+                                                                sm: "14px",
+                                                                md: "16px"
+                                                            },
+                                                            textAlign: "right",
+                                                            padding: "0px",
+                                                            margin: "0px"
+                                                        }}
+                                                    >
+                                                        小計
+                                                    </Typography>
 
-                                                <Price price={price * item.quantity} priceWidth={60} priceSize={24} unitSize={14} />
+                                                    <Box
+                                                        sx={{
+                                                            width: "40%",
+                                                            width: {
+                                                                xs: "30%",
+                                                                sm: "30%",
+                                                                md: "70%",
+                                                            },
+                                                            padding: "0px",
+                                                            margin: "0px",
+                                                            textAlign: "left",
+                                                            // marginLeft: "auto",
+                                                        }}
+                                                    >
+
+                                                        <Price price={price * item.quantity} priceWidth={60} priceSize={24} unitSize={14} />
+                                                    </Box>
+                                                {/* </Box> */}
+
                                             </Box>
+                                            {/* (end)小計 */}
+
                                         </Box>
+                                        {/* (end)購入商品、小計 */}
+                                        <Divider sx={{ width: '100%', my: 1 }} />
+                                    </>
+                                );
+                            })}
 
-                                    </Box>
-                                    {/* (end)小計 */}
+                        </Box>
+                        {/* (end)購入商品一覧 */}
 
-                                </Box>
-                                <Divider sx={{ width: '100%', my: 1 }} />
-                            </>
-                        );
-                    })}
+                        {/* (start)金額表示 */}
+                        <Box
+                            sx={{
+                                // width: "50%",
+                                width: {
+                                    sm: "70%",
+                                    md: "30%",
+                                },
+                                height: "50%",
+                                padding: "0px",
+                                margin: "10px 20px 0px 0px",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "flex-start",
+                                justifyContent: "flex-start",
+                                // ml: {
+                                //     xs: 0,
+                                //     md: "auto"
+                                //   }
+                            }}
+                        >
+                            {/* (start)商品代金 */}
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    padding: "0px 0px 0px 0px",
+                                    margin: "0px 20px 0px 20px",
+                                    display: "flex",
+                                    justifyContent: {
+                                        sm: "flex-start",
+                                        md: "flex-end",
+                                    },
+                                    alignItems: "baseline",
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        width: "20%",
+                                        // fontSize: "16px",
+                                        fontSize: {
+                                            xs: "12px",
+                                            sm: "14px",
+                                            md: "16px"
+                                        },
+                                        fontWeight: "500",
+                                        textAlign: "center"
+
+                                    }}
+                                >
+                                    商品
+                                </Typography>
+
+                                <Typography
+                                    sx={{
+                                        width: "60%"
+                                    }}
+                                >
+                                    <Price price={totalPrice} priceSize={24} unitSize={16} priceWidth={58} />
+                                </Typography>
+                            </Box>
+                            {/* (end)商品代金 */}
+
+
+                            {/* <br /> */}
+                            <Divider sx={{ width: '100%', my: 1 }} />
+
+
+                            {/* (start)送料 */}
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    padding: "0px 0px 0px 0px",
+                                    margin: "0px 20px 0px 20px",
+                                    display: "flex",
+                                    // justifyContent: "flex-end",
+                                    justifyContent: {
+                                        sm: "flex-start",
+                                        md: "flex-end",
+                                    },
+                                    alignItems: "baseline",
+
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        width: "20%",
+                                        // fontSize: "16px",
+                                        fontSize: {
+                                            xs: "12px",
+                                            sm: "14px",
+                                            md: "16px"
+                                        },
+                                        fontWeight: "500",
+                                        textAlign: "center"
+                                    }}
+                                >
+                                    送料
+                                </Typography>
+
+                                <Typography
+                                    sx={{
+
+                                        width: "60%"
+                                    }}
+                                >
+                                    <Price price={750} priceSize={24} unitSize={16} priceWidth={58} />
+                                </Typography>
+                            </Box>
+                            {/* (end)商品代金 */}
+
+
+                            {/* <br /> */}
+                            <Divider sx={{ width: '100%', my: 1 }} />
+
+
+                            {/* (start)合計代金 */}
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    padding: "0px 0px 0px 0px",
+                                    margin: "0px 20px 0px 20px",
+                                    display: "flex",
+                                    // justifyContent: "flex-end",
+                                    justifyContent: {
+                                        sm: "flex-start",
+                                        md: "flex-end",
+                                    },
+                                    alignItems: "baseline",
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        width: "20%",
+                                        // fontSize: "16px",
+                                        fontSize: {
+                                            xs: "12px",
+                                            sm: "14px",
+                                            md: "16px"
+                                        },
+                                        fontWeight: "500",
+                                        textAlign: "center"
+
+                                    }}
+                                >
+                                    合計
+                                </Typography>
+
+                                <Typography
+                                    sx={{
+                                        width: "60%"
+                                    }}
+                                >
+                                    <Price price={750 + totalPrice} priceSize={24} unitSize={16} priceWidth={58} />
+                                </Typography>
+                            </Box>
+                            {/* (end)合計代金 */}
+
+
+                        </Box>
+                        {/* (end)金額表示 */}
+
+
+                    </Box>
+                    {/* (end)購入商品一覧、金額表示 */}
+
 
 
                 </Box >
                 {/* (end)購入商品 */}
 
 
-                {/* (start)金額表示 */}
-                <Box
-                    sx={{
-                        width: "50%",
-                        height: "50%",
-                        padding: "0px",
-                        margin: "10px 0px 0px 0px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "flex-start"
-                    }}
-                >
-                    {/* (start)商品代金 */}
-                    <Box
-                        sx={{
-                            width: "100%",
-                            padding: "0px 0px 0px 0px",
-                            margin: "0px 20px 0px 20px",
-                            display: "flex",
-                            justifyContent: "flex-start",
-                            alignItems: "baseline",
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                width: "20%",
-                                fontSize: "16px",
-                                fontWeight: "500",
-                                textAlign: "center"
-
-                            }}
-                        >
-                            商品
-                        </Typography>
-
-                        <Typography
-                            sx={{
-                                width: "40%"
-                            }}
-                        >
-                            <Price price={totalPrice} priceSize={24} unitSize={16} priceWidth={58} />
-                        </Typography>
-                    </Box>
-                    {/* (end)商品代金 */}
-
-
-                    {/* <br /> */}
-                    <Divider sx={{ width: '100%', my: 1 }} />
-
-
-                    {/* (start)送料 */}
-                    <Box
-                        sx={{
-                            width: "100%",
-                            padding: "0px 0px 0px 0px",
-                            margin: "0px 20px 0px 20px",
-                            display: "flex",
-                            justifyContent: "flex-start",
-                            alignItems: "baseline",
-
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                width: "20%",
-                                fontSize: "16px",
-                                fontWeight: "500",
-                                textAlign: "center"
-                            }}
-                        >
-                            送料
-                        </Typography>
-
-                        <Typography
-                            sx={{
-
-                                width: "40%"
-                            }}
-                        >
-                            <Price price={750} priceSize={24} unitSize={16} priceWidth={58} />
-                        </Typography>
-                    </Box>
-                    {/* (end)商品代金 */}
-
-
-                    {/* <br /> */}
-                    <Divider sx={{ width: '100%', my: 1 }} />
-
-
-                    {/* (start)合計代金 */}
-                    <Box
-                        sx={{
-                            width: "100%",
-                            padding: "0px 0px 0px 0px",
-                            margin: "0px 20px 0px 20px",
-                            display: "flex",
-                            justifyContent: "flex-start",
-                            alignItems: "baseline",
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                width: "20%",
-                                fontSize: "16px",
-                                fontWeight: "500",
-                                textAlign: "center"
-
-                            }}
-                        >
-                            合計
-                        </Typography>
-
-                        <Typography
-                            sx={{
-                                width: "40%"
-                            }}
-                        >
-                            <Price price={750 + totalPrice} priceSize={24} unitSize={16} priceWidth={58} />
-                        </Typography>
-                    </Box>
-                    {/* (end)合計代金 */}
-
-
-                </Box>
-                {/* (end)金額表示 */}
+              
 
 
 

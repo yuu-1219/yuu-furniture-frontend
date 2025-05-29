@@ -41,15 +41,15 @@ export default function CartItem({ product, productId, color, qty }) {
 
 
     const onIncrement = () => {
-        incrementItem(user._id, productId, color, price);
+        incrementItem(productId, color, price);
     }
     const onDecrement = () => {
-        decrementItem(user._id, productId, color, price);
+        decrementItem(productId, color, price);
     }
 
     const onDelete = () => {
         alert("商品を削除しました");
-        removeFromCart(user._id, productId, color, price);
+        removeFromCart(productId, color, price);
     }
 
 
@@ -77,6 +77,7 @@ export default function CartItem({ product, productId, color, qty }) {
 
             <Box
                 sx={{
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
@@ -87,6 +88,7 @@ export default function CartItem({ product, productId, color, qty }) {
                 {/* (start)商品説明 */}
                 <Box
                     sx={{
+                        width: "100%",
                         display: "flex",
                         alignItems: "flex-start",
                         justifyContent: "flex-start",
@@ -94,6 +96,7 @@ export default function CartItem({ product, productId, color, qty }) {
                 >
 
 
+                    {/* 商品画像 */}
                     <img
                         src={img}
                         alt={name}
@@ -118,27 +121,47 @@ export default function CartItem({ product, productId, color, qty }) {
                         }}
                     >
 
+                        {/* 商品タイトル */}
                         <Typography
                             sx={{
-                                fontSize: "18px",
+                                // fontSize: "18px",
+                                fontSize: {
+                                    xs: "14px",
+                                    sm: "16px",
+                                    md: "18px",
+                                    lg: "20px"
+                                },
                                 fontWeight: "600",
                             }}
                         >
                             {name}
                         </Typography>
 
+                        {/* 商品コード */}
                         <Typography
                             sx={{
-                                padding: "15px 0px 0px 3px"
+                                padding: "15px 0px 0px 3px",
+                                fontSize: {
+                                    xs: "12px",
+                                    sm: "14px",
+                                    md: "16px"
+                                },
+                                textAlign: "left"
 
                             }}
                         >
                             {`商品コード : ${productId}`}
                         </Typography>
 
+                        {/* カラー */}
                         <Typography
                             sx={{
-                                padding: "5px 0px 0px 3px"
+                                padding: "5px 0px 0px 3px",
+                                fontSize: {
+                                    xs: "12px",
+                                    sm: "14px",
+                                    md: "16px"
+                                },
 
                             }}
                         >
@@ -167,19 +190,24 @@ export default function CartItem({ product, productId, color, qty }) {
                     sx={{
                         width: "100%",
                         display: "flex",
+                        flexWrap: "wrap",
+                        alignItems: 'baseline',
                         justifyContent: "space-between",
                         margin: "20px 0px 0px 0px",
                         padding: "10px 50px 0px 30px",
-                        display: 'flex',
-                        alignItems: 'center',
                         // gap: 0.5
                     }}
                 >
 
+                    {/* 数量ボタン */}
                     <Box
                         sx={{
-                            width: "10%",
-                            // display: "block"
+                            // width: "10%",
+                            width: { 
+                                xs: "60%", 
+                                sm: "45%", 
+                                md: "30%" 
+                            },
                         }}
                     >
                         <QtyButton qty={qty} onIncrement={onIncrement} onDecrement={onDecrement} />
@@ -188,23 +216,40 @@ export default function CartItem({ product, productId, color, qty }) {
 
 
 
+                     {/* (start) 小計 */}
                     <Box
                         sx={{
-                            width: "40%",
+                            // width: "40%",
+                            width: {
+                                xs: "80%",
+                                sm: "50%",
+                                md: "55%",
+                            },
                             // maxwidth: "20px",
                             display: "flex",
                             alignItems: "baseline",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            margin: "10px 0px 0px 0px"
                         }}
                     >
                         <Typography
                             sx={{
                                 // width: "20%",
+                                width: {
+                                    xs: "20%",
+                                    sm: "30%",
+                                    md: "30%",
+                                },
                                 fontWeight: "200",
-                                fontSize: "16px",
-                                texlAlign: "right",
+                                // fontSize: "16px",
+                                fontSize: {
+                                    xs: "12px",
+                                    sm: "14px",
+                                    md: "16px"
+                                },
+                                textAlign: "right",
                                 padding: "0px",
-                                margin: "0px"
+                                margin: "0px 0px 0px 0px"
                             }}
                         >
                             小計
@@ -213,6 +258,11 @@ export default function CartItem({ product, productId, color, qty }) {
                         <Box
                             sx={{
                                 // width: "70%",
+                                width: {
+                                    xs: "70%",
+                                    sm: "70%",
+                                    md: "70%",
+                                },
                                 padding: "0px",
                                 margin: "0px",
                             }}
@@ -221,23 +271,33 @@ export default function CartItem({ product, productId, color, qty }) {
                             <Price price={price * qty} priceWidth={60} priceSize={24} unitSize={16} />
                         </Box>
                     </Box>
+                    {/* (end) 小計 */}
 
-                    {/* <Box
-                        sx={{
-                            flewGlow: 1,
-                        }}
-                    >
-                    </Box> */}
 
+                    {/* 削除ボタン */}
                     <Box
                         sx={{
-                            width: "1%",
-                            cursor: "pointer"
-                            // display: "block"
+                            width: "10%",
+                            width: {
+                                xs: "1%",
+                                sm: "1%",
+                                md: "1%",
+                            },
+                            cursor: "pointer",
+                            margin: "10px 0px 0px 0px"
                         }}
                         onClick={onDelete}
                     >
-                        <DeleteForeverIcon />
+                        <DeleteForeverIcon 
+                        sx = {{
+                            // fontSize: {
+                            //     xs: "20",
+                            //     sm: "28",
+                            //     md: "32",
+                            //     lg: "36"
+                            // }
+                        }}/>
+
                     </Box>
 
 

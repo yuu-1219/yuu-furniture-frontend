@@ -1,12 +1,16 @@
 import '../styles/Home.css'
 import { Link } from "react-router-dom";
 
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import { categories } from '../constants/categories';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CategoryCard from '../components/CategoryCard';
 
 import furniture1 from '../assets/imgs/furniture1.jpg';
 
@@ -15,10 +19,64 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div class="container-fluid contents">
-        <div class="background-overlay">
-          <div class="row justify-content-center">
-            <nav class="nav-ver side-ver col-3 px-2 py-3 my-4">
+      {/* (start)背景画像表示領域 */}
+      {/* <div class="container-fluid contents"> */}
+      <Box className="background-overlay">
+
+        {/* (start)タイトル~メインパーツ表示領域 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "60px 0px 0px 0px",
+            margin: "0px 0px 0px 0px",
+          }}
+        >
+          {/* <div class="row justify-content-center"> */}
+
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
+          <Box
+            sx={{
+              width: "90%",
+              padding: "20px 0px",
+              margin: "20px 20px",
+              // maxWidth: "800px",
+              // backgroundColor: "rgba(251, 245, 230, 0.8)",
+              // borderRadius: "10px",
+              // border: "0.2px solid #eee9d3",
+              display: "flex",
+              flexDirection: {
+                xs: "column",
+                md: "row",
+              },
+              justifyContent: "center",
+              alignItems: {
+                xs: "center",
+                md: "flex-start",
+              }
+            }}
+          >
+
+            {/* カテゴリー一覧 */}
+            <Box
+              sx={{
+                // width: "25%",
+                width: {
+                  xs: "100%",
+                  md: "25%",
+                },
+                order: {
+                  xs: 2,
+                  md: 1
+                },
+              }}
+            >
+              <CategoryCard />
+
+            </Box>
+
+
+            {/* <nav class="nav-ver side-ver col-3 px-2 py-3 my-4">
               <ul class="nav side-ver-items">
                 <li class="nav-item">
                   <p class="category-title">カテゴリーから選ぶ</p>
@@ -43,119 +101,98 @@ export default function Home() {
                 ))}
 
 
-
-
-                {/* <li class="nav-item">
-                  <Link to="/products" className="nav-link">
-                    全ての商品
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=storage_firniture" className="nav-link">
-                    収納家具
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=small_storage" className="nav-link">
-                    小物収納
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=sofas&armchairs" className="nav-link">
-                    ソファ&パーソナルチェア
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=textiles" className="nav-link">
-                    クッション&家具
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=beds&mattresses" className="nav-link">
-                    ベッド・マットレス
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=tables&chairs" className="nav-link">
-                    テーブル・チェア
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=desk&deskchairs" className="nav-link">
-                    デスク・チェア
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=Lightning" className="nav-link">
-                    照明
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=rugs&mats" className="nav-link">
-                    ラグ・カーペット
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=decoration" className="nav-link">
-                    インテリア雑貨
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=kitchenware&tableware" className="nav-link">
-                    調理器具・食器
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=bathroom_products" className="nav-link">
-                    洗面所収納・バスタオル
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="/products?category=kitchen&appliances" className="nav-link">
-                    キッチン収納
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li> */}
               </ul>
-            </nav>
+            </nav> */}
 
-            {/* <div class="col-1">
 
-          </div> */}
 
-            <div class="title-card col-8 py-3 my-4">
-              <div class="row justify-content-center">
+            {/* タイトル文 */}
+            <Box
+              sx={{
+                // width: "75%",
+                width: {
+                  xs: "90%",
+                  md: "75%",
+                },
+                order: {
+                  xs: 1,
+                  md: 2
+                },
+                margin: {
+                  xs: "0px 0px 20px 0px",
+                  sm: "0px 0px 30px 0px",
+                  md: "5px 5px 5px 40px",
+              },
+              }}
+            >
+              {/* <div class="title-card col-8 py-3 my-4"> */}
+              {/* <div class="row justify-content-center">
                 <div class="col-1"></div>
-                <div class="col-10">
-                  <h1 class="title">ミニマルな美学を、あなたの部屋に</h1>
-                  <p class="discription my-3">
-                    機能美と洗練されたデザインが融合した家具コレクション。
-                    <br />
-                    忙しい日常に、静かな美しさを取り入れませんか？
-                  </p>
-                  <img src={furniture1} alt="title_img" style={{ width: "100%", maxWidth: "820px" }} />
+                <div class="col-10"> */}
+              {/* <h1 class="title">ミニマルな美学を、あなたの部屋に</h1> */}
 
 
-                </div>
+              <Typography
+                sx={{
+                  // fontSize: "50px",
+                  fontSize: {
+                    xs: "22px",
+                    sm: "26px",
+                    md: "30px",
+                    lg: "40px",
+                  },
+                  fontWeight: "600",
+                  // padding: {
+                  //   xs: "0px 10px",
+                  //   sm: "0px 15px",
+                  //   md: "0px 20px",
+                  // },
+                  textAlign: "left"
+                }}>
+                ミニマルな美学を、あなたの部屋に
+              </Typography>
+
+
+              <Typography
+                sx={{
+                  // fontSize: "50px",
+                  fontSize: {
+                    xs: "14px",
+                    sm: "15px",
+                    md: "17px",
+                    lg: "20px",
+                  },
+                  fontWeight: "500",
+                  padding: {
+                    xs: "10px 5px",
+                    sm: "10px 5px",
+                    md: "10px 5px",
+                  },
+                  textAlign: "left"
+                }}>
+                機能美と洗練されたデザインが融合した家具コレクション。
+                <Box component="br"></Box>
+                忙しい日常に、静かな美しさを取り入れませんか？
+              </Typography>
+
+              <img src={furniture1} alt="title_img" style={{ width: "100%",  }} />
+
+
+              {/* </div>
                 <div class="col-1"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div >
+              </div> */}
+              {/* </div> */}
+
+            </Box>
+
+          </Box>
+          {/* </div> */}
+        </Box>
+        {/* (start)タイトル~メインパーツ表示領域 */}
+
+      </Box>
+      {/* (start)背景画像表示領域 */}
+      {/* </div > */}
 
       <Footer />
     </>

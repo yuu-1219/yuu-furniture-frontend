@@ -26,13 +26,13 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
     return (
         <Box
             sx={{
+                width: "100%",
+                maxWidth: "200px",
+                maxHeight: "60px",
                 display: "flex",
                 flexWrap: "wrap",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                width: "100%",
-                maxWidth: "170px",
-                maxHeight: "60px",
                 margin: "5px",
                 border: "0.5px solid #cecece",
                 backgroundColor: "#faf6ec",
@@ -63,6 +63,12 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
                 sx={{
                     fontWeight: "500",
                     fontSize: "13px",
+                    fontSize: {
+                        xs: "11px",
+                        sm: "12px",
+                        md: "11px",
+                        lg: "14px",
+                    },
                     marginBottom: "0px"
                 }}
             >

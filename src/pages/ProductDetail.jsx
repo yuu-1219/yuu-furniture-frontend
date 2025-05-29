@@ -51,21 +51,47 @@ export default function ProductDetail() {
     //   return;
     // }
 
-    await addToCart(user._id, _id, color, qty, price);
+    await addToCart(_id, color, qty, price);
+
     alert("カートに追加されました");
   };
 
   return (
     <>
       <Header />
-      <div class="background-overlay">
-        <div class="container-fluid contents">
 
+      {/* <div class="background-overlay">*/}
+
+      {/* (start)背景画像表示領域 */}
+      <Box className="background-overlay">
+
+        {/* <div class="container-fluid contents"> */}
+
+        {/* (start)タイトル~メインパーツ表示領域 */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "60px 0px 0px 0px",
+            margin: "0px 0px 0px 0px",
+          }}
+        >
+
+
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             // className="row justify-content-center"
             sx={{
               display: "flex",
               flexWrap: "wrap",
+              flexDirection: {
+                xs: "column",
+                md: "row",
+              },
+              alignItems: {
+                xs: "center",
+                md: "flex-start",
+              },
               justifyContent: "center",
               padding: "40px 0px 0px 0px",
               margin: "0px 0px 0px 0px",
@@ -76,10 +102,10 @@ export default function ProductDetail() {
             {/* <nav class="nav-ver side-ver col-12 col-md-8 px-2 py-3 my-4"> */}
             <Box
               sx={{
-                margin: "0px 0px",
-                width: { xs: "100%", md: "35%" },
+                margin: "10px 20px",
+                width: { xs: "90%", md: "35%" },
                 padding: "30px 30px",
-                maxWidth: "650px",
+                // maxWidth: "650px",
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "10px",
                 border: "0.2px solid #eee9d3",
@@ -100,6 +126,12 @@ export default function ProductDetail() {
               <Typography
                 sx={{
                   fontSize: "18px",
+                  fontSize: {
+                    xs: "14px",
+                    sm: "16px",
+                    md: "16px",
+                    lg: "18px",
+                  },
                   fontWeight: "500",
                   padding: "30px 0px",
                   margin: "0px 0px",
@@ -124,9 +156,9 @@ export default function ProductDetail() {
             {/* <div class="title-card col-12 col-md-9 py-3 my-4"> */}
             <Box
               sx={{
-                margin: "0px 30px",
-                width: { xs: "100%", md: "50%" },
-                padding: "30px 60px",
+                margin: "10px 20px",
+                width: { xs: "90%", md: "50%" },
+                padding: "30px 30px",
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "10px",
                 border: "0.2px solid #eee9d3",
@@ -156,13 +188,32 @@ export default function ProductDetail() {
                       alignItems: "flex-start"
                     }}
                   >
-                    <h1 class="title">
+                    {/* <h1 class="title">
                       {name}
-                    </h1>
+                    </h1> */}
+
+                    <Typography
+                      sx={{
+                        fontSize: {
+                          xs: "22px",
+                          sm: "26px",
+                          md: "30px",
+                          lg: "40px",
+                        },
+                        fontWeight: "600",
+                        // padding: {
+                        //   xs: "0px 10px",
+                        //   sm: "0px 15px",
+                        //   md: "0px 20px",
+                        // },
+                        textAlign: "left"
+                      }}>
+                      {name}
+                    </Typography>
 
                     <Box
                       sx={{
-                        padding: "0px 0px 0px 0px"
+                        padding: "0px 0px 0px 5px"
                       }}
                     >
                       <Price price={price} priceSize={26} unitSize={16} priceWidth={72} />
@@ -183,8 +234,11 @@ export default function ProductDetail() {
                       padding: "20px 0px 0px 0px"
                     }}
                   >
-                    <FavoriteButton userId={user._id} productId={_id} color={color}/>
+                    {user && (
+                      <FavoriteButton userId={user._id} productId={_id} color={color} />
+                    )}
                   </Box>
+
 
 
                   {/* (end)商品名、価格、評価 */}
@@ -212,6 +266,12 @@ export default function ProductDetail() {
                   >
                     <Typography
                       sx={{
+                        fontSize: {
+                          xs: "14px",
+                          sm: "16px",
+                          md: "16px",
+                          lg: "18px",
+                        },
                         display: "flex",
                         justifyContent: "center",
                         backgroundColor: "#f0e8cd",
@@ -227,6 +287,12 @@ export default function ProductDetail() {
 
                     <Typography
                       sx={{
+                        fontSize: {
+                          xs: "14px",
+                          sm: "16px",
+                          md: "16px",
+                          lg: "18px",
+                        },
                         display: "flex",
                         justifyContent: "center",
                         backgroundColor: "#fffdf7",
@@ -250,6 +316,12 @@ export default function ProductDetail() {
                   >
                     <Typography
                       sx={{
+                        fontSize: {
+                          xs: "14px",
+                          sm: "16px",
+                          md: "16px",
+                          lg: "18px",
+                        },
                         display: "flex",
                         justifyContent: "center",
                         backgroundColor: "#f0e8cd",
@@ -265,6 +337,12 @@ export default function ProductDetail() {
 
                     <Typography
                       sx={{
+                        fontSize: {
+                          xs: "14px",
+                          sm: "16px",
+                          md: "16px",
+                          lg: "18px",
+                        },
                         display: "flex",
                         justifyContent: "center",
                         backgroundColor: "#fffdf7",
@@ -327,7 +405,12 @@ export default function ProductDetail() {
             {/* (start)右パーツ */}
 
           </Box>
-        </div>
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
+
+          {/* </div> */}
+
+        </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
         <Box
@@ -353,7 +436,9 @@ export default function ProductDetail() {
 
         </Box>
 
-      </div >
+        {/* </div > */}
+      </Box>
+      {/* (end)背景画像表示領域 */}
 
       <Footer />
     </>

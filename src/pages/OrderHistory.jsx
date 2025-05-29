@@ -70,8 +70,10 @@ export default function OrderHistory() {
   return (
     <>
       <Header />
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
+        {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
             display: "flex",
@@ -81,10 +83,11 @@ export default function OrderHistory() {
           }}
         >
 
+          {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
               width: "90%",
-              padding: "30px 80px",
+              padding: "30px 30px",
               margin: "30px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",
@@ -97,16 +100,30 @@ export default function OrderHistory() {
             }}
           >
 
-            <h1 class="title">
+            {/* <h1 class="title">
               注文履歴
-            </h1>
+            </h1> */}
 
-            <Box
+            <Typography
               sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+                // fontSize: "50px",
+                fontSize: {
+                  xs: "28px",  
+                  sm: "36px",  
+                  md: "48px",  
+                  lg: "50px",  
+                },
+                fontWeight: "600",
+                // padding: "0px 50px",
+                padding: {
+                  xs: "0px 10px",
+                  sm: "0px 15px",
+                  md: "0px 20px",
+                },
+              }}>
+              注文履歴
+            </Typography>
+
 
 
               {/* (start)注文履歴一覧 */}
@@ -114,7 +131,7 @@ export default function OrderHistory() {
                 sx={{
                   margin: "10px 0px 10px 0px",
                   width: { xs: "100%", md: "100%" },
-                  minWidth: "300px",
+                  // minWidth: "300px",
                   // backgroundColor: "rgba(251, 245, 230, 0.8)",
                   // borderRadius: "10px",
                   // border: "0.2px solid #eee9d3",
@@ -126,27 +143,13 @@ export default function OrderHistory() {
               >
 
                 {orders.map((item) => {
-                  // async function fetchCartProducts() {
-                  //   // const userCart = await getCart(user._id);
-                  //   const productIds = [...new Set(item.items.map(item => item.productId))];
-
-                  //   const results = await Promise.all(
-                  //     productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
-                  //   );
-
-                  //   const resultProducts = {};
-                  //   results.forEach(res => {
-                  //     resultProducts[res.data._id] = res.data;
-                  //   });
-                  // }
-
-
 
                   return (
                     <>
 
                       <Box
                         sx={{
+                          width: "100%",
                           backgroundColor: "rgba(251, 245, 230, 0.8)",
                           borderRadius: "6px",
                           border: "0.2px solid #eee9d3",
@@ -165,14 +168,12 @@ export default function OrderHistory() {
               {/* (end)注文履歴一覧 */}
 
 
-            </Box>
-
           </Box>
-
-
+          {/* (end)タイトル~メインパーツ表示レイアウト */}
 
 
         </Box>
+        {/* (end)タイトル~メインパーツ表示領域 */}
 
 
 
@@ -199,6 +200,7 @@ export default function OrderHistory() {
 
 
       </Box>
+      {/* (end)背景画像表示領域 */}
 
 
       <Footer />

@@ -44,7 +44,7 @@ export function CartProvider({ children }) {
   };
 
 
-  const addToCart = async (userId, productId, color, qty, price) => {
+  const addToCart = async (productId, color, qty, price) => {
     // const { user } = useUser();
     // const product = products.find(c => c._id === productId);
 
@@ -63,7 +63,7 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      userId: userId,
+      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + qty,
       totalPrice: cart.totalPrice + qty * price,
@@ -73,15 +73,15 @@ export function CartProvider({ children }) {
     setCart(updatedCart);
 
     // if (!user) return null;
-    if (!userId) return null;
+    if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
     setCart(res.data);
     return res.data;
   };
 
 
-  const removeFromCart = async (userId, productId, color, price) => {
+  const removeFromCart = async (productId, color, price) => {
     // const { user } = useUser();
     // const targetProduct = products.find(c => c.productId === productId);
 
@@ -96,7 +96,7 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      userId: userId,
+      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - targetItem.quantity,
       totalPrice: cart.totalPrice - price * targetItem.quantity,
@@ -106,14 +106,15 @@ export function CartProvider({ children }) {
     setCart(updatedCart);
 
     // if (!user) return null;
-    if (!userId) return null;
+    // if (!userId) return null;
+    if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
     setCart(res.data);
     return res.data;
   };
 
-  const incrementItem = async (userId, productId, color, price) => {
+  const incrementItem = async (productId, color, price) => {
     // const { user } = useUser();
     // const targetProduct = products.find(c => c.productId === productId);
 
@@ -129,7 +130,7 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      userId: userId,
+      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + 1,
       totalPrice: cart.totalPrice + price,
@@ -139,14 +140,15 @@ export function CartProvider({ children }) {
     setCart(updatedCart);
 
     // if (!user) return null;
-    if (!userId) return null;
+    // if (!userId) return null;
+    if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
     setCart(res.data);
     return res.data;
   };
 
-  const decrementItem = async (userId, productId, color, price) => {
+  const decrementItem = async (productId, color, price) => {
     // const { user } = useUser();
     // const targetProduct = products.find(c => c.productId === productId);
 
@@ -172,7 +174,7 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      userId: userId,
+      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - 1,
       totalPrice: cart.totalPrice - price,
@@ -182,10 +184,11 @@ export function CartProvider({ children }) {
     setCart(updatedCart);
 
     // if (!user) return null;
-    if (!userId) return null;
+    // if (!userId) return null;
+    if (!updatedCart.userId) return null;
 
 
-    const res = await axios.put(`${CartUrl}/${userId}`, updatedCart );
+    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
     setCart(res.data);
     return res.data;
   };
