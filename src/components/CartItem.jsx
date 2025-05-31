@@ -140,7 +140,7 @@ export default function CartItem({ product, productId, color, qty }) {
                         {/* 商品コード */}
                         <Typography
                             sx={{
-                                padding: "15px 0px 0px 3px",
+                                padding: "15px 0px 0px 2px",
                                 fontSize: {
                                     xs: "12px",
                                     sm: "14px",
@@ -156,7 +156,7 @@ export default function CartItem({ product, productId, color, qty }) {
                         {/* カラー */}
                         <Typography
                             sx={{
-                                padding: "5px 0px 0px 3px",
+                                padding: "5px 0px 0px 2px",
                                 fontSize: {
                                     xs: "12px",
                                     sm: "14px",

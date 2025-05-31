@@ -41,8 +41,8 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('xs')]: {
-    marginLeft: theme.spacing(2),
-    width: '60%', 
+    marginLeft: theme.spacing(3),
+    width: '50%', 
   },
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
@@ -73,7 +73,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('xs')]: {
-      width: '20ch', 
+      width: '18ch', 
     },
     [theme.breakpoints.up('xs')]: {
       width: '30ch', 
@@ -270,7 +270,7 @@ export default function Header() {
                 sm: 'block'
               },
               fontSize: {
-                xs: "16px",
+                xs: "14px",
                 sm: "20px",
                 md: "22px",
 

@@ -216,7 +216,7 @@ export default function Cart() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "100%", sm: "100%", md: "30%" },
+                  width: { xs: "90%", sm: "100%", md: "30%" },
                   height: {
                     xs: "auto",        
                     sm: "auto",       
