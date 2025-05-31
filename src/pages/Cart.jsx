@@ -107,7 +107,7 @@ export default function Cart() {
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
-              width: "100%",
+              width: "90%",
               padding: "30px 30px",
               margin: "30px 30px",
               // maxWidth: "800px",
@@ -170,7 +170,7 @@ export default function Cart() {
               {/* (start)左パーツ */}
               <Box
                 sx={{
-                  margin: "0px 20px 0px 20px",
+                  margin: "0px 0px 0px 0px",
                   width: { xs: "100%", sm: "100%", md: "70%" },
                   minWidth: "300px",
                   // backgroundColor: "rgba(251, 245, 230, 0.8)",

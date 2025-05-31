@@ -71,7 +71,7 @@ export default function CartItem({ product, productId, color, qty }) {
                 color: "inherit",
                 display: "flex",
                 flexWrap: "wrap",
-                justifyContent: "flex-start",
+                justifyContent: "center",
 
             }}>
 
@@ -80,7 +80,7 @@ export default function CartItem({ product, productId, color, qty }) {
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    alignItems: "flex-start",
+                    alignItems: "center",
                     justifyContent: "center",
                 }}
             >

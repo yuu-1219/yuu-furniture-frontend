@@ -162,7 +162,7 @@ export default function Register() {
                     padding: "10px 0px 0px 0px"
                   }}
                 >
-                  <PasswordForm password={password} setPassword={setPassword} />
+                  <PasswordForm text={"パスワード"} password={password} setPassword={setPassword} />
                 </Box>
 
                 <Box

@@ -59,7 +59,7 @@ export default function UserPage() {
               // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               alignItems: "flex-start",
             }}
           >
@@ -100,6 +100,7 @@ export default function UserPage() {
               sx={{
                 margin: "10px 0px 10px 0px",
                 width: { xs: "100%", md: "100%" },
+                height: "90%",
                 minWidth: "300px",
                 display: "flex",
                 flexWrap: "wrap",
@@ -120,21 +121,21 @@ export default function UserPage() {
                 sx={{
                   width: {
                     xs: "40%",  
-                    sm: "38%",  
-                    md: "30%",
-                    lg: "25%"    
+                    sm: "35%",  
+                    md: "25%",
+                    lg: "20%"    
                   },
                   height: {
-                    xs: "30%",
-                    sm: "38%",  
-                    md: "33%",
-                    lg: "25%"    
+                    xs: "40%",
+                    sm: "50%",  
+                    md: "60%",
+                    lg: "100%"    
                   },
                   // height: "100%",
                   maxWidth: "260px",
-                  minWidth: "140px",
+                  // minWidth: "140px",
                   maxHeight: "200px",
-                  minHeight: "160px",
+                  // minHeight: "100px",
                   // padding: "20px 0px",
                   padding: {
                     xs: "12px 0px",
@@ -159,7 +160,7 @@ export default function UserPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                     height: "100%",
 
                   }}
@@ -168,8 +169,8 @@ export default function UserPage() {
 
                   <Typography
                     sx={{
-                      padding: "50px 0px 0px 0px",
-                      // fontSize: "18px",
+                      padding: "0px 0px 0px 0px",
+                      margin: "30px 0px 0px 0px",
                       fontSize: {
                         xs: "14px",
                         sm: "16px",
@@ -194,29 +195,27 @@ export default function UserPage() {
                 to={`/user/${user.userId}/favorite`}
                 sx={{
                   width: {
-                    xs: "40%",  // モバイル
-                    sm: "38%",   // タブレット
-                    md: "30%",   // 中画面
-                    lg: "25%"    // デスクトップ
+                    xs: "40%",  
+                    sm: "35%",   
+                    md: "25%",   
+                    lg: "20%"    
                   },
                   height: {
-                    xs: "30%",  // モバイル
-                    sm: "38%",   // タブレット
-                    md: "40%",   // 中画面
-                    lg: "25%"    // デスクトップ
+                    xs: "40%",
+                    sm: "50%",  
+                    md: "60%",
+                    lg: "100%"    
                   },
                   // height: "100%",
                   maxWidth: "260px",
-                  minWidth: "140px",
+                  // minWidth: "140px",
                   maxHeight: "200px",
-                  minHeight: "160px",
-                   // padding: "20px 0px",
+                  // minHeight: "160px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
                     md: "20px 0px",
                   },
-                  // margin: "20px",
                   margin: {
                     xs: "10px",
                     sm: "14px",
@@ -234,7 +233,7 @@ export default function UserPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                     height: "100%",
                   }}
                 >
@@ -242,8 +241,8 @@ export default function UserPage() {
 
                   <Typography
                     sx={{
-                      padding: "0px 0px 0px 0px",
-                      margin: "50px 0px 0px 0px",
+                      padding: "30px 0px 0px 0px",
+                      // margin: "30px 0px 0px 0px",
                       // fontSize: "18px",
                       fontSize: {
                         xs: "14px",
@@ -270,28 +269,27 @@ export default function UserPage() {
                 sx={{
                   width: {
                     xs: "40%",  
-                    sm: "38%",  
-                    md: "30%",   
-                    lg: "25%"    
+                    sm: "35%",  
+                    md: "25%",   
+                    lg: "20%"    
                   },
                   height: {
-                    xs: "30%",  
-                    sm: "38%",   
-                    md: "40%",   
-                    lg: "25%"    
+                    xs: "40%",
+                    sm: "50%",  
+                    md: "60%",
+                    lg: "100%"    
                   },
                   // height: "100%",
                   maxWidth: "260px",
-                  minWidth: "140px",
+                  // minWidth: "140px",
                   maxHeight: "200px",
-                  minHeight: "160px",
+                  // minHeight: "160px",
                    // padding: "20px 0px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
                     md: "20px 0px",
                   },
-                  // margin: "20px",
                   margin: {
                     xs: "10px",
                     sm: "14px",
@@ -309,7 +307,7 @@ export default function UserPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                     height: "100%",
                   }}
                 >
@@ -317,7 +315,7 @@ export default function UserPage() {
 
                   <Typography
                     sx={{
-                      padding: "50px 0px 0px 0px",
+                      padding: "30px 0px 0px 0px",
                       fontSize: "18px",
                       fontSize: {
                         xs: "12px",
@@ -344,28 +342,25 @@ export default function UserPage() {
                 sx={{
                   width: {
                     xs: "40%",  
-                    sm: "38%",  
-                    md: "30%",   
-                    lg: "25%"    
+                    sm: "35%",  
+                    md: "25%",   
+                    lg: "20%"    
                   },
                   height: {
-                    xs: "30%",  
-                    sm: "38%",   
-                    md: "40%",   
-                    lg: "25%"    
+                    xs: "40%",
+                    sm: "50%",  
+                    md: "60%",
+                    lg: "100%"    
                   },
-                  // height: "100%",
                   maxWidth: "260px",
-                  minWidth: "140px",
+                  // minWidth: "140px",
                   maxHeight: "200px",
-                  minHeight: "160px",
-                   // padding: "20px 0px",
+                  // minHeight: "160px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
                     md: "20px 0px",
                   },
-                  // margin: "20px",
                   margin: {
                     xs: "10px",
                     sm: "14px",
@@ -383,7 +378,7 @@ export default function UserPage() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "space-around",
                     height: "100%",
                   }}
                 >
@@ -391,7 +386,7 @@ export default function UserPage() {
 
                   <Typography
                     sx={{
-                      padding: "50px 0px 0px 0px",
+                      padding: "30px 0px 0px 0px",
                       fontSize: "18px",
                       fontSize: {
                         xs: "12px",
@@ -423,10 +418,12 @@ export default function UserPage() {
             <Box
               sx={{
                 width: "100%",
+                height: "10%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: "100%",
+                margin: "60px 0px 20px 0px",
+                // height: "100%",
               }}
             >
 
@@ -438,10 +435,10 @@ export default function UserPage() {
                   padding: "5px 0px 5px 0px",
                   margin: "60px 0px 20px 0px",
                   width: {
-                    xs: "40%",  // モバイル
-                    sm: "38%",   // タブレット
-                    md: "30%",   // 中画面
-                    lg: "25%"    // デスクトップ
+                    xs: "40%",  
+                    sm: "38%",   
+                    md: "30%",   
+                    lg: "25%"    
                   },
                   maxWidth: "200px",
                   color: "#f36136",
