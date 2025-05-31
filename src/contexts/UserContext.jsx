@@ -103,7 +103,7 @@ export function UserProvider({ children }) {
 
     const updatedUser = {
       ...user,
-      orders: [...(user.orders || []), newOrder],
+      orders: [newOrder, ...(user.orders || [])],
     };
 
     setUser(updatedUser);

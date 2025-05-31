@@ -106,7 +106,7 @@ export default function Complete() {
                   sx={{
                     // fontSize: "50px",
                     fontSize: {
-                      xs: "24px",
+                      xs: "22px",
                       sm: "32px",
                       md: "38px",
                       lg: "40px",
@@ -122,7 +122,7 @@ export default function Complete() {
                 sx={{
                   // fontSize: "34px",
                   fontSize: {
-                    xs: "22px",
+                    xs: "18px",
                     sm: "28px",
                     md: "32px",
                     lg: "34px",

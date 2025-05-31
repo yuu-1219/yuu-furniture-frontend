@@ -20,6 +20,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import LoginIcon from '@mui/icons-material/Login';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { useCart } from "../contexts/CartContext";
 // import { useAuth } from '../contexts/AuthContext';
@@ -405,7 +406,7 @@ export default function Header() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon />
+              <MenuIcon />
             </IconButton>
           </Box>
 
