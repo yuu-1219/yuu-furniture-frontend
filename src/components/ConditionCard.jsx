@@ -32,7 +32,7 @@ export default function ConditionCard() {
                 sx={{
                     width: "100%",
                     height: "100%",
-                    padding: "20px 10px 0px 0px",
+                    padding: "20px 10px 20px 0px",
                     margin: "0px 0px",
                     // maxWidth: "800px",
                     backgroundColor: "rgba(251, 245, 230, 0.8)",
@@ -85,7 +85,7 @@ export default function ConditionCard() {
                     {/* (start)カラーカード */}
                     <Box
                         sx={{
-                            margin: "10px 5px 10px 10px",
+                            margin: "20px 5px 0px 10px",
                             padding: "0px 10px 0px 0px",
                             width: { xs: "70%", md: "100%" },
                             // width: "100%",
@@ -107,7 +107,7 @@ export default function ConditionCard() {
                         }}
                     >
                         <Accordion
-                            defaultExpanded
+                            // defaultExpanded
                             sx={{
                                 width: "100%",
                                 backgroundColor: "#fbf5e6",
@@ -183,7 +183,7 @@ export default function ConditionCard() {
                     {/* (start)価格 */}
                     <Box
                         sx={{
-                            margin: "10px 0px 10px 0px",
+                            margin: "20px 0px 0px 0px",
                             padding: "0px 0px 0px 10px",
                             width: { xs: "70%", md: "100%" },
                             // width: "100%",
@@ -205,7 +205,7 @@ export default function ConditionCard() {
                         }}
                     >
                         <Accordion
-                            defaultExpanded
+                            // defaultExpanded
                             sx={{
                                 width: "100%",
                                 backgroundColor: "#fbf5e6",

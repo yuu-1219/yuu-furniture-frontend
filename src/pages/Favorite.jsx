@@ -74,7 +74,7 @@ export default function Favorite() {
           <Box
             sx={{
               width: "90%",
-              padding: "30px 80px",
+              padding: "30px 30px",
               margin: "30px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",

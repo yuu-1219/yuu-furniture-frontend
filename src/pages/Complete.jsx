@@ -55,7 +55,7 @@ export default function Complete() {
           <Box
             sx={{
               width: "100%",
-              padding: "30px 50px",
+              padding: "30px 30px",
               margin: "60px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",
@@ -106,7 +106,7 @@ export default function Complete() {
                   sx={{
                     // fontSize: "50px",
                     fontSize: {
-                      xs: "26px",
+                      xs: "24px",
                       sm: "32px",
                       md: "38px",
                       lg: "40px",

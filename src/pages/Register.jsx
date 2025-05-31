@@ -31,14 +31,13 @@ export default function Register() {
 
   const handleRegister = async () => {
     const newUser = {
-      // id: uuid(), 
       name,
       email,
-      password,
+      // password,
       orders: [],
       favorites: []
     };
-    const registeredUser = await register(newUser);
+    const registeredUser = await register(newUser, password);
 
     // カート情報を作成
     const newCart = {

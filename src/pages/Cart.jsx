@@ -108,7 +108,7 @@ export default function Cart() {
           <Box
             sx={{
               width: "100%",
-              padding: "30px 50px",
+              padding: "30px 30px",
               margin: "30px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",

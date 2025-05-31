@@ -14,9 +14,9 @@ export function UserProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  const register = async (userData) => {
-    const res = await axios.post(UserUrl, userData);
-    const { email, password } = res.data;
+  const register = async (userInfo, password) => {
+    const res = await axios.post(UserUrl, { userInfo, password });
+    const { email } = res.data;
     login(email, password);
     return res.data;
   };
@@ -32,19 +32,18 @@ export function UserProvider({ children }) {
     setUser({
       name: null,
       email: null,
-      password: null,
+      // password: null,
       orders: [],
       favorites: []
     });
     setIsAuthenticated(false);
   };
 
-  const changeUserInfo = async (userId, name, email, password) => {
+  const changeUserInfo = async (userId, name, email) => {
     const updatedUser = {
       ...user,
       name: name,
       email: email,
-      password: password
     };
 
     setUser(updatedUser);
@@ -53,6 +52,15 @@ export function UserProvider({ children }) {
     if (!userId) return null;
 
     const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+    setUser(res.data);
+    return res.data;
+  };
+
+
+  const changeUserPassword = async (userId, newPassword) => {
+    if (!userId) return null;
+
+    const res = await axios.put(`${UserUrl}/${userId}/password`, { password: newPassword });
     setUser(res.data);
     return res.data;
   };
@@ -191,6 +199,7 @@ export function UserProvider({ children }) {
         login,
         logout,
         changeUserInfo,
+        changeUserPassword,
         deleteUserInfo,
         handlePurchase,
         addFavorite,

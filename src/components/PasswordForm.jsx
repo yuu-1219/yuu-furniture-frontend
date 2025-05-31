@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from "@mui/material/TextField"
 
-export default function PasswordForm({ password, setPassword }) {
+export default function PasswordForm({ text, password, setPassword }) {
     // const [password, setPassword] = useState("");
     const UpdatePassword = (e) => {
         setPassword(e.target.value);
@@ -44,7 +44,7 @@ export default function PasswordForm({ password, setPassword }) {
                     textAlign: "left",
                     minWidth: "80px"
                 }}>
-                パスワード
+                {text}
             </Typography>
 
             <TextField

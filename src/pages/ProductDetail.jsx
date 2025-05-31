@@ -109,6 +109,10 @@ export default function ProductDetail() {
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "10px",
                 border: "0.2px solid #eee9d3",
+                order: {
+                  xs: 2,
+                  md: 1
+                },
               }}
             >
               <img
@@ -376,7 +380,7 @@ export default function ProductDetail() {
                       display: "flex",
                       justifyContent: "center",
                       padding: "5px",
-                      width: "30%"
+                      width: "35%"
 
                     }}
                   >
@@ -388,7 +392,7 @@ export default function ProductDetail() {
                       display: "flex",
                       justifyContent: "center",
                       padding: "5px",
-                      width: "70%"
+                      width: "65%"
                     }}
                   >
                     <RunButton text={"カートに入れる"} width={450} height={45} handleClick={handleAddToCart} />

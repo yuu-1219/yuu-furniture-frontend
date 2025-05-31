@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import HistoryIcon from '@mui/icons-material/History';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import KeyIcon from '@mui/icons-material/Key';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -50,7 +51,7 @@ export default function UserPage() {
           <Box
             sx={{
               width: "90%",
-              padding: "30px 50px",
+              padding: "30px 30px",
               margin: "30px 30px",
               // maxWidth: "800px",
               // backgroundColor: "rgba(251, 245, 230, 0.8)",
@@ -124,7 +125,7 @@ export default function UserPage() {
                     lg: "25%"    
                   },
                   height: {
-                    xs: "40%",
+                    xs: "30%",
                     sm: "38%",  
                     md: "33%",
                     lg: "25%"    
@@ -187,6 +188,81 @@ export default function UserPage() {
               {/* (end)注文履歴 */}
 
 
+              {/* (start)お気に入り商品 */}
+              <Box
+                component={Link}
+                to={`/user/${user.userId}/favorite`}
+                sx={{
+                  width: {
+                    xs: "40%",  // モバイル
+                    sm: "38%",   // タブレット
+                    md: "30%",   // 中画面
+                    lg: "25%"    // デスクトップ
+                  },
+                  height: {
+                    xs: "30%",  // モバイル
+                    sm: "38%",   // タブレット
+                    md: "40%",   // 中画面
+                    lg: "25%"    // デスクトップ
+                  },
+                  // height: "100%",
+                  maxWidth: "260px",
+                  minWidth: "140px",
+                  maxHeight: "200px",
+                  minHeight: "160px",
+                   // padding: "20px 0px",
+                   padding: {
+                    xs: "12px 0px",
+                    sm: "16px 0px",
+                    md: "20px 0px",
+                  },
+                  // margin: "20px",
+                  margin: {
+                    xs: "10px",
+                    sm: "14px",
+                    md: "20px",
+                  },
+                  backgroundColor: "rgba(251, 245, 230, 0.8)",
+                  borderRadius: "10px",
+                  border: "0.2px solid #eee9d3",
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                  }}
+                >
+                  <FavoriteBorderIcon fontSize="large" />
+
+                  <Typography
+                    sx={{
+                      padding: "0px 0px 0px 0px",
+                      margin: "50px 0px 0px 0px",
+                      // fontSize: "18px",
+                      fontSize: {
+                        xs: "14px",
+                        sm: "16px",
+                        md: "18px"
+                      },
+                      fontWeight: "500",
+
+                    }}
+                  >
+                    お気に入り商品
+                  </Typography>
+
+                </Box>
+              </Box>
+              {/* (end)お気に入り商品 */}
+
+
+
               {/* (start)会員情報変更 */}
               <Box
                 component={Link}
@@ -199,7 +275,7 @@ export default function UserPage() {
                     lg: "25%"    
                   },
                   height: {
-                    xs: "40%",  
+                    xs: "30%",  
                     sm: "38%",   
                     md: "40%",   
                     lg: "25%"    
@@ -260,22 +336,23 @@ export default function UserPage() {
               {/* (end)会員情報変更 */}
 
 
-              {/* (start)お気に入り商品 */}
+
+              {/* (start)パスワード変更 */}
               <Box
                 component={Link}
-                to={`/user/${user.userId}/favorite`}
+                to={`/user/${user.userId}/password`}
                 sx={{
                   width: {
-                    xs: "40%",  // モバイル
-                    sm: "38%",   // タブレット
-                    md: "30%",   // 中画面
-                    lg: "25%"    // デスクトップ
+                    xs: "40%",  
+                    sm: "38%",  
+                    md: "30%",   
+                    lg: "25%"    
                   },
                   height: {
-                    xs: "40%",  // モバイル
-                    sm: "38%",   // タブレット
-                    md: "40%",   // 中画面
-                    lg: "25%"    // デスクトップ
+                    xs: "30%",  
+                    sm: "38%",   
+                    md: "40%",   
+                    lg: "25%"    
                   },
                   // height: "100%",
                   maxWidth: "260px",
@@ -310,30 +387,27 @@ export default function UserPage() {
                     height: "100%",
                   }}
                 >
-                  <FavoriteBorderIcon fontSize="large" />
+                  <KeyIcon fontSize="large" />
 
                   <Typography
                     sx={{
-                      padding: "0px 0px 0px 0px",
-                      margin: "50px 0px 0px 0px",
-                      // fontSize: "18px",
+                      padding: "50px 0px 0px 0px",
+                      fontSize: "18px",
                       fontSize: {
-                        xs: "14px",
-                        sm: "16px",
-                        md: "18px"
+                        xs: "12px",
+                        sm: "14px",
+                        md: "16px"
                       },
                       fontWeight: "500",
 
                     }}
                   >
-                    お気に入り商品
+                    パスワードの変更
                   </Typography>
-
-
 
                 </Box>
               </Box>
-              {/* (end)お気に入り商品 */}
+              {/* (end)パスワード変更 */}
 
 
 

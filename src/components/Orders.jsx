@@ -381,7 +381,6 @@ export default function Orders({ orderId, products }) {
                                            
                                                     <Typography
                                                         sx={{
-                                                            width: "20%",
                                                             width: {
                                                                 xs: "20%",
                                                                 sm: "20%",
@@ -404,9 +403,8 @@ export default function Orders({ orderId, products }) {
 
                                                     <Box
                                                         sx={{
-                                                            width: "40%",
                                                             width: {
-                                                                xs: "30%",
+                                                                xs: "35%",
                                                                 sm: "30%",
                                                                 md: "70%",
                                                             },

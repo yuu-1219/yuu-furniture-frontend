@@ -64,7 +64,7 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
                     fontWeight: "500",
                     fontSize: "13px",
                     fontSize: {
-                        xs: "11px",
+                        xs: "10px",
                         sm: "12px",
                         md: "11px",
                         lg: "14px",
@@ -72,7 +72,7 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
                     marginBottom: "0px"
                 }}
             >
-                {priceRangeId !== "5" ? `¥ ${minPrice} - ${maxPrice}` : `¥ ${minPrice} +`}
+                {priceRangeId !== "5" ? `¥${minPrice} - ${maxPrice}` : `¥ ${minPrice} +`}
             </Typography>
         </Box>
 

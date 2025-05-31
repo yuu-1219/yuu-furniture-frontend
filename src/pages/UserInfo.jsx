@@ -19,20 +19,16 @@ import { useCart } from "../contexts/CartContext";
 
 
 export default function UserInfo() {
-  const { user, login, setUser, changeUserInfo, deleteUserInfo } = useUser();
+  const { user, setUser, changeUserInfo, deleteUserInfo } = useUser();
   const { cart, deleteCart } = useCart();
   const navigate = useNavigate();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState(user.password);
+  // const [password, setPassword] = useState(user.password);
 
   const handleOnChange = async () => {
-    // const newUser = { ...user, name, email };
-    // setUser(newUser);
-    // login(newUser); 
-
-    changeUserInfo(user._id, name, email, password);
+    changeUserInfo(user._id, name, email);
     navigate(`/user/${user._id}`); 
     alert("会員情報を変更しました"); 
   };
@@ -141,14 +137,14 @@ export default function UserInfo() {
                 </Box>
 
                 {/* パスワード */}
-                <Box
+                {/* <Box
                   sx={{
                     width: "80%",
                     padding: "10px 0px 0px 0px"
                   }}
                 >
                   <PasswordForm password={password} setPassword={setPassword}/>
-                </Box>
+                </Box> */}
 
                 {/* 実行ボタン */}
                 <Box
@@ -182,7 +178,7 @@ export default function UserInfo() {
                   }}
                   onClick={handleDelete}
                 >
-                  アカウントを削除する
+                  アカウントを削除
                 </Typography>
 
               </Box>
