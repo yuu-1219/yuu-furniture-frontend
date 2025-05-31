@@ -111,7 +111,7 @@ export default function Home() {
               sx={{
                 // width: "75%",
                 width: {
-                  xs: "90%",
+                  xs: "95%",
                   md: "75%",
                 },
                 order: {

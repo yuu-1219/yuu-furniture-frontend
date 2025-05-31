@@ -165,10 +165,10 @@ export default function Complete() {
               <Box
                 sx={{
                   // margin: "20px 0px",
-                  margin: "20px 30px 0px 30px",
+                  margin: "20px 10px 0px 10px",
                   padding: "20px 20px",
-                  width: { xs: "70%", md: "60%" },
-                  minWidth: "300px",
+                  width: { xs: "90%", md: "60%" },
+                  // minWidth: "300px",
                   backgroundColor: "rgba(251, 245, 230, 0.8)",
                   borderRadius: "10px",
                   border: "0.2px solid #eee9d3",
@@ -275,12 +275,12 @@ export default function Complete() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "70%", md: "35%" },
-                  minWidth: "300px",
+                  width: { xs: "90%", md: "35%" },
+                  // minWidth: "300px",
                   maxHeight: "420px",
                   minHeight: "150px",
                   padding: "20px 10px 20px 10px",
-                  margin: "20px 30px 0px 30px",
+                  margin: "20px 10px 0px 10px",
                   display: "flex",
                   flexWrap: "wrap",
                   flexDirection: "column",
