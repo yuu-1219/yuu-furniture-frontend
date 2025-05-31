@@ -218,17 +218,17 @@ export default function Cart() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "100%", sm: "100%", md: "30%" },
+                  width: { xs: "100%", sm: "100%", md: "35%" },
                   height: {
                     xs: "auto",        
                     sm: "auto",       
-                    md: "70%",        
+                    md: "100%",        
                   },
                   // maxHeight: "420px",
                   maxHeight: {
                     xs: "none",
                     sm: "none",
-                    md: "370px",      
+                    md: "380px",      
                   },           
                   minHeight: "320px",   
                   padding: "30px 0px 30px 0px",
@@ -424,7 +424,7 @@ export default function Cart() {
 
           <Box
             sx={{
-              margin: "0px 0px 60px 0px",
+              margin: "0px 0px 0px 0px",
             }}
           >
             <BackButton text="ホームに戻る" link="/" />

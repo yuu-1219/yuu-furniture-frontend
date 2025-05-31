@@ -482,7 +482,7 @@ export default function UserPage() {
 
           <Box
             sx={{
-              margin: "0px 0px 60px 0px",
+              margin: "0px 0px 0px 0px",
             }}
           >
             <BackButton text="ホームに戻る" link="/" />

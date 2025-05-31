@@ -64,7 +64,10 @@ export default function Complete() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
-              alignItems: "center",
+              alignItems: {
+                xs: "center",
+                // md: "flex-start"
+              }
             }}
           >
 
@@ -107,8 +110,8 @@ export default function Complete() {
                     // fontSize: "50px",
                     fontSize: {
                       xs: "22px",
-                      sm: "32px",
-                      md: "38px",
+                      sm: "28px",
+                      md: "36px",
                       lg: "40px",
                     },
                     fontWeight: "600",
@@ -123,7 +126,7 @@ export default function Complete() {
                   // fontSize: "34px",
                   fontSize: {
                     xs: "18px",
-                    sm: "28px",
+                    sm: "24px",
                     md: "32px",
                     lg: "34px",
                   },
@@ -140,7 +143,11 @@ export default function Complete() {
 
             <Box
               sx={{
-                width: "100%",
+                width: {
+                  xs: "100%",
+                  sm: "85%",
+                  md: "95%", 
+                },
                 display: "flex",
                 flexDirection: {
                   xs: "column",
@@ -150,12 +157,12 @@ export default function Complete() {
                 alignItems: {
                   xs: "flex-start",
                   sm: "flex-start",
-                  md: "flex-start",
+                  md: "space-between",
                 },
                 justifyContent: {
                   xs: "flex-start",
                   sm: "flex-start",
-                  md: "center"
+                  md: "space-between"
                 },
                 // justifyContent: "center",
                 margin: "0px 0px",
@@ -167,7 +174,7 @@ export default function Complete() {
                   // margin: "20px 0px",
                   margin: "20px 10px 0px 10px",
                   padding: "20px 20px",
-                  width: { xs: "90%", md: "60%" },
+                  width: { xs: "95%", md: "60%" },
                   // minWidth: "300px",
                   backgroundColor: "rgba(251, 245, 230, 0.8)",
                   borderRadius: "10px",
@@ -275,7 +282,7 @@ export default function Complete() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "90%", md: "35%" },
+                  width: { xs: "95%", md: "35%" },
                   // minWidth: "300px",
                   maxHeight: "420px",
                   minHeight: "150px",
@@ -355,7 +362,7 @@ export default function Complete() {
 
           <Box
             sx={{
-              margin: "0px 0px 60px 0px",
+              margin: "0px 0px 0px 0px",
             }}
           >
             <BackButton text="ホームに戻る" link="/" />

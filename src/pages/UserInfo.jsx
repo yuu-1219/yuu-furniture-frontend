@@ -207,7 +207,7 @@ export default function UserInfo() {
 
           <Box
             sx={{
-              margin: "0px 0px 60px 0px",
+              margin: "0px 0px 0px 0px",
             }}
           >
             <BackButton text="マイページに戻る" link={`/user/${user._id}`} />

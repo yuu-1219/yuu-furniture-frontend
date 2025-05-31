@@ -13,7 +13,7 @@ function Footer() {
       sx={{ 
         top: 'auto', 
         bottom: 0, 
-        mt: 'auto', 
+        // mt: 'auto', 
         backgroundColor: "#e6d9ac", 
         color: "#5b5b5b" 
       }}
