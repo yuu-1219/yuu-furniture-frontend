@@ -31,7 +31,7 @@ function Footer() {
             textAlign: 'center', 
             justifyContent: 'center' }}
         >
-          &copy; Yuu Furniture All rights reserved.
+          &copy; Yuu furniture All rights reserved.
         </Typography>
 
         <Box

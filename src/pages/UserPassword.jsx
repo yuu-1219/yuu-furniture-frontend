@@ -59,7 +59,7 @@ export default function UserPassword() {
                     <Box
                         sx={{
                             margin: "40px 0px 0px 0px",
-                            width: { xs: "100%", md: "70%" },
+                            width: { xs: "95%", md: "80%" },
                             padding: "30px 30px",
                             display: "flex",
                             flexDirection: "column",
@@ -86,9 +86,9 @@ export default function UserPassword() {
                                 fontWeight: "600",
                                 // padding: "0px 50px",
                                 padding: {
-                                    xs: "0px 30px",
-                                    sm: "0px 40px",
-                                    md: "0px 50px",
+                                    xs: "0px 10px",
+                                    sm: "0px 20px",
+                                    md: "0px 20px",
                                 },
                             }}>
                             パスワードの変更
@@ -100,7 +100,7 @@ export default function UserPassword() {
                         <Box
                             sx={{
                                 width: "100%",
-                                padding: "30px 20px",
+                                padding: "30px 0px",
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "center",
@@ -116,7 +116,7 @@ export default function UserPassword() {
                             {/* 新しいパスワード */}
                             <Box
                                 sx={{
-                                    width: "80%",
+                                    width: "90%",
                                     padding: "10px 0px 0px 0px"
                                 }}
                             >
@@ -127,7 +127,7 @@ export default function UserPassword() {
                             {/* 確認用パスワード */}
                             <Box
                                 sx={{
-                                    width: "80%",
+                                    width: "90%",
                                     padding: "10px 0px 0px 0px"
                                 }}
                             >

@@ -31,9 +31,9 @@ export default function PasswordForm({ text, password, setPassword }) {
                 sx={{
                     fontSize: {
                         xs: "12px",
-                        sm: "14px",
-                        md: "16px",
-                        lg: "18px"
+                        sm: "12px",
+                        md: "14px",
+                        lg: "16px"
                     },
                     fontWeight: "600",
                     // width: "20%",

@@ -33,7 +33,7 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
                 flexWrap: "wrap",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                margin: "5px",
+                margin: "3px",
                 border: "0.5px solid #cecece",
                 backgroundColor: "#faf6ec",
                 borderRadius: "4px"

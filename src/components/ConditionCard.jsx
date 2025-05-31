@@ -78,16 +78,16 @@ export default function ConditionCard() {
                     justifyContent: "center",
                     alignItems: {
                         xs: "center",
-                        md: "flex-start",
+                        md: "center",
                     },
                 }}>
 
                     {/* (start)カラーカード */}
                     <Box
                         sx={{
-                            margin: "20px 5px 0px 10px",
-                            padding: "0px 10px 0px 0px",
-                            width: { xs: "70%", md: "100%" },
+                            margin: "20px 0px 0px 10px",
+                            padding: "0px 0px 0px 0px",
+                            width: { xs: "50%", md: "95%" },
                             // width: "100%",
                             height: "100%",
                             // minWidth: "300px",
@@ -129,9 +129,9 @@ export default function ConditionCard() {
                                     sx={{
                                         width: {
                                             xs: "90%",
-                                            sm: "70%",
+                                            sm: "65%",
                                             md: "90%",
-                                            lg: "90%"
+                                            lg: "80%"
                                         },
 
                                         padding: "0px 0px 0px 10px",
@@ -183,9 +183,9 @@ export default function ConditionCard() {
                     {/* (start)価格 */}
                     <Box
                         sx={{
-                            margin: "20px 0px 0px 0px",
-                            padding: "0px 0px 0px 10px",
-                            width: { xs: "70%", md: "100%" },
+                            margin: "20px 0px 0px 10px",
+                            padding: "0px 0px 0px 0px",
+                            width: { xs: "50%", md: "95%" },
                             // width: "100%",
                             height: "100%",
                             // minWidth: "300px",
@@ -227,9 +227,9 @@ export default function ConditionCard() {
                                     sx={{
                                         width: {
                                             xs: "90%",
-                                            sm: "70%",
+                                            sm: "65%",
                                             md: "90%",
-                                            lg: "90%"
+                                            lg: "80%"
                                         },
                                         padding: "0px 0px 0px 0px",
                                         fontSize: {
