@@ -136,7 +136,7 @@ export default function Home() {
                 sx={{
                   // fontSize: "50px",
                   fontSize: {
-                    xs: "22px",
+                    xs: "18px",
                     sm: "26px",
                     md: "30px",
                     lg: "40px",
@@ -157,7 +157,7 @@ export default function Home() {
                 sx={{
                   // fontSize: "50px",
                   fontSize: {
-                    xs: "14px",
+                    xs: "12px",
                     sm: "15px",
                     md: "17px",
                     lg: "20px",

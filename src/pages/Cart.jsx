@@ -156,10 +156,12 @@ export default function Cart() {
                   md: "row"
                 },
                 alignItems: {
+                  xs: "center",
                   sm: "center",
                   md: "flex-start",
                 },
                 justifyContent: {
+                  xs: "center",
                   sm: "center",
                   md: "center"
                 },
@@ -216,7 +218,7 @@ export default function Cart() {
               {/* (start)右パーツ */}
               <Box
                 sx={{
-                  width: { xs: "90%", sm: "100%", md: "30%" },
+                  width: { xs: "100%", sm: "100%", md: "30%" },
                   height: {
                     xs: "auto",        
                     sm: "auto",       
@@ -228,7 +230,7 @@ export default function Cart() {
                     sm: "none",
                     md: "370px",      
                   },           
-                  minHeight: "370px",   
+                  minHeight: "320px",   
                   padding: "30px 0px 30px 0px",
                   margin: "0px 20px 0px 20px",
                   display: "flex",
