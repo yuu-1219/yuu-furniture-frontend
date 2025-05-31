@@ -17,7 +17,7 @@ export function UserProvider({ children }) {
   const register = async (userInfo, password) => {
     const res = await axios.post(UserUrl, { userInfo, password });
     const { email } = res.data;
-    login(email, password);
+    await login(email, password);
     return res.data;
   };
 
