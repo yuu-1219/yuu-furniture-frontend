@@ -54,7 +54,7 @@ export default function Complete() {
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
             sx={{
-              width: "100%",
+              width: "90%",
               padding: "30px 30px",
               margin: "60px 30px",
               // maxWidth: "800px",

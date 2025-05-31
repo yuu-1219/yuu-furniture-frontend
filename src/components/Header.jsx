@@ -40,7 +40,15 @@ const Search = styled('div')(({ theme }) => ({
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
+  [theme.breakpoints.up('xs')]: {
+    marginLeft: theme.spacing(2),
+    width: '60%', 
+  },
   [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: '50%', 
+  },
+  [theme.breakpoints.up('md')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
@@ -64,6 +72,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    [theme.breakpoints.up('xs')]: {
+      width: '20ch', 
+    },
+    [theme.breakpoints.up('xs')]: {
+      width: '30ch', 
+    },
     [theme.breakpoints.up('md')]: {
       width: '40ch',
     },
@@ -250,7 +264,19 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{
+              display: {
+                xs: 'block',
+                sm: 'block'
+              },
+              fontSize: {
+                xs: "16px",
+                sm: "20px",
+                md: "22px",
+
+              }
+
+            }}
           >
             <Link to="/" style={{ color: 'inherit', textDecoration: 'none', fontWeight: "700" }}>
               Yuu furniture
@@ -266,7 +292,14 @@ export default function Header() {
             <StyledInputBase
               placeholder="商品を検索"
               inputProps={{ 'aria-label': 'search' }}
-              sx={{ fontWeight: "600" }}
+              sx={{ 
+                fontWeight: "600",
+                fontSize: {
+                  xs: "14px",
+                  sm: "16px",
+                  md: "18px"
+                }
+               }}
             />
           </Search>
 
