@@ -51,8 +51,14 @@ export default function Products() {
   }, [onCategoryId]);
 
   async function fetchProducts() {
-    const productsResult = await axios.get(`${ProductsUrl}${queryString}`);
-    setProducts(productsResult.data);
+    try {
+      const productsResult = await axios.get(`${ProductsUrl}${queryString}`);
+      setProducts(productsResult.data);
+    } catch (e) {
+      const message = e.response?.data?.message || "商品データの取得中にエラーが発生しました";
+      alert(message);
+    }
+
   }
 
   const perPage = 8;
@@ -231,12 +237,12 @@ export default function Products() {
 
                   {/* <Box> */}
 
-                    {showProducts.map((product) => (
-                      <ProductCard
-                        product={product}
-                      // products={products}
-                      />
-                    ))}
+                  {showProducts.map((product) => (
+                    <ProductCard
+                      product={product}
+                    // products={products}
+                    />
+                  ))}
 
                   {/* </Box> */}
                 </Box>

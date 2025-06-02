@@ -117,7 +117,7 @@ export default function UserPage() {
               {/* (start)注文履歴 */}
               <Box
                 component={Link}
-                to={`/user/${user.userId}/order-history`}
+                to={`/user/${user._id}/order-history`}
                 sx={{
                   width: {
                     xs: "40%",  
@@ -192,7 +192,7 @@ export default function UserPage() {
               {/* (start)お気に入り商品 */}
               <Box
                 component={Link}
-                to={`/user/${user.userId}/favorite`}
+                to={`/user/${user._id}/favorite`}
                 sx={{
                   width: {
                     xs: "40%",  
@@ -265,7 +265,7 @@ export default function UserPage() {
               {/* (start)会員情報変更 */}
               <Box
                 component={Link}
-                to={`/user/${user.userId}/info`}
+                to={`/user/${user._id}/info`}
                 sx={{
                   width: {
                     xs: "40%",  
@@ -338,7 +338,7 @@ export default function UserPage() {
               {/* (start)パスワード変更 */}
               <Box
                 component={Link}
-                to={`/user/${user.userId}/password`}
+                to={`/user/${user._id}/password`}
                 sx={{
                   width: {
                     xs: "40%",  

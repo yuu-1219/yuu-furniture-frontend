@@ -12,10 +12,10 @@ import { products } from "../constants/products";
 import { useUser } from '../contexts/UserContext';
 
 
-export default function Orders({ orderId, products }) {
+export default function Orders({ _id, products }) {
     const { user } = useUser();
-    const order = user.orders.find(c => c.orderId === orderId);
-    const { items, totalPrice, purchasedAt } = order;
+    const order = user.orders.find(c => c._id === _id);
+    const { orderId, items, totalPrice, purchasedAt } = order;
     const purchaseDate = new Date(purchasedAt).toLocaleString("ja-JP", {
         year: "numeric",
         month: "long",

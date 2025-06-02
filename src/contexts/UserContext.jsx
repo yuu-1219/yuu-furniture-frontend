@@ -4,11 +4,8 @@ import { createContext, useState, useContext } from "react";
 
 const UserUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
 
-// import { useCart } from '../contexts/CartContext';
-
 const UserContext = createContext();
 
-// const { cart } = useCart();
 
 export function UserProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,22 +14,34 @@ export function UserProvider({ children }) {
   const register = async (userInfo, password) => {
     const res = await axios.post(UserUrl, { userInfo, password });
     const { email } = res.data;
-    await login(email, password);
+
+    try {
+      await login(email, password);
+    } catch (e) {
+      const message = e.response?.data?.message || "会員登録中にエラーが発生しました";
+      alert(message); Ï
+    }
+
     return res.data;
   };
 
   const login = async (email, password) => {
-    const res = await axios.post(`${UserUrl}/login`, { email, password });
-    setUser(res.data);
-    setIsAuthenticated(true);
-    return res.data
+    try {
+      const res = await axios.post(`${UserUrl}/login`, { email, password });
+      setUser(res.data);
+      setIsAuthenticated(true);
+      return res.data
+    } catch (e) {
+      const message = e.response?.data?.message || "ログイン中にエラーが発生しました";
+      alert(message);
+    }
+
   };
 
   const logout = () => {
     setUser({
       name: null,
       email: null,
-      // password: null,
       orders: [],
       favorites: []
     });
@@ -46,29 +55,37 @@ export function UserProvider({ children }) {
       email: email,
     };
 
-    setUser(updatedUser);
+    // setUser(updatedUser);
 
-    // if (!user) return null;
     if (!userId) return null;
 
-    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
-    setUser(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      setUser(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "会員情報の変更中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
   const changeUserPassword = async (userId, newPassword) => {
     if (!userId) return null;
 
-    const res = await axios.put(`${UserUrl}/${userId}/password`, { password: newPassword });
-    setUser(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${UserUrl}/${userId}/password`, { password: newPassword });
+      setUser(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "パスワードの変更中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
   const deleteUserInfo = async () => {
     setUser({
-      // _id: null,
       name: null,
       email: null,
       password: null,
@@ -76,8 +93,15 @@ export function UserProvider({ children }) {
       favorites: []
     });
     setIsAuthenticated(false);
-    const res = await axios.delete(`${UserUrl}/${user._id}`);
-    return res.data;
+
+    try {
+      const res = await axios.delete(`${UserUrl}/${user._id}`);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "アカウント情報の削除中にエラーが発生しました";
+      alert(message);
+
+    }
   }
 
 
@@ -96,28 +120,32 @@ export function UserProvider({ children }) {
       purchasedAt: new Date().toISOString(),
     };
 
-    // setUser(prevUser => ({
-    //   ...prevUser,
-    //   orders: [...(prevUser.orders || []), newOrder],
-    // }));
 
     const updatedUser = {
       ...user,
       orders: [newOrder, ...(user.orders || [])],
     };
 
-    setUser(updatedUser);
+    // setUser(updatedUser);
 
-    const res = await axios.put(`${UserUrl}/${user._id}`, updatedUser)
-    setUser(res.data);
-    return { orderId: newOrder.orderId, purchasedAt: newOrder.purchasedAt };
+    try {
+      const res = await axios.put(`${UserUrl}/${user._id}`, updatedUser)
+      setUser(res.data);
+      return { orderId: newOrder.orderId, purchasedAt: newOrder.purchasedAt };
+    } catch (e) {
+      const message = e.response?.data?.message || "購入処理中にエラーが発生しました";
+      alert(message);
+    }
   };
 
   const generateOrderId = () => {
     const now = new Date();
     const yyyymmdd = now.toISOString().slice(0, 10).replace(/-/g, "");
     const hhmm = now.getHours().toString().padStart(2, "0") + now.getMinutes().toString().padStart(2, "0");
-    return `${yyyymmdd}-${hhmm}`;
+
+    const random = Math.random().toString(36).slice(-6).toUpperCase();
+    return `${yyyymmdd}-${hhmm}-${random}`;
+    // return `${yyyymmdd}-${hhmm}`;
   };
 
 
@@ -128,14 +156,18 @@ export function UserProvider({ children }) {
       favorites: [...(user.favorites || []), { productId, color }],
     };
 
-    setUser(updatedUser);
+    // setUser(updatedUser);
 
-    // if (!user) return null;
     if (!userId) return null;
 
-    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
-    setUser(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      setUser(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "お気に入り登録中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
@@ -145,14 +177,18 @@ export function UserProvider({ children }) {
       favorites: user.favorites.filter(c => !(c.productId === productId && c.color === color))
     };
 
-    setUser(updatedUser);
+    // setUser(updatedUser);
 
-    // if (!user) return null;
     if (!userId) return null;
 
-    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
-    setUser(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      setUser(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "お気に入り商品の削除中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
@@ -171,20 +207,24 @@ export function UserProvider({ children }) {
     const favorites = user.favorites || [];
     const isAlready = favorites.some(c => c.productId === productId && c.color === color);
     const updatedUser = {
-        ...user,
-        favorites: isAlready
-          ? favorites.filter(c => !(c.productId === productId && c.color === color))
-          : [...(favorites || []), { productId, color }]
+      ...user,
+      favorites: isAlready
+        ? favorites.filter(c => !(c.productId === productId && c.color === color))
+        : [...(favorites || []), { productId, color }]
     };
 
-    setUser(updatedUser);
+    // setUser(updatedUser);
 
-    // if (!user) return null;
     if (!userId) return null;
 
-    const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
-    setUser(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      setUser(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "お気に入りリストの操作中にエラーが発生しました";
+      alert(message);
+    }
 
   };
 
@@ -211,11 +251,6 @@ export function UserProvider({ children }) {
     </UserContext.Provider>
   );
 
-  //   return (
-  //     <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
-  //       {children}
-  //     </AuthContext.Provider>
-  //   );
 
 }
 

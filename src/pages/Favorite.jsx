@@ -39,16 +39,24 @@ export default function Favorite() {
     // const userCart = await getCart(user._id);
     const productIds = [...new Set(favorites.map(item => item.productId))];
 
-    const results = await Promise.all(
-      productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
-    );
+    try {
+      const results = await Promise.all(
+        productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+      );
 
-    const resultProducts = {};
-    results.forEach(res => {
-      resultProducts[res.data._id] = res.data;
-    });
+      const resultProducts = {};
+      results.forEach(res => {
+        resultProducts[res.data._id] = res.data;
+      });
 
-    setFavoriteProducts(resultProducts);
+      setFavoriteProducts(resultProducts);
+      
+    } catch (e) {
+      alert("商品データ取得中にエラーが発生しました");
+      console.error(e);
+
+    }
+
   }
 
 
@@ -56,10 +64,10 @@ export default function Favorite() {
     <>
       <Header />
 
-       {/* (start)背景画像表示領域 */}
+      {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
-        
+
         {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
           sx={{
@@ -120,59 +128,59 @@ export default function Favorite() {
             > */}
 
 
-              {/* (start)お気に入りアイテム表示部分 */}
-              <Box
-                sx={{
-                  margin: "10px 0px 10px 0px",
-                  width: { xs: "100%", md: "100%" },
-                  minWidth: "300px",
-                  // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                  // borderRadius: "10px",
-                  // border: "0.2px solid #eee9d3",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}
-              >
+            {/* (start)お気に入りアイテム表示部分 */}
+            <Box
+              sx={{
+                margin: "10px 0px 10px 0px",
+                width: { xs: "100%", md: "100%" },
+                minWidth: "300px",
+                // backgroundColor: "rgba(251, 245, 230, 0.8)",
+                // borderRadius: "10px",
+                // border: "0.2px solid #eee9d3",
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
 
-                {/* {favorites.length === 0 ? (
+              {/* {favorites.length === 0 ? (
                   <Typography>お気に入り商品はありません</Typography>
                 ) : (
                    */}
-                {favorites.map((item) => {
-                  const product = favoriteProducts[item.productId];
-                  if (!product) return null;
-                  return (
+              {favorites.map((item) => {
+                const product = favoriteProducts[item.productId];
+                if (!product) return null;
+                return (
 
-                    <>
+                  <>
 
-                      <Box
-                        sx={{
-                          backgroundColor: "rgba(251, 245, 230, 0.8)",
-                          borderRadius: "6px",
-                          border: "0.2px solid #eee9d3",
-                          margin: "10px 0px 10px 0px",
-                        }}
-                      >
+                    <Box
+                      sx={{
+                        backgroundColor: "rgba(251, 245, 230, 0.8)",
+                        borderRadius: "6px",
+                        border: "0.2px solid #eee9d3",
+                        margin: "10px 0px 10px 0px",
+                      }}
+                    >
 
-                        <FavoriteItem product={product} productId={item.productId} color={item.color} />
-
-                        
-
-                      </Box>
-                      <Divider sx={{ width: '100%', my: 1 }} />
-
-                    </>
-                  )
-                })}
+                      <FavoriteItem product={product} productId={item.productId} color={item.color} />
 
 
-                {/* )
+
+                    </Box>
+                    <Divider sx={{ width: '100%', my: 1 }} />
+
+                  </>
+                )
+              })}
+
+
+              {/* )
              } */}
 
-              </Box>
-              {/* (end)アイテム表示部分 */}
+            </Box>
+            {/* (end)アイテム表示部分 */}
 
             {/* </Box> */}
 

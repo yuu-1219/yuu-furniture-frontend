@@ -57,9 +57,15 @@ export default function Cart() {
     );
 
     const resultProducts = {};
-    results.forEach(res => {
-      resultProducts[res.data._id] = res.data;
-    });
+
+    try {
+      results.forEach(res => {
+        resultProducts[res.data._id] = res.data;
+      });
+    } catch (e) {
+      const message = e.response?.data?.message || "商品データの取得中にエラーが発生しました";
+      alert(message);
+    }
 
     setCartProducts(resultProducts);
   }
@@ -220,17 +226,17 @@ export default function Cart() {
                 sx={{
                   width: { xs: "100%", sm: "100%", md: "35%" },
                   height: {
-                    xs: "auto",        
-                    sm: "auto",       
-                    md: "100%",        
+                    xs: "auto",
+                    sm: "auto",
+                    md: "100%",
                   },
                   // maxHeight: "420px",
                   maxHeight: {
                     xs: "none",
                     sm: "none",
-                    md: "380px",      
-                  },           
-                  minHeight: "320px",   
+                    md: "380px",
+                  },
+                  minHeight: "320px",
                   padding: "30px 0px 30px 0px",
                   margin: "0px 20px 0px 20px",
                   display: "flex",
@@ -282,7 +288,7 @@ export default function Cart() {
                         xs: "12px",
                         sm: "14px",
                         md: "16px"
-                    },
+                      },
 
                     }}
                   >
@@ -322,7 +328,7 @@ export default function Cart() {
                         xs: "12px",
                         sm: "14px",
                         md: "16px"
-                    },
+                      },
 
                     }}
                   >
@@ -362,7 +368,7 @@ export default function Cart() {
                         xs: "12px",
                         sm: "14px",
                         md: "16px"
-                    },
+                      },
 
                     }}
                   >

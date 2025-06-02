@@ -2,19 +2,14 @@ import axios from "axios";
 
 import { createContext, useState, useContext } from "react";
 
-// import { products } from "../constants/products";
-
 import { useUser } from "./UserContext";
 
 const CartUrl = `${import.meta.env.VITE_API_BASE_URL}/cart`;
 
-// Context を作成
 const CartContext = createContext();
 
-// Provider を定義
 export function CartProvider({ children }) {
   const [cart, setCart] = useState({
-    // cartId: null,
     userId: null,
     items: [],
     totalQty: 0,
@@ -38,16 +33,18 @@ export function CartProvider({ children }) {
   };
 
   const getCart = async (userId) => {
-    const res = await axios.get(`${CartUrl}/${userId}`);
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.get(`${CartUrl}/${userId}`);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カート情報の取得中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
   const addToCart = async (productId, color, qty, price) => {
-    // const { user } = useUser();
-    // const product = products.find(c => c._id === productId);
-
     const existingItemIndex = cart.items.findIndex(
       c => c.productId === productId && c.color === color
     );
@@ -63,7 +60,6 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + qty,
       totalPrice: cart.totalPrice + qty * price,
@@ -72,19 +68,20 @@ export function CartProvider({ children }) {
 
     setCart(updatedCart);
 
-    // if (!user) return null;
     if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カートへの追加中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
   const removeFromCart = async (productId, color, price) => {
-    // const { user } = useUser();
-    // const targetProduct = products.find(c => c.productId === productId);
-
     const targetItem = cart.items.find(
       c => c.productId === productId && c.color === color
     );
@@ -96,7 +93,6 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - targetItem.quantity,
       totalPrice: cart.totalPrice - price * targetItem.quantity,
@@ -105,19 +101,19 @@ export function CartProvider({ children }) {
 
     setCart(updatedCart);
 
-    // if (!user) return null;
-    // if (!userId) return null;
     if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "商品の削除中にエラーが発生しました";
+      alert(message);
+    }
   };
 
   const incrementItem = async (productId, color, price) => {
-    // const { user } = useUser();
-    // const targetProduct = products.find(c => c.productId === productId);
-
     const updatedItems = cart.items.map(c => {
       if (c.productId === productId && c.color === color) {
         return { ...c, quantity: c.quantity + 1 };
@@ -126,11 +122,9 @@ export function CartProvider({ children }) {
     });
 
     const targetItem = cart.items.find(c => c.productId === productId && c.color === color);
-    // if (!item) return;
 
     const updatedCart = {
       ...cart,
-      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty + 1,
       totalPrice: cart.totalPrice + price,
@@ -139,19 +133,19 @@ export function CartProvider({ children }) {
 
     setCart(updatedCart);
 
-    // if (!user) return null;
-    // if (!userId) return null;
     if (!updatedCart.userId) return null;
 
-    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カートの操作中にエラーが発生しました";
+      alert(message);
+    }
   };
 
   const decrementItem = async (productId, color, price) => {
-    // const { user } = useUser();
-    // const targetProduct = products.find(c => c.productId === productId);
-
     const targetItem = cart.items.find(
       c => c.productId === productId && c.color === color
     );
@@ -159,9 +153,6 @@ export function CartProvider({ children }) {
 
     let updatedItems;
     if (targetItem.quantity === 1) {
-      // updatedItems = cart.items.filter(
-      //   item => !(item.productId === productId && item.color === color)
-      // );
       return;
     } else {
       updatedItems = cart.items.map(c => {
@@ -183,14 +174,16 @@ export function CartProvider({ children }) {
 
     setCart(updatedCart);
 
-    // if (!user) return null;
-    // if (!userId) return null;
     if (!updatedCart.userId) return null;
 
-
-    const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart );
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${CartUrl}/${updatedCart.userId}`, updatedCart);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カートの操作中にエラーが発生しました";
+      alert(message);
+    }
   };
 
 
@@ -206,9 +199,14 @@ export function CartProvider({ children }) {
 
     setCart(clearedCart);
 
-    const res = await axios.put(`${CartUrl}/${userId}`,  clearedCart );
-    setCart(res.data);
-    return res.data;
+    try {
+      const res = await axios.put(`${CartUrl}/${userId}`, clearedCart);
+      setCart(res.data);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カート情報の操作中にエラーが発生しました";
+      alert(message);
+    }
 
   };
 
@@ -220,8 +218,14 @@ export function CartProvider({ children }) {
       totalPrice: 0,
       updatedAt: new Date().toISOString()
     });
-    const res = await axios.delete(`${CartUrl}/${userId}`);
-    return res.data;
+
+    try {
+      const res = await axios.delete(`${CartUrl}/${userId}`);
+      return res.data;
+    } catch (e) {
+      const message = e.response?.data?.message || "カート情報の削除中にエラーが発生しました";
+      alert(message);
+    }
   }
 
   return (

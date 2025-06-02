@@ -30,7 +30,7 @@ export default function OrderHistory() {
 
   useEffect(() => {
     fetchOrders();
-    fetchProducts();
+    // fetchProducts();
   }, [user]);
 
   useEffect(() => {
@@ -42,16 +42,24 @@ export default function OrderHistory() {
 
     for (const order of orders) {
       const productIds = [...new Set(order.items.map(item => item.productId))];
-      const results = await Promise.all(
-        productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
-      );
 
-      const productsPerOrder = {};
-      results.forEach(res => {
-        productsPerOrder[res.data._id] = res.data;
-      });
+      try {
+        const results = await Promise.all(
+          productIds.map(id => axios.get(`${ProductsUrl}/${id}`))
+        );
 
-      allProducts[order.orderId] = productsPerOrder;
+        const productsPerOrder = {};
+        results
+          .filter(c => c !== null)
+          .forEach(c => {
+            productsPerOrder[c.data._id] = c.data;
+          });
+
+        allProducts[order._id] = productsPerOrder;
+      } catch (e) {
+        alert("商品データ取得中にエラーが発生しました");
+        console.error(e);
+      }
     }
 
     setOrderProducts(allProducts);
@@ -59,9 +67,6 @@ export default function OrderHistory() {
 
 
   async function fetchOrders() {
-    // const currentUser = axios.get(`${UserUrl}/${id}`);
-    // setOrders(currentUser.orders);
-
     if (user && user.orders) {
       setOrders(user.orders);
     }
@@ -108,10 +113,10 @@ export default function OrderHistory() {
               sx={{
                 // fontSize: "50px",
                 fontSize: {
-                  xs: "28px",  
-                  sm: "36px",  
-                  md: "48px",  
-                  lg: "50px",  
+                  xs: "28px",
+                  sm: "36px",
+                  md: "48px",
+                  lg: "50px",
                 },
                 fontWeight: "600",
                 // padding: "0px 50px",
@@ -126,46 +131,46 @@ export default function OrderHistory() {
 
 
 
-              {/* (start)注文履歴一覧 */}
-              <Box
-                sx={{
-                  margin: "10px 0px 10px 0px",
-                  width: { xs: "100%", md: "100%" },
-                  // minWidth: "300px",
-                  // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                  // borderRadius: "10px",
-                  // border: "0.2px solid #eee9d3",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}
-              >
+            {/* (start)注文履歴一覧 */}
+            <Box
+              sx={{
+                margin: "10px 0px 10px 0px",
+                width: { xs: "100%", md: "100%" },
+                // minWidth: "300px",
+                // backgroundColor: "rgba(251, 245, 230, 0.8)",
+                // borderRadius: "10px",
+                // border: "0.2px solid #eee9d3",
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                alignItems: "flex-start",
+              }}
+            >
 
-                {orders.map((item) => {
+              {orders.map((item) => {
 
-                  return (
-                    <>
+                return (
+                  <>
 
-                      <Box
-                        sx={{
-                          width: "100%",
-                          backgroundColor: "rgba(251, 245, 230, 0.8)",
-                          borderRadius: "6px",
-                          border: "0.2px solid #eee9d3",
-                          margin: "0px 0px 30px 0px",
-                        }}
-                      >
+                    <Box
+                      sx={{
+                        width: "100%",
+                        backgroundColor: "rgba(251, 245, 230, 0.8)",
+                        borderRadius: "6px",
+                        border: "0.2px solid #eee9d3",
+                        margin: "0px 0px 30px 0px",
+                      }}
+                    >
 
-                        <Orders orderId={item.orderId} products={orderProducts[item.orderId] || {}} />
-                      </Box>
+                      <Orders _id={item._id} products={orderProducts[item._id] || {}} />
+                    </Box>
 
-                    </>
-                  )
-                })}
+                  </>
+                )
+              })}
 
-              </Box>
-              {/* (end)注文履歴一覧 */}
+            </Box>
+            {/* (end)注文履歴一覧 */}
 
 
           </Box>
