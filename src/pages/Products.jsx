@@ -11,6 +11,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Rating from "@mui/material/Rating";
 
 import { colors } from '../constants/colors';
 import { priceRanges } from "../constants/priceRanges";
@@ -36,8 +37,8 @@ export default function Products() {
   // const fetchProductsUrl = "http://localhost:3000/products";
 
   const [products, setProducts] = useState([]);
-  const [onColors, setOnColors] = useState(colors);
-  const [onPriceRanges, setOnPriceRanges] = useState(priceRanges);
+  const [onColors, setOnColors] = useState([]);
+  const [onPriceRanges, setOnPriceRanges] = useState([]);
   const [onFilter, setOnFilter] = useState(onFilters[0]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -48,18 +49,41 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
-  }, [onCategoryId]);
+    // sortProducts();
+  }, [onCategoryId, onColors, onPriceRanges]);
+
+  useEffect(() => {
+    sortProducts();
+  }, [onFilter]);
 
   async function fetchProducts() {
     try {
-      const productsResult = await axios.get(`${ProductsUrl}${queryString}`);
+      const productsResult = await axios.post(`${ProductsUrl}`, {
+        category: onCategoryId,
+        colors: onColors.map(c => c.colorLabel),
+        priceRanges: onPriceRanges
+      });
       setProducts(productsResult.data);
     } catch (e) {
       const message = e.response?.data?.message || "商品データの取得中にエラーが発生しました";
       alert(message);
     }
-
   }
+
+  async function sortProducts() {
+    const sortedProducts =[...products].sort((a, b) => {
+      switch (onFilter.onFiltersId) {
+        // case "1": return a.name - b.name;
+        case "2": return a.price - b.price;
+        case "3": return b.price - a.price;
+        case "4": return b.rating - a.rating;
+        default : return 0;
+      }
+    });
+
+    setProducts(sortedProducts);
+  }
+
 
   const perPage = 8;
   const totalPages = Math.ceil(products.length / perPage);
@@ -88,6 +112,7 @@ export default function Products() {
             margin: "0px 0px 0px 0px",
           }}
         >
+          
 
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
@@ -140,6 +165,7 @@ export default function Products() {
                 }}>
                 {onCategory ? onCategory.categoryLabel : "すべての商品"}
               </Typography>
+              
 
 
               <Typography
@@ -200,7 +226,7 @@ export default function Products() {
                 }}
               >
 
-                <ConditionCard />
+                <ConditionCard onColors={onColors} setOnColors={setOnColors} onPriceRanges={onPriceRanges} setOnPriceRanges={setOnPriceRanges} />
               </Box>
               {/* (end)条件カード */}
 

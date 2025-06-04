@@ -15,12 +15,10 @@ import CategoryCard from '../components/CategoryCard';
 import furniture1 from '../assets/imgs/furniture1.jpg';
 
 export default function Home() {
-  // const { categoryId, categoryLabel } = categories;
   return (
     <>
       <Header />
       {/* (start)背景画像表示領域 */}
-      {/* <div class="container-fluid contents"> */}
       <Box className="background-overlay">
 
         {/* (start)タイトル~メインパーツ表示領域 */}
@@ -32,7 +30,6 @@ export default function Home() {
             margin: "0px 0px 0px 0px",
           }}
         >
-          {/* <div class="row justify-content-center"> */}
 
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
@@ -41,9 +38,6 @@ export default function Home() {
               padding: "20px 0px",
               margin: "20px 20px",
               // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: {
                 xs: "column",
@@ -76,36 +70,6 @@ export default function Home() {
             </Box>
 
 
-            {/* <nav class="nav-ver side-ver col-3 px-2 py-3 my-4">
-              <ul class="nav side-ver-items">
-                <li class="nav-item">
-                  <p class="category-title">カテゴリーから選ぶ</p>
-                </li>
-
-
-
-                <li class="nav-item">
-                  <Link to="/products" className="nav-link category-link">
-                    全ての商品
-                    <KeyboardArrowRightIcon />
-                  </Link>
-                </li>
-
-                {categories.map((category) => (
-                  <li class="nav-item">
-                    <Link to={`/products?category=${category.categoryId}`} className="nav-link category-link">
-                      {category.categoryLabel}
-                      <KeyboardArrowRightIcon />
-                    </Link>
-                  </li>
-                ))}
-
-
-              </ul>
-            </nav> */}
-
-
-
             {/* タイトル文 */}
             <Box
               sx={{
@@ -125,11 +89,6 @@ export default function Home() {
               },
               }}
             >
-              {/* <div class="title-card col-8 py-3 my-4"> */}
-              {/* <div class="row justify-content-center">
-                <div class="col-1"></div>
-                <div class="col-10"> */}
-              {/* <h1 class="title">ミニマルな美学を、あなたの部屋に</h1> */}
 
 
               <Typography
@@ -177,22 +136,14 @@ export default function Home() {
 
               <img src={furniture1} alt="title_img" style={{ width: "100%",  }} />
 
-
-              {/* </div>
-                <div class="col-1"></div>
-              </div> */}
-              {/* </div> */}
-
             </Box>
 
           </Box>
-          {/* </div> */}
         </Box>
         {/* (start)タイトル~メインパーツ表示領域 */}
 
       </Box>
       {/* (start)背景画像表示領域 */}
-      {/* </div > */}
 
       <Footer />
     </>

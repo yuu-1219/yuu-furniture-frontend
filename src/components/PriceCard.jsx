@@ -44,7 +44,7 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
 
             <Checkbox
                 {...label}
-                defaultChecked
+                // defaultChecked
                 size="small"
                 onClick={handleToggle}
             />

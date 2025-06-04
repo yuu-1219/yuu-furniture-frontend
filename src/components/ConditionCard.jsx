@@ -20,9 +20,9 @@ import { colors } from '../constants/colors';
 import { priceRanges } from "../constants/priceRanges";
 
 
-export default function ConditionCard() {
-    const [onColors, setOnColors] = useState(colors);
-    const [onPriceRanges, setOnPriceRanges] = useState(priceRanges);
+export default function ConditionCard({ onColors, setOnColors, onPriceRanges, setOnPriceRanges}) {
+    // const [onColors, setOnColors] = useState([]);
+    // const [onPriceRanges, setOnPriceRanges] = useState(priceRanges);
 
     return (
         <>
