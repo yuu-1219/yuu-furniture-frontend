@@ -22,7 +22,7 @@ import { onFilters } from "../constants/onFilters";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import ProductCard from "../components/ProcuctCard";
+import ProductCard from "../components/ProductCard";
 import ColorCard from "../components/ColorCard";
 import PriceCard from "../components/PriceCard";
 import SearchResultBar from "../components/SearchResultBar";
@@ -49,11 +49,10 @@ export default function Products() {
 
   useEffect(() => {
     fetchProducts();
-    // sortProducts();
   }, [onCategoryId, onColors, onPriceRanges]);
 
   useEffect(() => {
-    sortProducts();
+    sortProducts(products);
   }, [onFilter]);
 
   async function fetchProducts() {
@@ -63,25 +62,28 @@ export default function Products() {
         colors: onColors.map(c => c.colorLabel),
         priceRanges: onPriceRanges
       });
-      setProducts(productsResult.data);
+      const sortedProducts = sortProducts(productsResult.data);
+      setProducts(sortedProducts);
     } catch (e) {
       const message = e.response?.data?.message || "商品データの取得中にエラーが発生しました";
       alert(message);
     }
   }
 
-  async function sortProducts() {
-    const sortedProducts =[...products].sort((a, b) => {
+  function sortProducts(targetProducts = []) {
+    const sortedProducts = [...targetProducts].sort((a, b) => {
       switch (onFilter.onFiltersId) {
         // case "1": return a.name - b.name;
         case "2": return a.price - b.price;
         case "3": return b.price - a.price;
         case "4": return b.rating - a.rating;
-        default : return 0;
+        default: return 0;
       }
     });
 
     setProducts(sortedProducts);
+
+    return(sortedProducts);
   }
 
 
@@ -112,7 +114,7 @@ export default function Products() {
             margin: "0px 0px 0px 0px",
           }}
         >
-          
+
 
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
@@ -138,7 +140,7 @@ export default function Products() {
               sx={{
                 width: {
                   xs: "95%",
-                  md: "75%",
+                  md: "95%",
                 },
                 margin: {
                   xs: "0px 0px 20px 0px",
@@ -165,7 +167,7 @@ export default function Products() {
                 }}>
                 {onCategory ? onCategory.categoryLabel : "すべての商品"}
               </Typography>
-              
+
 
 
               <Typography
@@ -184,7 +186,7 @@ export default function Products() {
                   },
                   textAlign: "left"
                 }}>
-                {onCategory ? onCategory.description : "すべての商品"}
+                {onCategory ? onCategory.description : "毎日の暮らしに寄り添う、あなたらしい空間づくりを。部屋を選ばず使えるアイデアや家具、小物を通して、インテリアのヒントや商品情報をお届けします。"}
 
               </Typography>
             </Box>

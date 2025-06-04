@@ -42,18 +42,18 @@ export const categories = [
   },
   {
     categoryId: "decoration", categoryLabel: "インテリア雑貨", icon: GiFlowerPot,
-    description: ""
+    description: "北欧風、ナチュラル、シンプルモダン。好みに合わせて選べる豊富なスタイルと、日常に寄り添うアイテムで、お部屋づくりをもっと自由に。"
   },
-  {
-    categoryId: "kitchenware・tableware", categoryLabel: "調理器具・食器", icon: GiKnifeFork,
-    description: ""
-  },
-  {
-    categoryId: "bathroom_products", categoryLabel: "洗面所収納・バスタオル", icon: GiShower,
-    description: "賢くて楽しいアクセサリーを上手に使えば、バスルームを簡単にパーソナライズし、きちんと整理整頓して時間も節約できます。シャワーバスケットや吸盤付きフック、ソープディスペンサー、おしゃれなバスケット、きれいで実用的な小物入れなど、各種アクセサリーをさまざまなデザインや色からお選びいただけます。"
-  },
-  {
-    categoryId: "kitchen・appliances", categoryLabel: "キッチン収納", icon: MdKitchen,
-    description: "探しているのは、自由にカスタマイズできるフルカスタマイズのシステムキッチン？ それとも、シンプルだけれど必要な機能が全部そろった、1日で設置できるキッチン？ あなたのニーズや好きなスタイル、予算に合った理想のキッチンがきっと見つかります。"
-  }
+  // {
+  //   categoryId: "kitchenware・tableware", categoryLabel: "調理器具・食器", icon: GiKnifeFork,
+  //   description: "毎日使うものだから、機能もデザインも妥協したくない。手にした瞬間から愛着がわく、あなたのキッチンにぴったりの一品が見つかります。"
+  // },
+  // {
+  //   categoryId: "bathroom_products", categoryLabel: "洗面所収納・バスタオル", icon: GiShower,
+  //   description: "賢くて楽しいアクセサリーを上手に使えば、バスルームを簡単にパーソナライズし、きちんと整理整頓して時間も節約できます。シャワーバスケットや吸盤付きフック、ソープディスペンサー、おしゃれなバスケット、きれいで実用的な小物入れなど、各種アクセサリーをさまざまなデザインや色からお選びいただけます。"
+  // },
+  // {
+  //   categoryId: "kitchen・appliances", categoryLabel: "キッチン収納", icon: MdKitchen,
+  //   description: "探しているのは、自由にカスタマイズできるフルカスタマイズのシステムキッチン？ それとも、シンプルだけれど必要な機能が全部そろった、1日で設置できるキッチン？ あなたのニーズや好きなスタイル、予算に合った理想のキッチンがきっと見つかります。"
+  // }
 ];
