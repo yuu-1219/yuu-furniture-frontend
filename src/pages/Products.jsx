@@ -240,6 +240,7 @@ export default function Products() {
                     xs: "95%",
                     md: "76%",
                   },
+                  height: "100%",
                   margin: {
                     xs: "10px 5px",
                     sm: "10px 5px",
@@ -254,6 +255,13 @@ export default function Products() {
                 <Box
                   sx={{
                     width: "100%",
+                    height: "100%",
+                    height: {
+                      xs: "23%",
+                      sm: "30%",
+                      md: "30%",
+                      lg: "44%"
+                  },
                     margin: "30px 5px 0px 5px",
                     display: "flex",
                     flexWrap: "wrap",

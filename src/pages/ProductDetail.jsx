@@ -434,7 +434,7 @@ export default function ProductDetail() {
               margin: "30px 0px 0px 0px",
             }}
           >
-            <BackButton text="一覧に戻る" link="/products" />
+            <BackButton text="商品一覧を見る" link="/products" />
           </Box>
 
 

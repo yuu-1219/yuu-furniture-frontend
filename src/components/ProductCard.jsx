@@ -16,17 +16,24 @@ export default function ProductCard({ product }) {
             state={{ product }}
             sx={{
 
-                width: "100%",
+                // width: "100%",
                 width: {
                     xs: "45%",
                     sm: "31%",
                     md: "30%",
                     lg: "23%"
                 },
-                // maxWidth: "200px",
+                height: "100%",
+                // height: {
+                //     xs: "45%",
+                //     sm: "31%",
+                //     md: "30%",
+                //     lg: "23%"
+                // },
+                // maxHeight: "260px",
                 // minWidth: "200px",
-                // minHeight: "200px",
-                padding: "20px",
+                // minHeight: "100px",
+                padding: "16px",
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "6px",
                 border: "0.2px solid #eee9d3",

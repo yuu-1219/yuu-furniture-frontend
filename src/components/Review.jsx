@@ -8,9 +8,11 @@ export default function Review( {value} ) {
         <>
             <Rating
                 size="small"
-                name="simple-controlled"
+                // name="simple-controlled"
+                name="read-only"
                 precision={1}
                 value={value}
+                readOnly
                 // onChange={(event, newValue) => {
                 //     setScore(newValue);
                 // }}
