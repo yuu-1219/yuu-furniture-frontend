@@ -30,6 +30,11 @@ export default function Register() {
   const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
+    if (password.length <= 4) {
+      alert("パスワードは4文字以上で入力してください。");
+      setPassword("");
+      return;
+    }
     const newUser = {
       name,
       email,
@@ -46,7 +51,7 @@ export default function Register() {
       updatedAt: new Date().toISOString()
     };
     await registerCart(newCart);
-    navigate("/");  
+    navigate("/");
   };
 
 
@@ -90,10 +95,10 @@ export default function Register() {
               sx={{
                 // fontSize: "50px",
                 fontSize: {
-                  xs: "28px",  
-                  sm: "36px",  
-                  md: "40px",  
-                  lg: "50px",  
+                  xs: "28px",
+                  sm: "36px",
+                  md: "40px",
+                  lg: "50px",
                 },
                 fontWeight: "600",
                 // padding: "0px 50px",

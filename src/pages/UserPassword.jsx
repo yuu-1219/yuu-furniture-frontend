@@ -18,7 +18,7 @@ import { useUser } from "../contexts/UserContext";
 
 
 export default function UserPassword() {
-    const { user, setUser, changeUserInfo, changeUserPassword} = useUser();
+    const { user, setUser, changeUserInfo, changeUserPassword } = useUser();
     const navigate = useNavigate();
 
     const [newPassword, setNewPassword] = useState("");
@@ -27,9 +27,15 @@ export default function UserPassword() {
     const handleOnChange = async () => {
 
         if (newPassword === verifiedPassword) {
-            changeUserPassword(user._id, newPassword);
-            navigate(`/user/${user._id}`);
-            alert("パスワードを変更しました");
+            if (newPassword.length > 4) {
+                changeUserPassword(user._id, newPassword);
+                navigate(`/user/${user._id}`);
+                alert("パスワードを変更しました");
+            } else {
+                alert("パスワードは4文字以上で入力してください。");
+                setNewPassword("");
+                setverifiedPassword("");
+            }
         } else {
             alert("入力されたパスワードが一致しません");
             setverifiedPassword("");
