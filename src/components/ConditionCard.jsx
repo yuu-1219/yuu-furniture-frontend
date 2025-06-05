@@ -20,7 +20,7 @@ import { colors } from '../constants/colors';
 import { priceRanges } from "../constants/priceRanges";
 
 
-export default function ConditionCard({ onColors, setOnColors, onPriceRanges, setOnPriceRanges}) {
+export default function ConditionCard({ onColors, setOnColors, onPriceRanges, setOnPriceRanges }) {
     // const [onColors, setOnColors] = useState([]);
     // const [onPriceRanges, setOnPriceRanges] = useState(priceRanges);
 
@@ -133,7 +133,7 @@ export default function ConditionCard({ onColors, setOnColors, onPriceRanges, se
                                             md: "90%",
                                             lg: "80%"
                                         },
-
+                                        backgroundColor: (onColors.length === 0) ? "#faf6ec": "#f1e8ab",
                                         padding: "0px 0px 0px 10px",
                                         // fontSize: "18px",
                                         fontSize: {
@@ -231,6 +231,7 @@ export default function ConditionCard({ onColors, setOnColors, onPriceRanges, se
                                             md: "90%",
                                             lg: "80%"
                                         },
+                                        backgroundColor: (onPriceRanges.length === 0) ? "#faf6ec": "#f1e8ab",
                                         padding: "0px 0px 0px 0px",
                                         fontSize: {
                                             xs: "12px",
