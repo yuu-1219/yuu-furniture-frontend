@@ -205,8 +205,8 @@ export default function Products() {
             <Box
               sx={{
                 width: "100%",
-                padding: "20px 0px",
-                margin: "20px 20px",
+                padding: "0px 0px 20px 0px",
+                margin: "0px 20px 20px 0px",
                 // maxWidth: "800px",
                 display: "flex",
                 flexDirection: {
