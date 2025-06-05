@@ -19,7 +19,7 @@ export function UserProvider({ children }) {
       await login(email, password);
     } catch (e) {
       const message = e.response?.data?.message || "会員登録中にエラーが発生しました";
-      alert(message); Ï
+      alert(message); 
     }
 
     return res.data;
@@ -60,7 +60,8 @@ export function UserProvider({ children }) {
     if (!userId) return null;
 
     try {
-      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      const isPurchase = 0;
+      const res = await axios.put(`${UserUrl}/${userId}`, {updatedUser, isPurchase});
       setUser(res.data);
       return res.data;
     } catch (e) {
@@ -108,8 +109,10 @@ export function UserProvider({ children }) {
   const handlePurchase = async (cart) => {
     if (!user) return null;
 
+    const orderId = generateOrderId()
+
     const newOrder = {
-      orderId: generateOrderId(),
+      orderId: orderId,
       items: cart.items.map(item => ({
         productId: item.productId,
         quantity: item.quantity,
@@ -129,7 +132,8 @@ export function UserProvider({ children }) {
     // setUser(updatedUser);
 
     try {
-      const res = await axios.put(`${UserUrl}/${user._id}`, updatedUser)
+      const isPurchase = 1;
+      const res = await axios.put(`${UserUrl}/${user._id}`, {updatedUser, isPurchase, orderId})
       setUser(res.data);
       return { orderId: newOrder.orderId, purchasedAt: newOrder.purchasedAt };
     } catch (e) {
@@ -161,7 +165,8 @@ export function UserProvider({ children }) {
     if (!userId) return null;
 
     try {
-      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      const isPurchase = 0;
+      const res = await axios.put(`${UserUrl}/${userId}`, {updatedUser, isPurchase});
       setUser(res.data);
       return res.data;
     } catch (e) {
@@ -182,7 +187,8 @@ export function UserProvider({ children }) {
     if (!userId) return null;
 
     try {
-      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      const isPurchase = 0;
+      const res = await axios.put(`${UserUrl}/${userId}`, {updatedUser, isPurchase});
       setUser(res.data);
       return res.data;
     } catch (e) {
@@ -218,7 +224,8 @@ export function UserProvider({ children }) {
     if (!userId) return null;
 
     try {
-      const res = await axios.put(`${UserUrl}/${userId}`, updatedUser);
+      const isPurchase = 0;
+      const res = await axios.put(`${UserUrl}/${userId}`, {updatedUser, isPurchase});
       setUser(res.data);
       return res.data;
     } catch (e) {

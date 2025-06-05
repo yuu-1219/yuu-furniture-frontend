@@ -8,11 +8,7 @@ export default function PasswordForm({ text, password, setPassword }) {
     // const [password, setPassword] = useState("");
     const UpdatePassword = (e) => {
         const updatedPassword = e.target.value;
-        // if (updatedPassword.length <= 4) {
-        //     alert("パスワードは4文字以上で入力してください。");
-        // } else {
-            setPassword(updatedPassword);
-        // }
+        setPassword(updatedPassword);
     }
 
     return (
