@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -43,11 +44,11 @@ const Search = styled('div')(({ theme }) => ({
   width: '100%',
   [theme.breakpoints.up('xs')]: {
     marginLeft: theme.spacing(3),
-    width: '50%', 
+    width: '50%',
   },
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: '50%', 
+    width: '50%',
   },
   [theme.breakpoints.up('md')]: {
     marginLeft: theme.spacing(3),
@@ -74,10 +75,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('xs')]: {
-      width: '18ch', 
+      width: '18ch',
     },
     [theme.breakpoints.up('xs')]: {
-      width: '30ch', 
+      width: '30ch',
     },
     [theme.breakpoints.up('md')]: {
       width: '40ch',
@@ -85,7 +86,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+export default function Header({ categoryId = null }) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -110,14 +111,27 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const navigate = useNavigate();
+  const [searchWord, setSearchWord] = useState("");
 
   const { cart } = useCart();
-  // const { user, isAuthenticated } = useAuth();
   const { user, isAuthenticated } = useUser();
 
   const totalQty = cart && cart.totalQty ? cart.totalQty : 0;
-  const userName = user && user.name ? user.name : "ゲスト";
-  // const totalQty = 0;
+
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      // if (searchWord.trim() !== "") {
+      if (categoryId !== null) {
+        navigate(`/products?category=${categoryId}&search=${encodeURIComponent(searchWord.trim())}`);
+      } else {
+        navigate(`/products?search=${encodeURIComponent(searchWord.trim())}`);
+      }
+      // } 
+    }
+  };
+
 
   const menuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -293,14 +307,17 @@ export default function Header() {
             <StyledInputBase
               placeholder="商品を検索"
               inputProps={{ 'aria-label': 'search' }}
-              sx={{ 
+              value={searchWord}
+              onChange={(e) => setSearchWord(e.target.value)}
+              onKeyDown={handleSearch}
+              sx={{
                 fontWeight: "600",
                 fontSize: {
                   xs: "14px",
                   sm: "16px",
                   md: "18px"
                 }
-               }}
+              }}
             />
           </Search>
 

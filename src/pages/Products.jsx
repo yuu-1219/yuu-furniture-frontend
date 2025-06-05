@@ -47,9 +47,12 @@ export default function Products() {
   const onCategory = categories.find(c => c.categoryId === onCategoryId);
   const queryString = onCategory ? `?category=${onCategoryId}` : "";
 
+  const searchWord = searchParams.get("search");
+  // const [searchWord, setSearchWord] = useState({inputWord});
+
   useEffect(() => {
     fetchProducts();
-  }, [onCategoryId, onColors, onPriceRanges]);
+  }, [searchWord, onCategoryId, onColors, onPriceRanges]);
 
   useEffect(() => {
     sortProducts(products);
@@ -58,6 +61,7 @@ export default function Products() {
   async function fetchProducts() {
     try {
       const productsResult = await axios.post(`${ProductsUrl}`, {
+        searchWord: (searchWord === "") ? null : searchWord,
         category: onCategoryId,
         colors: onColors.map(c => c.colorLabel),
         priceRanges: onPriceRanges
@@ -101,7 +105,7 @@ export default function Products() {
 
   return (
     <>
-      <Header />
+      <Header categoryId={onCategoryId}/>
       {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 

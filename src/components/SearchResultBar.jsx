@@ -66,7 +66,7 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                                 margin: "0px 5px 0px 0px"
                             }}
                         >
-                            {products.length}
+                            {(products.length !== 0) ? products.length : 0 }
                         </Typography>
 
                         <Typography
@@ -98,7 +98,7 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                                 margin: "0px 2px 0px 0px"
                             }}
                         >
-                            {firstProductNum}
+                            {(products.length !== 0) ? firstProductNum : 0 }
                         </Typography>
 
                         <Typography
