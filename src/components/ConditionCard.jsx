@@ -32,7 +32,7 @@ export default function ConditionCard({ onColors, setOnColors, onPriceRanges, se
                 sx={{
                     width: "100%",
                     height: "100%",
-                    padding: "20px 10px 20px 0px",
+                    padding: "15px 10px 10px 0px",
                     margin: "0px 0px",
                     // maxWidth: "800px",
                     backgroundColor: "rgba(251, 245, 230, 0.8)",

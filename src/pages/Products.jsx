@@ -206,7 +206,10 @@ export default function Products() {
               sx={{
                 width: "100%",
                 padding: "0px 0px 20px 0px",
-                margin: "0px 20px 20px 0px",
+                margin: {
+                  xs: "0px 0px 20px 0px",
+                  md: "0px 0px 20px 0px",
+                },
                 // maxWidth: "800px",
                 display: "flex",
                 flexDirection: {
@@ -231,7 +234,6 @@ export default function Products() {
 
                 }}
               >
-
                 <ConditionCard onColors={onColors} setOnColors={setOnColors} onPriceRanges={onPriceRanges} setOnPriceRanges={setOnPriceRanges} />
               </Box>
               {/* (end)条件カード */}
@@ -241,13 +243,13 @@ export default function Products() {
               <Box
                 sx={{
                   width: {
-                    xs: "95%",
+                    xs: "100%",
                     md: "76%",
                   },
                   height: "100%",
                   margin: {
-                    xs: "10px 5px",
-                    sm: "10px 5px",
+                    xs: "15px 5px",
+                    sm: "20px 5px",
                     md: "0px 0px 0px 20px",
                   },
 
@@ -269,7 +271,7 @@ export default function Products() {
                     height: "auto",
                     // aspectRatio: "64 / 17",
                     // minHeight: "270px",
-                    margin: "30px 5px 0px 5px",
+                    margin: "20px 5px 0px 5px",
                     display: "flex",
                     flexWrap: "wrap",
                     gap: 2,
