@@ -11,11 +11,11 @@ function Footer() {
     <AppBar 
       component="footer" 
       sx={{ 
-        top: 'auto', 
-        bottom: 0, 
-        // mt: 'auto', 
+        // top: 'auto', 
+        // bottom: 0, 
         backgroundColor: "#e6d9ac", 
-        color: "#5b5b5b" 
+        color: "#5b5b5b",
+        position: "static"
       }}
     >
       <Toolbar 
