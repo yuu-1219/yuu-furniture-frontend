@@ -100,7 +100,7 @@ export default function CategoryCard() {
                             height: {
                                 xs: "16%",
                                 sm: "20%",
-                                md: "33%",
+                                md: "40%",
                                 lg: "10%"
                             },
                             // maxWidth: "260px",
@@ -136,7 +136,7 @@ export default function CategoryCard() {
                                 },
                                 alignItems: "center",
                                 justifyContent: {
-                                    xs: "space-around",
+                                    xs: "center",
                                     md: "space-around",
                                 },
                                 padding: {

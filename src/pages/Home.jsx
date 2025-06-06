@@ -1,4 +1,6 @@
 import '../styles/Home.css'
+import { FaMedal } from 'react-icons/fa';
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -28,6 +30,30 @@ const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
 export default function Home() {
   const [topProducts, setTopProducts] = useState([]);
+
+  // const medalIcon = [
+  //   <FaMedal key="gold" color="#FFD700" size="20" />,
+  //   <FaMedal key="silver" color="#C0C0C0" size="20" />,
+  //   <FaMedal key="bronze" color="#CD7F32" size="20" />,
+  //   <FaMedal key="fourth" color="#A9A9A9" size="22"/>,   
+  //   <FaMedal key="fifth" color="#8B4513" size="22"/>     
+  // ];
+
+  // const rankColor = [
+  //   "#ffcc38",
+  //   "#cfcfcf",
+  //   "#d89733",
+  //   "#dac57f",
+  //   "#dac57f"
+  // ];
+
+  const rankColor = [
+    "rgba(252, 211, 94, 0.9)",
+    "rgba(207, 207, 207, 0.9)",
+    "rgba(216, 151, 51, 0.9)",
+    "rgba(218, 197, 127, 0.9)",
+    "rgba(218, 197, 127, 0.9)",
+  ];
 
   useEffect(() => {
     fetchTopProducts();
@@ -156,7 +182,7 @@ export default function Home() {
                       xs: "18px",
                       sm: "26px",
                       md: "30px",
-                      lg: "40px",
+                      lg: "38px",
                     },
                     fontWeight: "600",
                     // padding: {
@@ -176,7 +202,7 @@ export default function Home() {
                       xs: "12px",
                       sm: "15px",
                       md: "17px",
-                      lg: "20px",
+                      lg: "18px",
                     },
                     fontWeight: "500",
                     padding: {
@@ -200,6 +226,34 @@ export default function Home() {
                   }}
                 /> */}
 
+
+                <Typography
+                  sx={{
+                    // fontSize: "50px",
+                    color: "#6c6c6c",
+                    fontSize: {
+                      xs: "14px",
+                      sm: "16px",
+                      md: "20px",
+                      lg: "24px",
+                    },
+                    fontWeight: "600",
+                    padding: {
+                      xs: "25px 0px 0px 10px",
+                      sm: "25px 0px 0px 10px",
+                      md: "35px 0px 0px 10px",
+                    },
+                    background: "linear-gradient(to right, #fbad59, #f9b142, #ebc235)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textAlign: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                  人気商品ランキング
+                </Typography>
+
                 {/* (start)カルーセル */}
                 <Box sx={{
                   width: "100%",
@@ -212,16 +266,18 @@ export default function Home() {
                   // height: "300px",
                   maxWidth: "700px",
                   margin: {
-                    xs: "15px 0px 20px 0px",
-                    sm: "15px 0px 30px 0px",
-                    md: "15px 45px 5px 0px",
+                    xs: "5px 0px 20px 0px",
+                    sm: "5px 0px 30px 0px",
+                    md: "5px 45px 5px 0px",
                   },
                   display: "flex",
+                  // flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
 
                 }}
                 >
+
                   <Swiper
                     spaceBetween={30}
                     centeredSlides={true}
@@ -242,6 +298,8 @@ export default function Home() {
                       borderRadius: "6px",
                       border: "0.1px solid #eee9d3",
                       objectFit: 'cover',
+                      display: "flex",
+                      justifyContent: "flex-end"
 
                     }}
                   >
@@ -257,22 +315,46 @@ export default function Home() {
                               width: "100%",
                               height: "100%",
                               textDecoration: "none",
-                              color: "inherit"
+                              color: "inherit",
+                              display: "flex",
+                              justifyContent: "flex-end"
                             }}
                           >
+                            {/* 商品画像 */}
                             <img
-                            src={product.img}
-                            alt={product.name}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              // width: 400,
-                              // height: 300,
-                              // maxWidth: "500px",
-                              objectFit: 'cover',
-                            }}
-                          />
+                              src={product.img}
+                              alt={product.name}
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                // width: 400,
+                                // height: 300,
+                                // maxWidth: "500px",
+                                objectFit: 'cover',
+                              }}
+                            />
 
+                             {/* ランキング */}
+                            <Box
+                              sx={{
+                                position: "absolute",
+                                top: 8,
+                                left: 8,
+                                backgroundColor: rankColor[index],
+                                color: "#fff",
+                                fontWeight: "bold",
+                                fontSize: {
+                                  xs: "12px",
+                                  md: "14px"
+                                },
+                                padding: "3px 10px 3px 10px",
+                                borderRadius: "10px",
+                              }}
+                            >
+                              {`${index + 1}位`}
+                            </Box>
+
+                             {/* 商品名 */}
                             <Box
                               sx={{
                                 position: "absolute",
@@ -280,6 +362,33 @@ export default function Home() {
                                 width: "100%",
                                 backgroundColor: "rgba(192, 188, 156, 0.9)",
                                 color: "rgba(240, 239, 238  )",
+                                padding: "8px 0px 8px 16px",
+                                textAlign: "right",
+                                fontSize: {
+                                  xs: "12px",
+                                  sm: "16px",
+                                  md: "18px"
+                                },
+                                fontWeight: "600",
+                                display: "flex",
+                                alignItems: "center",
+                                // justifyContent: "center",
+                                gap: 1
+                              }}
+                            >
+                              {/* {medalIcon[index]} */}
+                              {product.name}
+                            </Box>
+
+
+                            {/* <Box
+                              sx={{
+                                position: "absolute",
+                                bottom: 0,
+                                width: "100%",
+                                // height: "35px",
+                                backgroundColor: "rgba(192, 188, 156, 0.9)",
+                                color: "rgba(192, 188, 156 )",
                                 padding: "8px 0px 8px 16px",
                                 textAlign: "left",
                                 fontSize: {
@@ -290,8 +399,9 @@ export default function Home() {
                                 fontWeight: "600",
                               }}
                             >
-                              {product.name}
-                            </Box>
+                             - 
+                            </Box> */}
+
                           </Box>
                         </SwiperSlide>
                       )
@@ -306,101 +416,7 @@ export default function Home() {
               {/* (end)タイトル文 */}
 
 
-              {/* (start)ランキングカルーセル */}
-              {/* <Box sx={{
-                width: "100%",
-                // height: "40%",
-                // height: "300px",
-                maxWidth: "650px",
-                margin: {
-                  xs: "0px 0px 20px 0px",
-                  sm: "0px 0px 30px 0px",
-                  md: "80px 5px 5px 80px",
-                },
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-
-              }}
-              >
-                <Swiper
-                  spaceBetween={30}
-                  centeredSlides={true}
-                  autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
-                  }}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  navigation={true}
-                  modules={[Autoplay, Pagination, Navigation]}
-                  className="mySwiper"
-                  style={{
-                    '--swiper-navigation-color': '#fff',
-                    '--swiper-pagination-color': '#fff',
-                    aspectRatio: "8 / 5",
-                    borderRadius: "6px",
-                    border: "0.1px solid #eee9d3",
-                    objectFit: 'cover',
-
-                  }}
-                >
-                  {topProducts.map((product, index) => {
-                    return (
-                      <SwiperSlide key={index}>
-                        <Box
-                          component={Link}
-                          to={`/products/${product._id}`}
-                          state={{ product }}
-                          sx={{
-                            // display: "block",
-                            width: "100%",
-                            height: "100%",
-                            textDecoration: "none",
-                            color: "inherit"
-                          }}
-                        >
-                          <img
-                            src={product.img}
-                            alt={product.name}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              // width: 400,
-                              // height: 300,
-                              // maxWidth: "500px",
-                              objectFit: 'cover',
-                            }}
-                          />
-
-                          <Box
-                            sx={{
-                              position: "absolute",
-                              bottom: 0,
-                              width: "100%",
-                              backgroundColor: "rgba(153, 147, 113     , 0.9)",
-                              color: "rgba(242, 242, 242 )",
-                              padding: "8px 0px 8px 16px",
-                              textAlign: "left",
-                              fontSize: {
-                                xs: "14px",
-                                sm: "16px",
-                                md: "18px"
-                              },
-                              fontWeight: "600",
-                            }}
-                          >
-                            {product.name}
-                          </Box>
-                        </Box>
-                      </SwiperSlide>
-                    )
-                  })}
-
-                </Swiper>
-              </Box> */}
-              {/* (end)ランキングカルーセル */}
+             
 
             </Box>
             {/* (end)タイトル文、ランキング */}

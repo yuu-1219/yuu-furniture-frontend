@@ -50,7 +50,10 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         <Typography
                             // variant="span"
                             sx={{
-                                fontSize: "14px",
+                                fontSize: {
+                                    xs: "12px",
+                                    md: "14px"
+                                },
                                 border: "none",
                                 margin: "0px 5px 0px 0px"
                             }}
@@ -61,7 +64,11 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         <Typography
                             // variant="h6"
                             sx={{
-                                fontSize: "20px",
+                                // fontSize: "20px",
+                                fontSize: {
+                                    xs: "16px",
+                                    md: "20px"
+                                },
                                 fontWeight: "600",
                                 margin: "0px 5px 0px 0px"
                             }}
@@ -72,7 +79,11 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         <Typography
                             // variant="span"
                             sx={{
-                                fontSize: "14px",
+                                // fontSize: "14px",
+                                fontSize: {
+                                    xs: "12px",
+                                    md: "14px"
+                                },
                                 border: "none",
                                 margin: "0px 15px 0px 0px"
                             }}
@@ -93,7 +104,11 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         <Typography
                             // variant="span"
                             sx={{
-                                fontSize: "18px",
+                                // fontSize: "18px",
+                                fontSize: {
+                                    xs: "16px",
+                                    md: "18px"
+                                },
                                 fontWeight: "500",
                                 margin: "0px 2px 0px 0px"
                             }}
@@ -103,7 +118,11 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
 
                         <Typography
                             sx={{
-                                fontSize: "14px",
+                                // fontSize: "14px",
+                                fontSize: {
+                                    xs: "12px",
+                                    md: "14px"
+                                },
                                 margin: "0px 2px 0px 0px"
                             }}
                         >
@@ -112,7 +131,11 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
 
                         <Typography
                             sx={{
-                                fontSize: "18px",
+                                // fontSize: "18px",
+                                fontSize: {
+                                    xs: "16px",
+                                    md: "18px"
+                                },
                                 fontWeight: "500",
                                 margin: "0px 5px 0px 0px"
                             }}
@@ -123,6 +146,10 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         <Typography
                             sx={{
                                 fontSize: "13px",
+                                fontSize: {
+                                    xs: "12px",
+                                    md: "14px"
+                                },
                                 border: "none",
                                 margin: "0px 2px 0px 0px"
                             }}

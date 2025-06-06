@@ -15,13 +15,12 @@ export default function Price({ price, priceSize = 20, unitSize = 12, height = 0
             <Typography
                 sx={{
                     fontWeight: "600",
-                    // fontSize: `${priceSize}px`,
                     fontSize: {
-                        xs: "16px",
+                        xs: "14px",
                         sm: "18px",
-                        md: "20px"
+                        md: "16px",
+                        lg: "18px"
                     },
-                    // width: `${priceWidth}px`
                 }}
             >
                 {price}
@@ -30,7 +29,6 @@ export default function Price({ price, priceSize = 20, unitSize = 12, height = 0
             <Typography
                 sx={{
                     fontWeight: "200",
-                    // fontSize: `${unitSize}px`,
                     fontSize: {
                         xs: "12px",
                         sm: "14px"

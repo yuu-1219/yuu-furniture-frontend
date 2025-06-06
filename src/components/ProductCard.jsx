@@ -52,6 +52,7 @@ export default function ProductCard({ product }) {
                     width: "100%",
                     // maxWidth: "250px",
                     height: "auto",
+                    // height: "100%",
                     // maxHeight: "150px",
                     objectFit: "cover",
                     aspectRatio: "4 / 3"
@@ -60,6 +61,7 @@ export default function ProductCard({ product }) {
 
             <Box
                 sx={{
+                    // height: "100%",
                     padding: "5px 0px 0px 10px",
                     display: "flex",
                     flexDirection: "column",
@@ -70,14 +72,17 @@ export default function ProductCard({ product }) {
 
                 <Typography
                     sx={{
-                        fontSize: "16px",
+                        // height: "100%",
+                        minHeight: "44px",
                         fontSize: {
-                            xs: "14px",
+                            xs: "12px",
                             sm: "14px",
-                            md: "16px",
-                            lg: "16px",
+                            md: "15px",
+                            lg: "15px",
                         },
                         fontWeight: "600",
+                        display: "flex",
+                        alignItems: "center"
                     }}
                 >
                     {name}
@@ -86,6 +91,7 @@ export default function ProductCard({ product }) {
                 <Box
                     sx={{
                         width: "100%",
+                        // height: "100%",
                         display: "flex",
                         alignItems: "flex-start",
                         justifyContent: "flex-start",

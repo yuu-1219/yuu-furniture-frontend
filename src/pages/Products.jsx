@@ -87,7 +87,7 @@ export default function Products() {
 
     setProducts(sortedProducts);
 
-    return(sortedProducts);
+    return (sortedProducts);
   }
 
 
@@ -105,7 +105,7 @@ export default function Products() {
 
   return (
     <>
-      <Header categoryId={onCategoryId}/>
+      <Header categoryId={onCategoryId} />
       {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
@@ -259,13 +259,16 @@ export default function Products() {
                 <Box
                   sx={{
                     width: "100%",
-                    height: "100%",
+                    // height: "100%",
                     height: {
                       xs: "23%",
                       sm: "30%",
                       md: "30%",
                       lg: "44%"
-                  },
+                    },
+                    height: "auto",
+                    // aspectRatio: "64 / 17",
+                    // minHeight: "270px",
                     margin: "30px 5px 0px 5px",
                     display: "flex",
                     flexWrap: "wrap",
@@ -275,7 +278,6 @@ export default function Products() {
                   }}
                 >
 
-                  {/* <Box> */}
 
                   {showProducts.map((product) => (
                     <ProductCard
@@ -284,7 +286,53 @@ export default function Products() {
                     />
                   ))}
 
-                  {/* </Box> */}
+                  {/* {showProducts.length < 8 &&
+                    Array.from({ length: 8 - showProducts.length }).map((_, index) => (
+                      <Box
+                       
+                        sx={{
+
+                          // width: "100%",
+                          width: {
+                            xs: "45%",
+                            sm: "31%",
+                            md: "30%",
+                            lg: "23%"
+                          },
+                          height: "100%",
+                          // maxHeight: "260px",
+                          // minWidth: "200px",
+                          // minHeight: "100px",
+                          padding: "16px",
+                          backgroundColor: "rgba(251, 245, 230, 0.8)",
+                          borderRadius: "6px",
+                          border: "0.2px solid #eee9d3",
+                          textDecoration: "none",
+                          color: "inherit",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "flex-start",
+
+                        }}>
+
+                        <Box
+                          sx={{
+                            height: "100%",
+                            padding: "5px 0px 0px 10px",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            justifyContent: "flex-start",
+                          }}
+                        >
+                        </Box>
+
+                      </Box>
+                    ))} */}
+
+
+                    
                 </Box>
                 {/* (end)商品一覧 */}
 
