@@ -36,7 +36,10 @@ export default function Products() {
   const onCategory = categories.find(c => c.categoryId === onCategoryId);
   // const queryString = onCategory ? `?category=${onCategoryId}` : "";
 
-  const searchWord = searchParams.get("search");
+  const resultSearchWord = searchParams.get("search") || "";
+  const [searchWord, setSearchWord] = useState(resultSearchWord);
+
+  // let searchWord = searchParams.get("search");
 
   useEffect(() => {
     fetchProducts();
@@ -45,6 +48,11 @@ export default function Products() {
   useEffect(() => {
     sortProducts(products);
   }, [onFilter]);
+
+  useEffect(() => {
+    const newSearchWord = searchParams.get("search") || "";
+    setSearchWord(newSearchWord);
+  }, [searchParams]);
 
   async function fetchProducts() {
     try {
@@ -256,15 +264,21 @@ export default function Products() {
                   }}
                 >
 
+{/* 
+                  console.log("searchWord:", searchWord);
+                  console.log("onCategoryId:", onCategoryId); */}
 
                   {showProducts.map((product) => (
+
                     <ProductCard
                       product={product}
+                      // searchWord={searchWord}
+                      // onCategoryId={onCategoryId}
                     />
                   ))}
 
 
-                    
+
                 </Box>
                 {/* (end)商品一覧 */}
 

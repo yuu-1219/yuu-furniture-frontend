@@ -40,15 +40,15 @@ export default function ProductDetail() {
 
   let productUrl = `/products`;
 
-  if(onCategoryId) {
-      if(searchWord) {
-          productUrl = `${productUrl}?category=${onCategoryId}&search=${searchWord}`
+  if(onCategoryId !== null) {
+      if((searchWord !== null) && (searchWord.trim() !== "")) {
+          productUrl = `${productUrl}?category=${onCategoryId}&search=${encodeURIComponent(searchWord)}`
       } else {
         productUrl = `${productUrl}?category=${onCategoryId}`;
       }
   } else {
-      if(searchWord) {
-          productUrl = `${productUrl}?search=${searchWord}`;
+      if((searchWord !== null) && (searchWord.trim() !== "")) {
+          productUrl = `${productUrl}?search=${encodeURIComponent(searchWord)}`;
       }
   }
 

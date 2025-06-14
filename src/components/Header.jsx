@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
@@ -101,9 +101,9 @@ export default function Header({ categoryId = null }) {
   };
 
   const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
   const resultSearchWord = searchParams.get("search") || "";
-
   const [searchWord, setSearchWord] = useState(resultSearchWord);
 
   const { cart } = useCart();
@@ -111,15 +111,32 @@ export default function Header({ categoryId = null }) {
 
   const totalQty = cart && cart.totalQty ? cart.totalQty : 0;
 
+  useEffect(() => {
+    const newSearchWord = searchParams.get("search");
+    setSearchWord(newSearchWord);
+  }, [searchParams]);
+
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      if (categoryId !== null) {
-        navigate(`/products?category=${categoryId}&search=${encodeURIComponent(searchWord.trim())}`);
-      } else {
-        navigate(`/products?search=${encodeURIComponent(searchWord.trim())}`);
+      let trimmedSearchedWord = "";
+      if (typeof searchWord === "string" && searchWord.trim() !== "") {
+        trimmedSearchedWord = searchWord.trim();
       }
-      // } 
+
+      if ((trimmedSearchedWord !== "") && (trimmedSearchedWord !== null)) {
+        if (categoryId !== null ) {
+          navigate(`/products?category=${categoryId}&search=${encodeURIComponent(trimmedSearchedWord)}`);
+        } else {
+          navigate(`/products?search=${encodeURIComponent(trimmedSearchedWord)}`);
+        }
+      } else {
+        if (categoryId !== null ) {
+          navigate(`/products?category=${categoryId}`);
+        } else {
+          navigate(`/products`);
+        }
+      }
     }
   };
 

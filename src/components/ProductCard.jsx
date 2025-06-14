@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 import Box from '@mui/material/Box';
@@ -8,22 +9,29 @@ import Review from "./Review";
 
 export default function ProductCard({ product }) {
     const [searchParams] = useSearchParams();
+    const resultSearchWord = searchParams.get("search") || "";
+    const [searchWord, setSearchWord] = useState(resultSearchWord);
+    
     const onCategoryId = searchParams.get("category");
-    const searchWord = searchParams.get("search");
+
+    useEffect(() => {
+        const newSearchWord = searchParams.get("search") || "";
+        setSearchWord(newSearchWord);
+      }, [searchParams]);
 
     const { _id, name, price, img, rating } = product;
 
     let productUrl = `/products/${_id}`;
 
-    if(onCategoryId) {
-        if(searchWord) {
-            productUrl = `${productUrl}?category=${onCategoryId}&search=${searchWord}`
+    if(onCategoryId !== null) {
+        if((searchWord !== null) && (searchWord.trim() !== "")) {
+            productUrl = `${productUrl}?category=${onCategoryId}&search=${encodeURIComponent(searchWord)}`
         } else {
             productUrl = `${productUrl}?category=${onCategoryId}`;
         }
     } else {
-        if(searchWord) {
-            productUrl = `${productUrl}?search=${searchWord}`;
+        if((searchWord !== null) && (searchWord.trim() !== "")) {
+            productUrl = `${productUrl}?search=${encodeURIComponent(searchWord)}`;
         }
     }
 

@@ -4,7 +4,7 @@
 家具メーカーを想定したBtoC向けECサイトを、フロントエンドからバックエンドまでフルスクラッチで開発しました。
 TypeScript(React) + Node.js + MongoDBで構成し、商品閲覧からカート操作・購入・会員情報管理までの基本的機能を備えております。
 
-## 今後の改善予定
+## 今後の改善予定(Future Improvements)
 - Next.jsへの対応
 - jestによるテスト導入
 - AIによるレコメンド機能・お問い合わせ自動回答機能の導入
@@ -14,7 +14,7 @@ TypeScript(React) + Node.js + MongoDBで構成し、商品閲覧からカート�
 本ポートフォリオは、UI設計・React/MUI構築・API接続・ユーザー状態管理を中心に開発しました。
 今後も継続的に改善してまいります。
 
-## 公開URL
+## 公開URL(Deployed URL)
 - ECサイト(TypeScript対応): [https://yuu-furniture.com](https://yuu-furniture.com)
 - フロントエンド(TypeScript): [yuu-furniture-frontend-ts](https://github.com/yuu-1219/yuu-furniture-frontend-ts)
 - バックエンド(TypeScript): [yuu-furniture-backend-ts](https://github.com/yuu-1219/yuu-furniture-backend-ts)
@@ -70,13 +70,13 @@ TypeScript(React) + Node.js + MongoDBで構成し、商品閲覧からカート�
 - `category`：カテゴリ指定によるフィルター  
   例）`/products?category=storage_furniture`
 - `search`：検索キーワードによるフィルター  
-  例）`/products?search=チェア`
+  例）`/products?search=収納`
 - 複合指定：  
-  例）`/products?category=storage_furniture&search=チェア`
+  例）`/products?category=storage_furniture&search=収納`
 
 #### 【ページ上での絞り込み機能】
 - `カラー`：チェックボックスで複数選択可能
-- `価格`：例）5,000円〜9,999円、10,000円〜14,999円 などを複数選択可能
+- `価格`：5,000円〜9,999円、10,000円〜14,999円 などの価格帯を複数選択可能
 - 商品データ取得時に上記データをボディに含め、バックエンドより絞り込みされたデータを取得
 
 #### 【並べ替え機能】
