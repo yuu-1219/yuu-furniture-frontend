@@ -1,7 +1,7 @@
 import '../styles/ProductDetail.css'
 
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -21,11 +21,12 @@ import { useUser } from '../contexts/UserContext';
 
 
 export default function ProductDetail() {
-  // const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const onCategoryId = searchParams.get("category");
+  const searchWord = searchParams.get("search");
 
   const { user } = useUser();
   const { addToCart } = useCart();
-  // const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 
@@ -37,6 +38,20 @@ export default function ProductDetail() {
 
   const { _id, name, price, img, description, color, rating } = product;
 
+  let productUrl = `/products`;
+
+  if(onCategoryId) {
+      if(searchWord) {
+          productUrl = `${productUrl}?category=${onCategoryId}&search=${searchWord}`
+      } else {
+        productUrl = `${productUrl}?category=${onCategoryId}`;
+      }
+  } else {
+      if(searchWord) {
+          productUrl = `${productUrl}?search=${searchWord}`;
+      }
+  }
+
   const handleAddToCart = async () => {
     await addToCart(_id, color, qty, price);
     alert("カートに追加されました");
@@ -44,7 +59,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <Header />
+      <Header categoryId={onCategoryId}/>
 
 
       {/* (start)背景画像表示領域 */}
@@ -402,7 +417,10 @@ export default function ProductDetail() {
               margin: "30px 0px 0px 0px",
             }}
           >
-            <BackButton text="商品一覧を見る" link="/products" />
+            <BackButton
+              text="商品一覧を見る"
+              link={productUrl}
+            />
           </Box>
 
 

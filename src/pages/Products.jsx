@@ -49,7 +49,7 @@ export default function Products() {
   async function fetchProducts() {
     try {
       const productsResult = await axios.post(`${ProductsUrl}`, {
-        searchWord: (searchWord === "") ? null : searchWord,
+        searchWord: (searchWord === "") ? "" : searchWord,
         category: onCategoryId,
         colors: onColors.map(c => c.colorLabel),
         priceRanges: onPriceRanges
@@ -262,51 +262,6 @@ export default function Products() {
                       product={product}
                     />
                   ))}
-
-                  {/* {showProducts.length < 8 &&
-                    Array.from({ length: 8 - showProducts.length }).map((_, index) => (
-                      <Box
-                       
-                        sx={{
-
-                          // width: "100%",
-                          width: {
-                            xs: "45%",
-                            sm: "31%",
-                            md: "30%",
-                            lg: "23%"
-                          },
-                          height: "100%",
-                          // maxHeight: "260px",
-                          // minWidth: "200px",
-                          // minHeight: "100px",
-                          padding: "16px",
-                          backgroundColor: "rgba(251, 245, 230, 0.8)",
-                          borderRadius: "6px",
-                          border: "0.2px solid #eee9d3",
-                          textDecoration: "none",
-                          color: "inherit",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-start",
-                          justifyContent: "flex-start",
-
-                        }}>
-
-                        <Box
-                          sx={{
-                            height: "100%",
-                            padding: "5px 0px 0px 10px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                            justifyContent: "flex-start",
-                          }}
-                        >
-                        </Box>
-
-                      </Box>
-                    ))} */}
 
 
                     

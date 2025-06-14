@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -101,7 +101,10 @@ export default function Header({ categoryId = null }) {
   };
 
   const navigate = useNavigate();
-  const [searchWord, setSearchWord] = useState("");
+  const [searchParams] = useSearchParams();
+  const resultSearchWord = searchParams.get("search") || "";
+
+  const [searchWord, setSearchWord] = useState(resultSearchWord);
 
   const { cart } = useCart();
   const { user, isAuthenticated } = useUser();
@@ -147,7 +150,7 @@ export default function Header({ categoryId = null }) {
             textDecoration: 'none',
             cursor: 'default',
             '&:hover': {
-              backgroundColor: 'transparent' 
+              backgroundColor: 'transparent'
             },
             display: "flex",
             justifyContent: "center"

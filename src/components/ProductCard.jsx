@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -7,11 +7,32 @@ import Price from "./Price";
 import Review from "./Review";
 
 export default function ProductCard({ product }) {
+    const [searchParams] = useSearchParams();
+    const onCategoryId = searchParams.get("category");
+    const searchWord = searchParams.get("search");
+
     const { _id, name, price, img, rating } = product;
+
+    let productUrl = `/products/${_id}`;
+
+    if(onCategoryId) {
+        if(searchWord) {
+            productUrl = `${productUrl}?category=${onCategoryId}&search=${searchWord}`
+        } else {
+            productUrl = `${productUrl}?category=${onCategoryId}`;
+        }
+    } else {
+        if(searchWord) {
+            productUrl = `${productUrl}?search=${searchWord}`;
+        }
+    }
+
+
     return (
         <Box
             component={Link}
-            to={`/products/${_id}`}
+            // to={`/products/${_id}`}
+            to={productUrl}
             state={{ product }}
             sx={{
 
@@ -88,7 +109,7 @@ export default function ProductCard({ product }) {
             </Box>
 
         </Box>
-        
+
 
     )
 
