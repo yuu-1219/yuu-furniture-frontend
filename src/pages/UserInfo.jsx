@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,7 +10,6 @@ import Footer from "../components/Footer";
 import BackButton from "../components/BackButton";
 import RunButton from '../components/RunButton';
 import EmailForm from "../components/EmailForm";
-import PasswordForm from "../components/PasswordForm";
 import NameForm from "../components/NameForm";
 
 import { useUser } from "../contexts/UserContext";
@@ -19,13 +17,12 @@ import { useCart } from "../contexts/CartContext";
 
 
 export default function UserInfo() {
-  const { user, setUser, changeUserInfo, deleteUserInfo } = useUser();
-  const { cart, deleteCart } = useCart();
+  const { user, changeUserInfo, deleteUserInfo } = useUser();
+  const { deleteCart } = useCart();
   const navigate = useNavigate();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  // const [password, setPassword] = useState(user.password);
 
   const handleOnChange = async () => {
     changeUserInfo(user._id, name, email);
@@ -74,13 +71,8 @@ export default function UserInfo() {
           >
 
 
-            {/* <h1 class="title">
-              お客様情報の確認・変更
-            </h1> */}
-
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px",  
                   sm: "36px",  
@@ -88,7 +80,6 @@ export default function UserInfo() {
                   lg: "50px",  
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 10px",
                   sm: "0px 20px",
@@ -136,15 +127,6 @@ export default function UserInfo() {
                   <EmailForm email={email} setEmail={setEmail}/>
                 </Box>
 
-                {/* パスワード */}
-                {/* <Box
-                  sx={{
-                    width: "80%",
-                    padding: "10px 0px 0px 0px"
-                  }}
-                >
-                  <PasswordForm password={password} setPassword={setPassword}/>
-                </Box> */}
 
                 {/* 実行ボタン */}
                 <Box
@@ -168,10 +150,10 @@ export default function UserInfo() {
                     color: "#f36136",
                     fontSize: "14px",
                     fontSize: {
-                      xs: "12px",  // モバイル
-                      sm: "14px",  // タブレット
-                      md: "16px",  // 中画面
-                      lg: "18px",  // デスクトップ
+                      xs: "12px",  
+                      sm: "14px",  
+                      md: "16px",  
+                      lg: "18px", 
                     },
                     fontWeight: "500",
                     cursor: "pointer"

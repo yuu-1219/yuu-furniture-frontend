@@ -19,12 +19,8 @@ import { useCart } from '../contexts/CartContext';
 
 export default function FavoriteItem({ product, productId, color }) {
     const { user, removeFavorite } = useUser();
-    // const { favorites } = user;
-
     const { addToCart } = useCart();
 
-    // const product = products.find(c => c.productId === productId);
-    // if (!product) return null;
     const { name, price, img } = product;
 
     const [qty, setQty] = useState(1);
@@ -32,11 +28,6 @@ export default function FavoriteItem({ product, productId, color }) {
     const onDecrement = () => setQty((prev) => Math.max(1, prev - 1));
 
     const handleAddToCart = () => {
-        // if (!isAuthenticated) {
-        //   navigate("/login");
-        //   return;
-        // }
-
         addToCart(productId, color, qty, price);
         setQty(1);
         alert("カートに追加されました");
@@ -65,28 +56,6 @@ export default function FavoriteItem({ product, productId, color }) {
 
             }}>
 
-            {/* <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                }}
-            > */}
-
-
-
-            {/* (start)お気に入り商品 */}
-            {/* <Box
-                    sx={{
-                        padding: "0px",
-                        margin: "0px 0px 0px 20px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        justifyContent: "flex-start",
-                    }}
-                > */}
 
             {/* (start)お気に入り商品 */}
             <Box
@@ -100,10 +69,6 @@ export default function FavoriteItem({ product, productId, color }) {
                     },
                     flexWrap: "wrap",
                     alignItems: "flex-start",
-                    // alignItems: {
-                    //     md: "center",
-                    //     lg: "flex-start"
-                    // },
                     justifyContent: "space-between",
                 }}
             >
@@ -113,7 +78,6 @@ export default function FavoriteItem({ product, productId, color }) {
                     sx={{
                         padding: "0px",
                         margin: "20px 0px 0px 0px",
-                        // width: "60%",
                         width: {
                             sm: "100%",
                             md: "60%",
@@ -135,9 +99,7 @@ export default function FavoriteItem({ product, productId, color }) {
                             alt={name}
                             style={{
                                 width: "100%",
-                                // maxWidth: "250px",
                                 height: "auto",
-                                // maxHeight: "150px",
                                 objectFit: "cover",
                                 aspectRatio: "4 / 3"
                             }}
@@ -145,14 +107,6 @@ export default function FavoriteItem({ product, productId, color }) {
                     </Box>
                     {/* (end)商品画像 */}
 
-
-
-                    {/* (start)商品説明 */}
-                    {/* <Box
-                            sx={{
-                                width: "70%",
-                            }}
-                        > */}
 
                     {/* (start)商品説明 */}
                     <Box
@@ -170,7 +124,6 @@ export default function FavoriteItem({ product, productId, color }) {
                         {/* 商品名 */}
                         <Typography
                             sx={{
-                                // fontSize: "18px",
                                 fontSize: {
                                     xs: "16px",
                                     sm: "18px",
@@ -188,7 +141,6 @@ export default function FavoriteItem({ product, productId, color }) {
                         <Typography
                             sx={{
                                 padding: "15px 0px 0px 3px",
-                                // fontSize: "14px",
                                 fontSize: {
                                     xs: "12px",
                                     sm: "14px",
@@ -206,7 +158,6 @@ export default function FavoriteItem({ product, productId, color }) {
                         <Typography
                             sx={{
                                 padding: "5px 0px 0px 3px",
-                                // fontSize: "14px",
                                 fontSize: {
                                     xs: "12px",
                                     sm: "14px",
@@ -234,7 +185,6 @@ export default function FavoriteItem({ product, productId, color }) {
                     </Box>
                     {/* (end)商品説明 */}
 
-                    {/* </Box> */}
 
 
                 </Box>
@@ -246,14 +196,12 @@ export default function FavoriteItem({ product, productId, color }) {
                 {/* (start)商品操作 */}
                 <Box
                     sx={{
-                        // width: "40%",
                         width: {
                             sm: "100%",
                             md: "40%",
                         },
                         display: "flex",
                         alignItems: "flex-end",
-                        // justifyContent: "flex-end",
                         marginTop: "auto",
                     }}
                 >
@@ -272,15 +220,6 @@ export default function FavoriteItem({ product, productId, color }) {
                         }}
                     >
 
-                        {/* <Box
-                                sx={{
-                                    margin: "40px 0px 0px 16px",
-                                    display: "flex",
-                                    flexWrap: "wrap",
-                                    justifyContent: "center",
-                                    alignItems: "center"
-                                }}
-                            > */}
 
                         {/* 数量ボタン */}
                         <Box
@@ -288,7 +227,6 @@ export default function FavoriteItem({ product, productId, color }) {
                                 display: "flex",
                                 justifyContent: "center",
                                 padding: "5px",
-                                // width: "30%"
                                 width: { xs: "40%", sm: "35%", md: "30%" },
                                 px: 1
 
@@ -303,7 +241,6 @@ export default function FavoriteItem({ product, productId, color }) {
                                 display: "flex",
                                 justifyContent: "center",
                                 padding: "5px",
-                                // width: "60%"
                                 width: { xs: "50%", sm: "55%", md: "60%" },
                                 px: 1
                             }}
@@ -314,10 +251,8 @@ export default function FavoriteItem({ product, productId, color }) {
                         {/* 削除ボタン */}
                         <Box
                             sx={{
-                                // width: "10%",
                                 width: { xs: "10%", sm: "10%" },
                                 cursor: "pointer"
-                                // display: "block"
                             }}
                             onClick={onDelete}
                         >
@@ -328,7 +263,6 @@ export default function FavoriteItem({ product, productId, color }) {
                         </Box>
 
 
-                        {/* </Box> */}
                     </Box>
                     {/* (end)最下部パーツ */}
 
@@ -336,14 +270,8 @@ export default function FavoriteItem({ product, productId, color }) {
                 {/* (end)商品操作 */}
 
             </Box>
-            {/* <Divider sx={{ width: '100%', my: 1 }} /> */}
-
-            {/* </Box > */}
             {/* (end)お気に入り商品 */}
 
-
-
-            {/* </Box> */}
         </Box>
     )
 }

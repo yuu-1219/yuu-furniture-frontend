@@ -4,27 +4,17 @@ import axios from "axios";
 
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Box from '@mui/material/Box';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Rating from "@mui/material/Rating";
 
-import { colors } from '../constants/colors';
-import { priceRanges } from "../constants/priceRanges";
 import { categories } from "../constants/categories";
 import { onFilters } from "../constants/onFilters";
-// import { products } from "../constants/products";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import ProductCard from "../components/ProductCard";
-import ColorCard from "../components/ColorCard";
-import PriceCard from "../components/PriceCard";
 import SearchResultBar from "../components/SearchResultBar";
 import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
@@ -34,7 +24,6 @@ const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
 
 export default function Products() {
-  // const fetchProductsUrl = "http://localhost:3000/products";
 
   const [products, setProducts] = useState([]);
   const [onColors, setOnColors] = useState([]);
@@ -45,10 +34,9 @@ export default function Products() {
   const [searchParams] = useSearchParams();
   const onCategoryId = searchParams.get("category");
   const onCategory = categories.find(c => c.categoryId === onCategoryId);
-  const queryString = onCategory ? `?category=${onCategoryId}` : "";
+  // const queryString = onCategory ? `?category=${onCategoryId}` : "";
 
   const searchWord = searchParams.get("search");
-  // const [searchWord, setSearchWord] = useState({inputWord});
 
   useEffect(() => {
     fetchProducts();
@@ -162,16 +150,10 @@ export default function Products() {
                     lg: "40px",
                   },
                   fontWeight: "600",
-                  // padding: {
-                  //   xs: "0px 10px",
-                  //   sm: "0px 15px",
-                  //   md: "0px 20px",
-                  // },
                   textAlign: "left"
                 }}>
                 {onCategory ? onCategory.categoryLabel : "すべての商品"}
               </Typography>
-
 
 
               <Typography
@@ -199,8 +181,6 @@ export default function Products() {
 
 
 
-
-
             {/* (start)条件カード、商品一覧 */}
             <Box
               sx={{
@@ -210,7 +190,6 @@ export default function Products() {
                   xs: "0px 0px 20px 0px",
                   md: "0px 0px 20px 0px",
                 },
-                // maxWidth: "800px",
                 display: "flex",
                 flexDirection: {
                   xs: "column",
@@ -261,7 +240,6 @@ export default function Products() {
                 <Box
                   sx={{
                     width: "100%",
-                    // height: "100%",
                     height: {
                       xs: "23%",
                       sm: "30%",
@@ -269,8 +247,6 @@ export default function Products() {
                       lg: "44%"
                     },
                     height: "auto",
-                    // aspectRatio: "64 / 17",
-                    // minHeight: "270px",
                     margin: "20px 5px 0px 5px",
                     display: "flex",
                     flexWrap: "wrap",
@@ -284,7 +260,6 @@ export default function Products() {
                   {showProducts.map((product) => (
                     <ProductCard
                       product={product}
-                    // products={products}
                     />
                   ))}
 
@@ -359,7 +334,6 @@ export default function Products() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
           <Box

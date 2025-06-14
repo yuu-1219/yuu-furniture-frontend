@@ -9,7 +9,6 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
     const { priceRangeId, minPrice, maxPrice } = priceRange;
 
     const isSelected = onPriceRanges.includes(priceRange);
-    // const isSelected = true;
 
     const label = { inputProps: { 'aria-label': priceRangeId } };
 
@@ -44,20 +43,11 @@ export default function PriceCard({ priceRange, onPriceRanges, setOnPriceRanges 
 
             <Checkbox
                 {...label}
-                // defaultChecked
                 size="small"
                 onClick={handleToggle}
             />
 
 
-            {/* <p style={{
-                fontWeight: "500",
-                fontSize: "13px",
-                marginBottom: "0px"
-            }}>
-                {priceRangeId !== "5" ?`¥ ${minPrice} - ${maxPrice}` : `¥ ${minPrice} +`}
-                
-            </p> */}
 
             <Typography
                 sx={{

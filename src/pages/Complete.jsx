@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -10,17 +9,12 @@ import Footer from "../components/Footer";
 
 import BackButton from "../components/BackButton";
 import RunButton from '../components/RunButton';
-import CartItem from "../components/CartItem";
 
-
-
-import { useCart } from '../contexts/CartContext';
-// import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
 
 
 export default function Complete() {
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
 
   const location = useLocation();
   const { orderId, purchasedAt } = location.state || {};
@@ -31,8 +25,6 @@ export default function Complete() {
     hour: "2-digit",
     minute: "2-digit"
   })
-
-  const navigate = useNavigate();
 
 
   return (
@@ -57,16 +49,11 @@ export default function Complete() {
               width: "90%",
               padding: "30px 30px",
               margin: "60px 30px",
-              // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
               alignItems: {
                 xs: "center",
-                // md: "flex-start"
               }
             }}
           >
@@ -78,7 +65,6 @@ export default function Complete() {
                 display: "flex",
                 flexWrap: "wrap",
                 flexDirection: "column",
-                // justifyContent: "center",
                 alignItems: "flex-start",
               }}
             >
@@ -96,18 +82,9 @@ export default function Complete() {
                   <CheckCircleOutlineIcon fontSize="large" />
                 </Box>
 
-                {/* <Typography
-                  sx={{
-                    fontSize: "40px",
-                    fontWeight: "600",
-                  }}
-                >
-                  ありがとうございます！
-                </Typography> */}
 
                 <Typography
                   sx={{
-                    // fontSize: "50px",
                     fontSize: {
                       xs: "22px",
                       sm: "28px",
@@ -123,7 +100,6 @@ export default function Complete() {
 
               <Typography
                 sx={{
-                  // fontSize: "34px",
                   fontSize: {
                     xs: "18px",
                     sm: "24px",
@@ -164,18 +140,15 @@ export default function Complete() {
                   sm: "flex-start",
                   md: "space-between"
                 },
-                // justifyContent: "center",
                 margin: "0px 0px",
               }}
             >
               {/* (start)左パーツ */}
               <Box
                 sx={{
-                  // margin: "20px 0px",
                   margin: "20px 10px 0px 10px",
                   padding: "20px 20px",
                   width: { xs: "95%", md: "60%" },
-                  // minWidth: "300px",
                   backgroundColor: "rgba(251, 245, 230, 0.8)",
                   borderRadius: "10px",
                   border: "0.2px solid #eee9d3",
@@ -190,7 +163,6 @@ export default function Complete() {
 
                 <Typography
                   sx={{
-                    // fontSize: "18px",
                     fontSize: {
                       xs: "12px",
                       sm: "14px",
@@ -205,7 +177,6 @@ export default function Complete() {
 
                 <Typography
                   sx={{
-                    // fontSize: "18px",
                     fontSize: {
                       xs: "12px",
                       sm: "14px",
@@ -222,7 +193,6 @@ export default function Complete() {
 
                 <Typography
                   sx={{
-                    // fontSize: "18px",
                     fontSize: {
                       xs: "12px",
                       sm: "14px",
@@ -239,7 +209,6 @@ export default function Complete() {
 
                 <Typography
                   sx={{
-                    // fontSize: "18px",
                     fontSize: {
                       xs: "12px",
                       sm: "14px",
@@ -257,7 +226,6 @@ export default function Complete() {
 
                 <Typography
                   sx={{
-                    // fontSize: "18px",
                     fontSize: {
                       xs: "12px",
                       sm: "14px",
@@ -283,7 +251,6 @@ export default function Complete() {
               <Box
                 sx={{
                   width: { xs: "95%", md: "35%" },
-                  // minWidth: "300px",
                   maxHeight: "420px",
                   minHeight: "150px",
                   padding: "20px 10px 20px 10px",
@@ -355,7 +322,6 @@ export default function Complete() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
 

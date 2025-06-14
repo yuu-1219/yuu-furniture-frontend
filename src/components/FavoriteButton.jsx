@@ -7,7 +7,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 export default function FavoriteButton({ userId, productId, color }) {
     const { user, toggleFavorite } = useUser();
     const isFavorited = user?.favorites?.some(c => c.productId === productId && c.color === color);
-    // const isFavorited = 1;
 
 
     return (
@@ -19,19 +18,5 @@ export default function FavoriteButton({ userId, productId, color }) {
             )}
         </IconButton>
 
-        // isFavorited ?
-        //     <FavoriteIcon
-        //         onClick={() => toggleFavorite(productId)}
-        //         style={{
-        //             color: "red"
-        //         }}
-        //     />
-        //     : 
-        //     <FavoriteBorderIcon 
-        //         onClick={() => toggleFavorite(productId)}
-        //         // style={{
-        //         //     fontSize: "10px"
-        //         // }}
-        //     />
     );
 }

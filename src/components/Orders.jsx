@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import Price from "./Price";
-
-import { products } from "../constants/products";
 
 import { useUser } from '../contexts/UserContext';
 
@@ -31,13 +28,9 @@ export default function Orders({ _id, products }) {
             sx={{
                 width: "100%",
                 minWidth: "300px",
-                // maxWidth: "800px",
                 minHeight: "200px",
                 padding: "20px",
                 margin: "0px 0px 20px 0px",
-                // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                // borderRadius: "6px",
-                // border: "0.2px solid #eee9d3",
                 textDecoration: "none",
                 color: "inherit",
                 display: "flex",
@@ -71,8 +64,6 @@ export default function Orders({ _id, products }) {
                             xs: "flex-start",
                             sm: "flex-start"
                         },
-                        // alignItems: "flex-start",
-                        // justifyContent: "space-between",
                     }}
                 >
                     {/* 注文番号 */}
@@ -82,7 +73,6 @@ export default function Orders({ _id, products }) {
                                 xs: "100%",
                                 sm: "50%"
                             },
-                            // fontSize: "18px",
                             fontSize: {
                                 xs: "12px",
                                 sm: "14px",
@@ -103,12 +93,10 @@ export default function Orders({ _id, products }) {
                     {/* 注文日 */}
                     <Typography
                         sx={{
-                            // width: "40%",
                             width: {
                                 xs: "100%",
                                 sm: "50%"
                             },
-                            // fontSize: "16px",
                             fontSize: {
                                 xs: "12px",
                                 sm: "14px",
@@ -117,7 +105,6 @@ export default function Orders({ _id, products }) {
                             },
                             fontWeight: "500",
                             margin: "0px 0px 5px 0px",
-                            // textAlign: "right",
                             textAlign: {
                                 xs: "left",
                                 sm: "right"
@@ -144,10 +131,6 @@ export default function Orders({ _id, products }) {
                         },
                         display: "flex",
                         flexDirection: "column",
-                        // flexDirection: {
-                        //     xs: "column",
-                        //     sm: "row"
-                        // },
                         alignItems: "flex-start",
                         justifyContent: "flex-start",
                     }}
@@ -172,7 +155,6 @@ export default function Orders({ _id, products }) {
                     <Box sx={{
                         width: "100%",
                         display: "flex",
-                        //  flexWrap: "wrap",
                         flexDirection: {
                             xs: "column",
                             sm: "column",
@@ -199,7 +181,6 @@ export default function Orders({ _id, products }) {
                             {items.map((item) => {
                                 const product = products[item.productId];
                                 if (!product) return null;
-                                // const product = products.find(c => c._id === item.productId);
                                 const { _id, name, price, img } = product;
 
                                 return (
@@ -214,7 +195,6 @@ export default function Orders({ _id, products }) {
                                                     sm: "column",
                                                     md: "row"
                                                 },
-                                                // alignItems: "flex-start",
                                                 alignItems: "flex-start",
                                                 justifyContent: "space-between",
                                                 alignItems: {
@@ -251,9 +231,7 @@ export default function Orders({ _id, products }) {
                                                         alt={name}
                                                         style={{
                                                             width: "100%",
-                                                            // maxWidth: "250px",
                                                             height: "auto",
-                                                            // maxHeight: "150px",
                                                             objectFit: "cover",
                                                             aspectRatio: "4 / 3"
                                                         }}
@@ -300,7 +278,6 @@ export default function Orders({ _id, products }) {
                                                         <Typography
                                                             sx={{
                                                                 padding: "15px 0px 0px 3px",
-                                                                // fontSize: "14px",
                                                                 fontSize: {
                                                                     xs: "12px",
                                                                     sm: "14px",
@@ -317,7 +294,6 @@ export default function Orders({ _id, products }) {
                                                         <Typography
                                                             sx={{
                                                                 padding: "5px 0px 0px 3px",
-                                                                // fontSize: "14px",
                                                                 fontSize: {
                                                                     xs: "12px",
                                                                     sm: "14px",
@@ -366,7 +342,6 @@ export default function Orders({ _id, products }) {
                                             {/* (start)小計エリア */}
                                             <Box
                                                 sx={{
-                                                    // width: "30%",
                                                     width: {
                                                         sm: "100%",
                                                         md: "30%",
@@ -375,7 +350,6 @@ export default function Orders({ _id, products }) {
                                                     alignItems: "baseline",
                                                     justifyContent: "flex-end",
                                                     marginTop: "auto",
-                                                    // textAlign: "left"
                                                 }}
                                             >
                                            
@@ -387,7 +361,6 @@ export default function Orders({ _id, products }) {
                                                                 md: "30%",
                                                             },
                                                             fontWeight: "200",
-                                                            // fontSize: "14px",
                                                             fontSize: {
                                                                 xs: "12px",
                                                                 sm: "14px",
@@ -411,13 +384,11 @@ export default function Orders({ _id, products }) {
                                                             padding: "0px",
                                                             margin: "0px",
                                                             textAlign: "left",
-                                                            // marginLeft: "auto",
                                                         }}
                                                     >
 
                                                         <Price price={price * item.quantity} priceWidth={60} priceSize={24} unitSize={14} />
                                                     </Box>
-                                                {/* </Box> */}
 
                                             </Box>
                                             {/* (end)小計 */}
@@ -432,10 +403,10 @@ export default function Orders({ _id, products }) {
                         </Box>
                         {/* (end)購入商品一覧 */}
 
+
                         {/* (start)金額表示 */}
                         <Box
                             sx={{
-                                // width: "50%",
                                 width: {
                                     sm: "70%",
                                     md: "30%",
@@ -447,10 +418,6 @@ export default function Orders({ _id, products }) {
                                 flexDirection: "column",
                                 alignItems: "flex-start",
                                 justifyContent: "flex-start",
-                                // ml: {
-                                //     xs: 0,
-                                //     md: "auto"
-                                //   }
                             }}
                         >
                             {/* (start)商品代金 */}
@@ -470,7 +437,6 @@ export default function Orders({ _id, products }) {
                                 <Typography
                                     sx={{
                                         width: "20%",
-                                        // fontSize: "16px",
                                         fontSize: {
                                             xs: "12px",
                                             sm: "14px",
@@ -495,7 +461,6 @@ export default function Orders({ _id, products }) {
                             {/* (end)商品代金 */}
 
 
-                            {/* <br /> */}
                             <Divider sx={{ width: '100%', my: 1 }} />
 
 
@@ -506,7 +471,6 @@ export default function Orders({ _id, products }) {
                                     padding: "0px 0px 0px 0px",
                                     margin: "0px 20px 0px 20px",
                                     display: "flex",
-                                    // justifyContent: "flex-end",
                                     justifyContent: {
                                         sm: "flex-start",
                                         md: "flex-end",
@@ -518,7 +482,6 @@ export default function Orders({ _id, products }) {
                                 <Typography
                                     sx={{
                                         width: "20%",
-                                        // fontSize: "16px",
                                         fontSize: {
                                             xs: "12px",
                                             sm: "14px",
@@ -543,7 +506,6 @@ export default function Orders({ _id, products }) {
                             {/* (end)商品代金 */}
 
 
-                            {/* <br /> */}
                             <Divider sx={{ width: '100%', my: 1 }} />
 
 
@@ -554,7 +516,6 @@ export default function Orders({ _id, products }) {
                                     padding: "0px 0px 0px 0px",
                                     margin: "0px 20px 0px 20px",
                                     display: "flex",
-                                    // justifyContent: "flex-end",
                                     justifyContent: {
                                         sm: "flex-start",
                                         md: "flex-end",
@@ -565,7 +526,6 @@ export default function Orders({ _id, products }) {
                                 <Typography
                                     sx={{
                                         width: "20%",
-                                        // fontSize: "16px",
                                         fontSize: {
                                             xs: "12px",
                                             sm: "14px",
@@ -593,18 +553,11 @@ export default function Orders({ _id, products }) {
                         </Box>
                         {/* (end)金額表示 */}
 
-
                     </Box>
                     {/* (end)購入商品一覧、金額表示 */}
 
-
-
                 </Box >
                 {/* (end)購入商品 */}
-
-
-              
-
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Box, Typography } from '@mui/material';
 
@@ -17,7 +17,6 @@ export default function RunButton({ text, width = 300, height = 35, handleClick 
                     md: "60%",
                     lg: "300px",
                 },
-                // padding: "20px 60px",
                 // height: `${height}px`,
                 height: {
                     xs: "38px",
@@ -36,7 +35,6 @@ export default function RunButton({ text, width = 300, height = 35, handleClick 
             <Typography
                 sx={{
                     fontWeight: '600',
-                    // fontSize: "18px",
                     fontSize: {
                         xs: "14px",
                         sm: "16px",

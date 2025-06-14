@@ -1,36 +1,27 @@
 import axios from "axios";
 
 import { useState, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
-import Price from '../components/Price';
 import Orders from "../components/Orders";
-
-import { products } from "../constants/products";
 
 import { useUser } from "../contexts/UserContext";
 
-const UserUrl = `${import.meta.env.VITE_API_BASE_URL}/user`;
 const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
-
 
 
 export default function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const [orderProducts, setOrderProducts] = useState({});
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     fetchOrders();
-    // fetchProducts();
   }, [user]);
 
   useEffect(() => {
@@ -94,10 +85,6 @@ export default function OrderHistory() {
               width: "90%",
               padding: "30px 30px",
               margin: "30px 30px",
-              // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -105,13 +92,9 @@ export default function OrderHistory() {
             }}
           >
 
-            {/* <h1 class="title">
-              注文履歴
-            </h1> */}
 
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px",
                   sm: "36px",
@@ -119,7 +102,6 @@ export default function OrderHistory() {
                   lg: "50px",
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 10px",
                   sm: "0px 15px",
@@ -136,10 +118,6 @@ export default function OrderHistory() {
               sx={{
                 margin: "10px 0px 10px 0px",
                 width: { xs: "100%", md: "100%" },
-                // minWidth: "300px",
-                // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                // borderRadius: "10px",
-                // border: "0.2px solid #eee9d3",
                 display: "flex",
                 flexWrap: "wrap",
                 flexDirection: "column",
@@ -189,7 +167,6 @@ export default function OrderHistory() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
 

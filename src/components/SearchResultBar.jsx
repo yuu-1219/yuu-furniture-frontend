@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
 
 import AppBar from '@mui/material/AppBar';
 import { Toolbar } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import FormHelperText from '@mui/material/FormHelperText';
 
 import { onFilters } from '../constants/onFilters';
 
@@ -48,7 +45,6 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                     >
 
                         <Typography
-                            // variant="span"
                             sx={{
                                 fontSize: {
                                     xs: "12px",
@@ -62,9 +58,7 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         </Typography>
 
                         <Typography
-                            // variant="h6"
                             sx={{
-                                // fontSize: "20px",
                                 fontSize: {
                                     xs: "16px",
                                     md: "20px"
@@ -77,9 +71,7 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                         </Typography>
 
                         <Typography
-                            // variant="span"
                             sx={{
-                                // fontSize: "14px",
                                 fontSize: {
                                     xs: "12px",
                                     md: "14px"
@@ -91,20 +83,9 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                             件中
                         </Typography>
 
-                    {/* </Box>
-
-                    <Box
-                        sx={{
-                            margin: "0px 15px 0px 0px",
-                            display: "flex",
-                            alignItems: "baseline",
-                        }}
-                    > */}
 
                         <Typography
-                            // variant="span"
                             sx={{
-                                // fontSize: "18px",
                                 fontSize: {
                                     xs: "16px",
                                     md: "18px"
@@ -118,7 +99,6 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
 
                         <Typography
                             sx={{
-                                // fontSize: "14px",
                                 fontSize: {
                                     xs: "12px",
                                     md: "14px"
@@ -131,7 +111,6 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
 
                         <Typography
                             sx={{
-                                // fontSize: "18px",
                                 fontSize: {
                                     xs: "16px",
                                     md: "18px"
@@ -181,7 +160,6 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                                 value={onFiltersId}
                                 onChange={handleChange}
                                 displayEmpty
-                                // inputProps={{ 'aria-label': 'Without label' }}
                                 sx={{
                                     fontSize: "12px",
                                     fontWeight: "500",
@@ -201,7 +179,6 @@ export default function SearchResultBar({ products, currentPage, perPage, onFilt
                                     </MenuItem>
                                 ))}
                             </Select>
-                            {/* <FormHelperText>Without label</FormHelperText> */}
                         </FormControl>
                     </Box>
 

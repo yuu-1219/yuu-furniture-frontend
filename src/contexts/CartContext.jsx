@@ -2,8 +2,6 @@ import axios from "axios";
 
 import { createContext, useState, useContext } from "react";
 
-import { useUser } from "./UserContext";
-
 const CartUrl = `${import.meta.env.VITE_API_BASE_URL}/cart`;
 
 const CartContext = createContext();
@@ -85,7 +83,6 @@ export function CartProvider({ children }) {
     const targetItem = cart.items.find(
       c => c.productId === productId && c.color === color
     );
-    // if (!targetItem) return;
 
     const updatedItems = cart.items.filter(
       c => !(c.productId === productId && c.color === color)
@@ -165,7 +162,6 @@ export function CartProvider({ children }) {
 
     const updatedCart = {
       ...cart,
-      // userId: userId,
       items: updatedItems,
       totalQty: cart.totalQty - 1,
       totalPrice: cart.totalPrice - price,
@@ -189,7 +185,6 @@ export function CartProvider({ children }) {
 
   const clearCart = async (userId) => {
     const clearedCart = {
-      // cartId: cart.cartId,
       userId: userId,
       items: [],
       totalQty: 0,

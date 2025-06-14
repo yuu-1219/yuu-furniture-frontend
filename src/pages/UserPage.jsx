@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
@@ -18,7 +17,7 @@ import { useCart } from "../contexts/CartContext";
 
 
 export default function UserPage() {
-  const { user, logout, isAuthenticated } = useUser();
+  const { user, logout } = useUser();
   const { resetCart } = useCart();
 
   const navigate = useNavigate();
@@ -53,10 +52,6 @@ export default function UserPage() {
               width: "90%",
               padding: "30px 30px",
               margin: "30px 30px",
-              // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -67,7 +62,6 @@ export default function UserPage() {
 
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px", 
                   sm: "36px",  
@@ -75,7 +69,6 @@ export default function UserPage() {
                   lg: "56px",  
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 10px",
                   sm: "0px 20px",
@@ -85,14 +78,6 @@ export default function UserPage() {
               マイページ
             </Typography>
 
-            {/* (start)メニューBOX */}
-            {/* <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
-              }}
-            > */}
 
 
             {/* (start)メニュー一覧 */}
@@ -105,8 +90,6 @@ export default function UserPage() {
                 display: "flex",
                 flexWrap: "wrap",
                 alignItems: "flex-start",
-                // justifyContent: "space-around",
-                // justifyContent: "flex-start",
                 justifyContent: {
                   md: "flex-start",
                   lg: "center"    
@@ -131,18 +114,13 @@ export default function UserPage() {
                     md: "60%",
                     lg: "100%"    
                   },
-                  // height: "100%",
                   maxWidth: "260px",
-                  // minWidth: "140px",
                   maxHeight: "200px",
-                  // minHeight: "100px",
-                  // padding: "20px 0px",
                   padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
                     md: "20px 0px",
                   },
-                  // margin: "20px",
                   margin: {
                     xs: "10px",
                     sm: "14px",
@@ -206,11 +184,8 @@ export default function UserPage() {
                     md: "60%",
                     lg: "100%"    
                   },
-                  // height: "100%",
                   maxWidth: "260px",
-                  // minWidth: "140px",
                   maxHeight: "200px",
-                  // minHeight: "160px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
@@ -242,8 +217,6 @@ export default function UserPage() {
                   <Typography
                     sx={{
                       padding: "30px 0px 0px 0px",
-                      // margin: "30px 0px 0px 0px",
-                      // fontSize: "18px",
                       fontSize: {
                         xs: "14px",
                         sm: "16px",
@@ -279,12 +252,8 @@ export default function UserPage() {
                     md: "60%",
                     lg: "100%"    
                   },
-                  // height: "100%",
                   maxWidth: "260px",
-                  // minWidth: "140px",
                   maxHeight: "200px",
-                  // minHeight: "160px",
-                   // padding: "20px 0px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
@@ -353,9 +322,7 @@ export default function UserPage() {
                     lg: "100%"    
                   },
                   maxWidth: "260px",
-                  // minWidth: "140px",
                   maxHeight: "200px",
-                  // minHeight: "160px",
                    padding: {
                     xs: "12px 0px",
                     sm: "16px 0px",
@@ -411,8 +378,6 @@ export default function UserPage() {
 
 
 
-            {/* </Box> */}
-            {/* (end)メニューBOX */}
 
             {/* (start)ログアウトボタン */}
             <Box
@@ -423,7 +388,6 @@ export default function UserPage() {
                 alignItems: "center",
                 justifyContent: "center",
                 margin: "60px 0px 20px 0px",
-                // height: "100%",
               }}
             >
 
@@ -442,7 +406,6 @@ export default function UserPage() {
                   },
                   maxWidth: "200px",
                   color: "#f36136",
-                  // fontSize: "18px",
                   fontSize: {
                     xs: "14px",
                     sm: "16px",
@@ -491,20 +454,11 @@ export default function UserPage() {
         {/* (end)戻るボタン */}
 
 
-        <Footer
-          // sx={{
-          //   height: "80px",
-          //   // backgroundColor: "#f5f5f5",
-          //   // textAlign: "center",
-          //   // padding: "20px"
-          // }}
-        />
+        <Footer />
 
       </Box>
       {/* (end)背景画像表示領域 */}
 
-
-      {/* <Footer /> */}
     </>
   )
 }

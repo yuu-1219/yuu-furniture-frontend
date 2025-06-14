@@ -1,7 +1,7 @@
 import '../styles/ProductDetail.css'
 
 import { useState } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
 import Price from '../components/Price';
 import Review from '../components/Review';
@@ -17,22 +16,16 @@ import RunButton from '../components/RunButton';
 import QtyButton from '../components/QtyButton';
 import FavoriteButton from '../components/FavoriteButton';
 
-import Products from './Products';
-
-import { products } from "../constants/products";
-
 import { useCart } from '../contexts/CartContext';
-// import { useAuth } from '../contexts/AuthContext';
 import { useUser } from '../contexts/UserContext';
 
 
 export default function ProductDetail() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  // const { isAuthenticated } = useAuth();
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
   const { addToCart } = useCart();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 
@@ -41,18 +34,11 @@ export default function ProductDetail() {
 
   const location = useLocation();
   const product = location.state?.product;
-  // const products = location.state?.products;
 
   const { _id, name, price, img, description, color, rating } = product;
 
   const handleAddToCart = async () => {
-    // if (!isAuthenticated) {
-    //   navigate("/login");
-    //   return;
-    // }
-
     await addToCart(_id, color, qty, price);
-
     alert("カートに追加されました");
   };
 
@@ -60,12 +46,10 @@ export default function ProductDetail() {
     <>
       <Header />
 
-      {/* <div class="background-overlay">*/}
 
       {/* (start)背景画像表示領域 */}
       <Box className="background-overlay">
 
-        {/* <div class="container-fluid contents"> */}
 
         {/* (start)タイトル~メインパーツ表示領域 */}
         <Box
@@ -80,7 +64,6 @@ export default function ProductDetail() {
 
           {/* (start)タイトル~メインパーツ表示レイアウト */}
           <Box
-            // className="row justify-content-center"
             sx={{
               display: "flex",
               flexWrap: "wrap",
@@ -99,13 +82,11 @@ export default function ProductDetail() {
           >
 
             {/* (start)左パーツ */}
-            {/* <nav class="nav-ver side-ver col-12 col-md-8 px-2 py-3 my-4"> */}
             <Box
               sx={{
                 margin: "10px 20px",
                 width: { xs: "90%", md: "35%" },
                 padding: "30px 30px",
-                // maxWidth: "650px",
                 backgroundColor: "rgba(251, 245, 230, 0.8)",
                 borderRadius: "10px",
                 border: "0.2px solid #eee9d3",
@@ -120,7 +101,6 @@ export default function ProductDetail() {
                 alt={name}
                 style={{
                   width: "100%",
-                  // maxWidth: "550px",
                   height: "auto",
                   objectFit: "cover",
                   aspectRatio: "4 / 3"
@@ -151,13 +131,11 @@ export default function ProductDetail() {
 
             </Box>
 
-            {/* </nav> */}
             {/* (end)左パーツ */}
 
 
 
             {/* (start)右パーツ */}
-            {/* <div class="title-card col-12 col-md-9 py-3 my-4"> */}
             <Box
               sx={{
                 margin: "10px 20px",
@@ -192,9 +170,6 @@ export default function ProductDetail() {
                       alignItems: "flex-start"
                     }}
                   >
-                    {/* <h1 class="title">
-                      {name}
-                    </h1> */}
 
                     <Typography
                       sx={{
@@ -205,11 +180,6 @@ export default function ProductDetail() {
                           lg: "40px",
                         },
                         fontWeight: "600",
-                        // padding: {
-                        //   xs: "0px 10px",
-                        //   sm: "0px 15px",
-                        //   md: "0px 20px",
-                        // },
                         textAlign: "left"
                       }}>
                       {name}
@@ -411,7 +381,6 @@ export default function ProductDetail() {
           </Box>
           {/* (start)タイトル~メインパーツ表示レイアウト */}
 
-          {/* </div> */}
 
         </Box>
         {/* (end)タイトル~メインパーツ表示領域 */}
@@ -424,7 +393,6 @@ export default function ProductDetail() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
 
@@ -440,7 +408,6 @@ export default function ProductDetail() {
 
         </Box>
 
-        {/* </div > */}
       </Box>
       {/* (end)背景画像表示領域 */}
 

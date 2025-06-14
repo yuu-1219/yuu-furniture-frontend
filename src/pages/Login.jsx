@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,17 +12,16 @@ import RunButton from '../components/RunButton';
 import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
 
-// import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
 import { useCart } from '../contexts/CartContext';
 
 
 
 export default function Login() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  const { user, login, isAuthenticated } = useUser();
-  const { cart, getCart } = useCart();
+  const { login } = useUser();
+  const { getCart } = useCart();
 
   const navigate = useNavigate();
 
@@ -73,13 +72,9 @@ export default function Login() {
             }}
           >
 
-            {/* <h1 class="title">
-              ログイン
-            </h1> */}
 
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px",
                   sm: "36px",
@@ -87,7 +82,6 @@ export default function Login() {
                   lg: "50px",
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 30px",
                   sm: "0px 40px",
@@ -117,7 +111,6 @@ export default function Login() {
                 sx={{
                   width: "100%",
                   maxWidth: "850px",
-                  // padding: "20px 20px",
                   padding: "20px 20px 0px 20px",
                   display: "flex",
                   flexDirection: "column",
@@ -130,13 +123,6 @@ export default function Login() {
                 }}
               >
 
-                {/* <Box
-                  sx={{
-                    margin: "0px 0px 10px 0px",
-                  }}
-                >
-                  <h3>登録済みのお客様</h3>
-                </Box> */}
 
                 <Typography
                   sx={{
@@ -200,7 +186,6 @@ export default function Login() {
                   border: "0.2px solid #eee9d3",
                 }}
               >
-                {/* <h3>未登録のお客様</h3> */}
 
                 <Typography
                   sx={{
@@ -217,8 +202,6 @@ export default function Login() {
                 </Typography>
 
                 <Box
-                  // component={Link}
-                  // to="/register"
                   sx={{
                     display: "flex",
                     justifyContent: "center",

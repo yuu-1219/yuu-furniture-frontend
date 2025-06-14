@@ -10,12 +10,8 @@ import Divider from '@mui/material/Divider';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
-import Price from '../components/Price';
 import FavoriteItem from "../components/FavoriteItem";
-
-// import { products } from "../constants/products";
 
 import { useUser } from "../contexts/UserContext";
 
@@ -24,7 +20,7 @@ const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
 export default function Favorite() {
   const [favoriteProducts, setFavoriteProducts] = useState([]);
-  const { user, isAuthenticated } = useUser();
+  const { user } = useUser();
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -36,7 +32,6 @@ export default function Favorite() {
   }, [favorites, user]);
 
   async function fetchFavoriteProducts() {
-    // const userCart = await getCart(user._id);
     const productIds = [...new Set(favorites.map(item => item.productId))];
 
     try {
@@ -84,10 +79,6 @@ export default function Favorite() {
               width: "90%",
               padding: "30px 30px",
               margin: "30px 30px",
-              // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -101,15 +92,13 @@ export default function Favorite() {
 
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
-                  xs: "28px",  // モバイル
-                  sm: "36px",  // タブレット
-                  md: "48px",  // 中画面
-                  lg: "50px",  // デスクトップ
+                  xs: "28px",  
+                  sm: "36px",  
+                  md: "48px",  
+                  lg: "50px",  
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 10px",
                   sm: "0px 15px",
@@ -120,12 +109,6 @@ export default function Favorite() {
             </Typography>
 
 
-            {/* <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            > */}
 
 
             {/* (start)お気に入りアイテム表示部分 */}
@@ -134,20 +117,12 @@ export default function Favorite() {
                 margin: "10px 0px 10px 0px",
                 width: { xs: "100%", md: "100%" },
                 minWidth: "300px",
-                // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                // borderRadius: "10px",
-                // border: "0.2px solid #eee9d3",
                 display: "flex",
                 flexWrap: "wrap",
                 flexDirection: "column",
                 alignItems: "flex-start",
               }}
             >
-
-              {/* {favorites.length === 0 ? (
-                  <Typography>お気に入り商品はありません</Typography>
-                ) : (
-                   */}
               {favorites.map((item) => {
                 const product = favoriteProducts[item.productId];
                 if (!product) return null;
@@ -182,7 +157,6 @@ export default function Favorite() {
             </Box>
             {/* (end)アイテム表示部分 */}
 
-            {/* </Box> */}
 
           </Box>
           {/* (end)タイトル~メインパーツ表示レイアウト */}
@@ -200,7 +174,6 @@ export default function Favorite() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
 

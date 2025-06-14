@@ -1,11 +1,9 @@
 import '../styles/Home.css'
-import { FaMedal } from 'react-icons/fa';
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -15,37 +13,16 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-
-import { categories } from '../constants/categories';
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CategoryCard from '../components/CategoryCard';
 
-import furniture1 from '../assets/imgs/furniture1.jpg';
 
 const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
 export default function Home() {
   const [topProducts, setTopProducts] = useState([]);
-
-  // const medalIcon = [
-  //   <FaMedal key="gold" color="#FFD700" size="20" />,
-  //   <FaMedal key="silver" color="#C0C0C0" size="20" />,
-  //   <FaMedal key="bronze" color="#CD7F32" size="20" />,
-  //   <FaMedal key="fourth" color="#A9A9A9" size="22"/>,   
-  //   <FaMedal key="fifth" color="#8B4513" size="22"/>     
-  // ];
-
-  // const rankColor = [
-  //   "#ffcc38",
-  //   "#cfcfcf",
-  //   "#d89733",
-  //   "#dac57f",
-  //   "#dac57f"
-  // ];
 
   const rankColor = [
     "rgba(252, 211, 94, 0.9)",
@@ -91,9 +68,7 @@ export default function Home() {
             sx={{
               width: "90%",
               padding: "20px 0px",
-              // margin: "20px 20px",
               margin: "20px 20px 150px 20px",
-              // maxWidth: "800px",
               display: "flex",
               flexDirection: {
                 xs: "column",
@@ -110,15 +85,10 @@ export default function Home() {
             {/* カテゴリー一覧 */}
             <Box
               sx={{
-                // width: "25%",
                 width: {
                   xs: "100%",
                   md: "25%",
                 },
-                // height: {
-                //   xs: "100%",
-                //   md: "100%",
-                // },
                 order: {
                   xs: 2,
                   md: 1
@@ -138,11 +108,6 @@ export default function Home() {
                   sm: "85%",
                   md: "70%",
                 },
-                // height: {
-                //   xs: "100%",
-                //   md: "100%",
-                // },
-                // margin: "0px 20px 0px 20px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
@@ -156,13 +121,7 @@ export default function Home() {
               {/* (start)タイトル文 */}
               <Box
                 sx={{
-                  // width: "75%",
                   width: "100%",
-                  // height: "40%",
-                  // order: {
-                  //   xs: 1,
-                  //   md: 2
-                  // },
                   margin: {
                     xs: "0px 0px 20px 0px",
                     sm: "0px 0px 30px 0px",
@@ -177,7 +136,6 @@ export default function Home() {
 
                 <Typography
                   sx={{
-                    // fontSize: "50px",
                     fontSize: {
                       xs: "18px",
                       sm: "26px",
@@ -185,11 +143,6 @@ export default function Home() {
                       lg: "38px",
                     },
                     fontWeight: "600",
-                    // padding: {
-                    //   xs: "0px 10px",
-                    //   sm: "0px 15px",
-                    //   md: "0px 20px",
-                    // },
                     textAlign: "left"
                   }}>
                   ミニマルな美学を、あなたの部屋に
@@ -197,7 +150,6 @@ export default function Home() {
 
                 <Typography
                   sx={{
-                    // fontSize: "50px",
                     fontSize: {
                       xs: "12px",
                       sm: "15px",
@@ -217,19 +169,10 @@ export default function Home() {
                   忙しい日常に、静かな美しさを取り入れませんか？
                 </Typography>
 
-                {/* <img
-                  src={furniture1}
-                  alt="title_img"
-                  style={{
-                    width: "100%",
-                    maxWidth: "700px"
-                  }}
-                /> */}
 
 
                 <Typography
                   sx={{
-                    // fontSize: "50px",
                     color: "#6c6c6c",
                     fontSize: {
                       xs: "14px",
@@ -262,8 +205,6 @@ export default function Home() {
                     sm: "100%",
                     md: "100%",
                   },
-                  // height: "40%",
-                  // height: "300px",
                   maxWidth: "700px",
                   margin: {
                     xs: "5px 0px 20px 0px",
@@ -271,7 +212,6 @@ export default function Home() {
                     md: "5px 45px 5px 0px",
                   },
                   display: "flex",
-                  // flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
 
@@ -327,9 +267,6 @@ export default function Home() {
                               style={{
                                 width: "100%",
                                 height: "100%",
-                                // width: 400,
-                                // height: 300,
-                                // maxWidth: "500px",
                                 objectFit: 'cover',
                               }}
                             />
@@ -372,7 +309,6 @@ export default function Home() {
                                 fontWeight: "600",
                                 display: "flex",
                                 alignItems: "center",
-                                // justifyContent: "center",
                                 gap: 1
                               }}
                             >
@@ -381,26 +317,6 @@ export default function Home() {
                             </Box>
 
 
-                            {/* <Box
-                              sx={{
-                                position: "absolute",
-                                bottom: 0,
-                                width: "100%",
-                                // height: "35px",
-                                backgroundColor: "rgba(192, 188, 156, 0.9)",
-                                color: "rgba(192, 188, 156 )",
-                                padding: "8px 0px 8px 16px",
-                                textAlign: "left",
-                                fontSize: {
-                                  xs: "12px",
-                                  sm: "16px",
-                                  md: "18px"
-                                },
-                                fontWeight: "600",
-                              }}
-                            >
-                             - 
-                            </Box> */}
 
                           </Box>
                         </SwiperSlide>

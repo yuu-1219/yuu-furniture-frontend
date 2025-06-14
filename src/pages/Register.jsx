@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -14,7 +13,6 @@ import EmailForm from "../components/EmailForm";
 import PasswordForm from "../components/PasswordForm";
 import NameForm from "../components/NameForm";
 
-// import { useAuth } from '../contexts/AuthContext';
 import { useUser } from "../contexts/UserContext";
 import { useCart } from '../contexts/CartContext';
 
@@ -38,7 +36,6 @@ export default function Register() {
     const newUser = {
       name,
       email,
-      // password,
       orders: [],
       favorites: []
     };
@@ -86,14 +83,8 @@ export default function Register() {
             }}
           >
 
-
-            {/* <h1 class="title">
-              会員登録
-            </h1> */}
-
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px",
                   sm: "36px",
@@ -101,7 +92,6 @@ export default function Register() {
                   lg: "50px",
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 30px",
                   sm: "0px 40px",

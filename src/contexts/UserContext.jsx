@@ -55,8 +55,6 @@ export function UserProvider({ children }) {
       email: email,
     };
 
-    // setUser(updatedUser);
-
     if (!userId) return null;
 
     try {
@@ -129,8 +127,6 @@ export function UserProvider({ children }) {
       orders: [newOrder, ...(user.orders || [])],
     };
 
-    // setUser(updatedUser);
-
     try {
       const isPurchase = 1;
       const res = await axios.put(`${UserUrl}/${user._id}`, {updatedUser, isPurchase, orderId})
@@ -149,7 +145,6 @@ export function UserProvider({ children }) {
 
     const random = Math.random().toString(36).slice(-6).toUpperCase();
     return `${yyyymmdd}-${hhmm}-${random}`;
-    // return `${yyyymmdd}-${hhmm}`;
   };
 
 
@@ -159,8 +154,6 @@ export function UserProvider({ children }) {
       ...user,
       favorites: [...(user.favorites || []), { productId, color }],
     };
-
-    // setUser(updatedUser);
 
     if (!userId) return null;
 
@@ -182,8 +175,6 @@ export function UserProvider({ children }) {
       favorites: user.favorites.filter(c => !(c.productId === productId && c.color === color))
     };
 
-    // setUser(updatedUser);
-
     if (!userId) return null;
 
     try {
@@ -199,17 +190,6 @@ export function UserProvider({ children }) {
 
 
   const toggleFavorite = async (userId, productId, color) => {
-    // setUser((prevUser) => {
-    //   const favorites = prevUser.favorites || [];
-    //   const isAlready = favorites.some(c => c.productId === productId && c.color === color);
-    //   return {
-    //     ...prevUser,
-    //     favorites: isAlready
-    //       ? favorites.filter(c => !(c.productId === productId && c.color === color))
-    //       : [...(favorites || []), { productId, color }]
-    //   };
-    // });
-
     const favorites = user.favorites || [];
     const isAlready = favorites.some(c => c.productId === productId && c.color === color);
     const updatedUser = {
@@ -218,8 +198,6 @@ export function UserProvider({ children }) {
         ? favorites.filter(c => !(c.productId === productId && c.color === color))
         : [...(favorites || []), { productId, color }]
     };
-
-    // setUser(updatedUser);
 
     if (!userId) return null;
 

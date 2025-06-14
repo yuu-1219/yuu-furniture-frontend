@@ -1,8 +1,7 @@
 import axios from "axios";
 
 import { useState, useEffect } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,35 +10,23 @@ import Divider from '@mui/material/Divider';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-import PaginationButton from "../components/PagingButton";
+// import PaginationButton from "../components/PagingButton";
 import BackButton from "../components/BackButton";
 import Price from '../components/Price';
 import RunButton from '../components/RunButton';
-import QtyButton from '../components/QtyButton';
 import CartItem from "../components/CartItem";
-
-import Products from './Products';
-
-import { products } from "../constants/products";
 
 import { useCart } from '../contexts/CartContext';
 import { useUser } from "../contexts/UserContext";
 
 const ProductsUrl = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
-// const fetchProductsUrl = "http://localhost:3000/products";
-
-
 export default function Cart() {
-  // const fetchProductsUrl = "http://localhost:3000/products";
-
-  // const { user, isAuthenticated } = useAuth();
   const [cartProducts, setCartProducts] = useState([]);
 
   const { user, isAuthenticated, handlePurchase } = useUser();
-  const { cart, getCart, removeFromCart, incrementItem, declementItem, clearCart } = useCart();
-  const { items, totalQty, totalPrice } = cart;
-  // const { orders, handlePurchase } = useOrders();
+  const { cart, clearCart } = useCart();
+  const { items, totalPrice } = cart;
 
   const navigate = useNavigate();
 
@@ -49,7 +36,6 @@ export default function Cart() {
   }, [items, user]);
 
   async function fetchCartProducts() {
-    // const userCart = await getCart(user._id);
     const productIds = [...new Set(cart.items.map(item => item.productId))];
 
     const results = await Promise.all(
@@ -116,10 +102,6 @@ export default function Cart() {
               width: "90%",
               padding: "30px 30px",
               margin: "30px 30px",
-              // maxWidth: "800px",
-              // backgroundColor: "rgba(251, 245, 230, 0.8)",
-              // borderRadius: "10px",
-              // border: "0.2px solid #eee9d3",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -127,13 +109,9 @@ export default function Cart() {
             }}
           >
 
-            {/* <h1 class="title">
-              カート
-            </h1> */}
 
             <Typography
               sx={{
-                // fontSize: "50px",
                 fontSize: {
                   xs: "28px",
                   sm: "36px",
@@ -141,7 +119,6 @@ export default function Cart() {
                   lg: "50px",
                 },
                 fontWeight: "600",
-                // padding: "0px 50px",
                 padding: {
                   xs: "0px 10px",
                   sm: "0px 15px",
@@ -181,9 +158,6 @@ export default function Cart() {
                   margin: "0px 0px 0px 0px",
                   width: { xs: "100%", sm: "100%", md: "70%" },
                   minWidth: "300px",
-                  // backgroundColor: "rgba(251, 245, 230, 0.8)",
-                  // borderRadius: "10px",
-                  // border: "0.2px solid #eee9d3",
                   display: "flex",
                   flexWrap: "wrap",
                   flexDirection: "column",
@@ -230,7 +204,6 @@ export default function Cart() {
                     sm: "auto",
                     md: "100%",
                   },
-                  // maxHeight: "420px",
                   maxHeight: {
                     xs: "none",
                     sm: "none",
@@ -347,7 +320,6 @@ export default function Cart() {
                 {/* (end)商品代金 */}
 
 
-                {/* <br /> */}
                 <Divider sx={{ width: '100%', my: 1 }} />
 
 
@@ -423,7 +395,6 @@ export default function Cart() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            // height: "100vh"   
           }}
         >
 

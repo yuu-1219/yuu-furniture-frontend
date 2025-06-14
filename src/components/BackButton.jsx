@@ -23,7 +23,6 @@ export default function BackButton({ text, link }) {
 
         <Typography
           sx={{
-            // fontSize: "16px",
             fontSize: {
               xs: "14px",
               sm: "16px",

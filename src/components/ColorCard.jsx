@@ -1,10 +1,7 @@
-import { useState } from "react";
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import CheckIcon from '@mui/icons-material/Check';
-import { StoreMallDirectory } from '@mui/icons-material';
 
 export default function ColorCard({ color, onColors, setOnColors }) {
     const { colorId, colorLabel, hex } = color;
@@ -23,7 +20,6 @@ export default function ColorCard({ color, onColors, setOnColors }) {
         <Box
             sx={{
                 display: "flex",
-                // flexWrap: "wrap",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
@@ -40,8 +36,6 @@ export default function ColorCard({ color, onColors, setOnColors }) {
                     md: "46px",
                     lg: "50px",
                 },
-                // maxWidth: "50px",
-                // maxHeight: "50px",
                 padding: "2px",
                 margin: {
                     xs: "1px",
